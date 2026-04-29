@@ -98,7 +98,7 @@ function skel_check_missing_acf_block_previews(): void {
 }
 
 if ( 'local' === wp_get_environment_type() ) {
-	add_action( 'admin_notices', 'skel_check_missing_acf_block_previews' );
+	// add_action( 'admin_notices', 'skel_check_missing_acf_block_previews' );
 }
 
 /**
@@ -115,11 +115,11 @@ function skel_acf_field_groups_notice(): void {
 	}
 
 	$notices = array(
-		'edit-acf-field-group'      => array(
+		'edit-acf-field-group'     => array(
 			'title'   => '⚠ Do Not Edit Field Groups Here',
 			'message' => 'All ACF field groups are managed via code in this theme. Any field group added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
 		),
-		'edit-acf-ui-options-page'  => array(
+		'edit-acf-ui-options-page' => array(
 			'title'   => '⚠ Do Not Edit Options Pages Here',
 			'message' => 'All ACF options pages are managed via code in this theme. Any options page added or modified here <strong>will be overwritten</strong> on the next deployment and is <strong>prohibited</strong>.',
 		),

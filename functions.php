@@ -7,7 +7,6 @@
  * @since 1.0.0
  */
 
-// require get_template_directory() . '/functions/shortcodes.php';
 require get_template_directory() . '/functions/define-constants.php';
 require get_template_directory() . '/functions/register-nav-menus.php';
 require get_template_directory() . '/functions/helpers.php';
