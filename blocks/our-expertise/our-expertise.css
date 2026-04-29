@@ -95,28 +95,3 @@
 .our-expertise-section .image-col .image-placeholder {
   background: linear-gradient(135deg, #eae2d7 0%, #f7f1e8 100%);
 }
-.our-expertise-section .swiper-pagination-line .swiper-pagination-bullet {
-  background-color: rgba(103, 30, 58, 0.08);
-}
-.our-expertise-section .swiper-pagination-line .swiper-pagination-bullet::after {
-  background-color: #671e3a;
-}
-.our-expertise-section .swiper-navigation .swiper-button-prev,
-.our-expertise-section .swiper-navigation .swiper-button-next {
-  color: #671e3a;
-  border-color: #671e3a;
-}
-.our-expertise-section .swiper-navigation .swiper-button-next {
-  background-color: #671e3a;
-  color: #fff;
-}
-.our-expertise-section .swiper-navigation .swiper-button-prev:hover,
-.our-expertise-section .swiper-navigation .swiper-button-prev:focus-visible {
-  background-color: #671e3a;
-  color: #fff;
-}
-.our-expertise-section .swiper-navigation .swiper-button-next:hover,
-.our-expertise-section .swiper-navigation .swiper-button-next:focus-visible {
-  background-color: transparent;
-  color: #671e3a;
-}

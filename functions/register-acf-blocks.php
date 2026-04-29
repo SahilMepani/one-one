@@ -19,11 +19,40 @@ function skel_load_acf_json_blocks() {
 		return;
 	}
 
+	$is_local = ( 'local' === wp_get_environment_type() );
+
+	// Build cache key from JSON file mtimes + count so any add/edit/delete busts cache.
+	$json_files = glob( $blocks_dir . '/*/*.json' );
+
+	if ( empty( $json_files ) ) {
+		// Fall through to folder scan, which will early-return if no folders exist.
+		$cache_key = '';
+	} else {
+		$max_mtime = max( array_map( 'filemtime', $json_files ) );
+		$cache_key = 'skel_acf_blocks_data_' . md5( $max_mtime . '_' . count( $json_files ) );
+	}
+
+	// Try cache (skip in local dev).
+	if ( ! $is_local && $cache_key ) {
+		$cached = get_transient( $cache_key );
+
+		if ( is_array( $cached ) ) {
+			foreach ( $cached as $entry ) {
+				if ( isset( $entry['slug'], $entry['data'] ) ) {
+					skel_register_single_block( $entry['data'], $entry['slug'] );
+				}
+			}
+			return;
+		}
+	}
+
 	$block_folders = glob( $blocks_dir . '/*', GLOB_ONLYDIR );
 
 	if ( empty( $block_folders ) ) {
 		return;
 	}
+
+	$blocks_to_cache = array();
 
 	foreach ( $block_folders as $folder ) {
 		$slug      = basename( $folder );
@@ -40,7 +69,17 @@ function skel_load_acf_json_blocks() {
 			continue;
 		}
 
+		$blocks_to_cache[] = array(
+			'slug' => $slug,
+			'data' => $block_data,
+		);
+
 		skel_register_single_block( $block_data, $slug );
+	}
+
+	// Persist parsed data so subsequent requests can skip disk I/O.
+	if ( ! $is_local && $cache_key && ! empty( $blocks_to_cache ) ) {
+		set_transient( $cache_key, $blocks_to_cache, 12 * HOUR_IN_SECONDS );
 	}
 }
 add_action( 'acf/init', 'skel_load_acf_json_blocks' );
@@ -106,11 +145,15 @@ function skel_register_single_block( $block_data, $slug ) {
 
 		if ( file_exists( $js_path ) ) {
 			if ( $needs_swiper ) {
+				static $swiper_ver = null;
+				if ( null === $swiper_ver ) {
+					$swiper_ver = filemtime( get_template_directory() . '/assets/js/swiper-bundle.js' );
+				}
 				wp_enqueue_script(
 					'skel-swiper',
 					get_template_directory_uri() . '/assets/js/swiper-bundle.js',
 					array(),
-					filemtime( get_template_directory() . '/assets/js/swiper-bundle.js' ),
+					$swiper_ver,
 					true
 				);
 			}
@@ -118,7 +161,7 @@ function skel_register_single_block( $block_data, $slug ) {
 			wp_enqueue_script(
 				"block-{$slug}",
 				"{$blocks_uri}/{$slug}/{$slug}.js",
-				$needs_swiper ? array( 'skel-swiper' ) : array(),
+				$needs_swiper ? array( 'skel-swiper', 'skel-custom' ) : array( 'skel-custom' ),
 				filemtime( $js_path ),
 				true
 			);
@@ -246,18 +289,31 @@ function skel_ensure_field_keys( &$fields, $prefix ) {
 	}
 }
 
-// Check if block config changed and regenerate files if needed.
-$blocks_current_hash = md5( wp_json_encode( $block_types ) );
-$blocks_stored_hash  = get_option( 'acf_block_types_hash' );
+/**
+ * Check if block config changed and regenerate files if needed.
+ *
+ * Runs on admin_init only, so it does not fire on every frontend, REST, or cron request.
+ */
+function skel_check_acf_blocks_config_hash() {
+	include get_template_directory() . '/blocks/config.php';
 
-if ( $blocks_current_hash !== $blocks_stored_hash ) {
-	update_option( 'acf_block_types_hash', $blocks_current_hash );
+	if ( empty( $block_types ) || ! is_array( $block_types ) ) {
+		return;
+	}
 
-	if ( 'local' === wp_get_environment_type() ) {
-		skel_create_acf_block_files( $block_types );
-		skel_delete_unwanted_acf_block_files( $block_types );
+	$blocks_current_hash = md5( wp_json_encode( $block_types ) );
+	$blocks_stored_hash  = get_option( 'acf_block_types_hash' );
+
+	if ( $blocks_current_hash !== $blocks_stored_hash ) {
+		update_option( 'acf_block_types_hash', $blocks_current_hash );
+
+		if ( 'local' === wp_get_environment_type() ) {
+			skel_create_acf_block_files( $block_types );
+			skel_delete_unwanted_acf_block_files( $block_types );
+		}
 	}
 }
+add_action( 'admin_init', 'skel_check_acf_blocks_config_hash' );
 
 /**
  * Get default fields for ACF blocks.

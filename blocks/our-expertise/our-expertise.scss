@@ -104,39 +104,4 @@
 			background: linear-gradient(135deg, $sand 0%, $mist 100%);
 		}
 	}
-
-	// Color overrides for the global swiper-pagination + swiper-navigation
-	// template parts. Layout/shape lives in the global partials.
-	.swiper-pagination-line .swiper-pagination-bullet {
-		background-color: rgba($magento, 0.08);
-
-		&::after {
-			background-color: $magento;
-		}
-	}
-
-	.swiper-navigation {
-		.swiper-button-prev,
-		.swiper-button-next {
-			color: $magento;
-			border-color: $magento;
-		}
-
-		.swiper-button-next {
-			background-color: $magento;
-			color: #fff;
-		}
-
-		.swiper-button-prev:hover,
-		.swiper-button-prev:focus-visible {
-			background-color: $magento;
-			color: #fff;
-		}
-
-		.swiper-button-next:hover,
-		.swiper-button-next:focus-visible {
-			background-color: transparent;
-			color: $magento;
-		}
-	}
 }

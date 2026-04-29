@@ -35,69 +35,6 @@ function skel_inline_critical_css(): void {
 add_action( 'wp_head', 'skel_inline_critical_css', 1 );
 
 /**
- * Conditionally enqueue ACF block assets.
- *
- * Checks which ACF blocks are present on the current page and
- * enqueues only their CSS/JS files for optimal performance.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function skel_enqueue_block_assets(): void {
-	$post_id = get_the_ID();
-	if ( ! $post_id ) {
-		return;
-	}
-
-	$config_file = get_template_directory() . '/blocks/config.php';
-	if ( ! file_exists( $config_file ) ) {
-		return;
-	}
-
-	include $config_file;
-
-	if ( empty( $block_types ) || ! is_array( $block_types ) ) {
-		return;
-	}
-
-	$blocks_dir = get_template_directory() . '/blocks';
-	$blocks_uri = get_template_directory_uri() . '/blocks';
-
-	foreach ( $block_types as $block_name ) {
-		$block_slug     = sanitize_title( $block_name );
-		$block_name_acf = 'acf/' . $block_slug;
-
-		if ( ! has_block( $block_name_acf, $post_id ) ) {
-			continue;
-		}
-
-		$css_path = "{$blocks_dir}/{$block_slug}/{$block_slug}.css";
-		$js_path  = "{$blocks_dir}/{$block_slug}/{$block_slug}.js";
-
-		if ( file_exists( $css_path ) ) {
-			wp_enqueue_style(
-				"block-{$block_slug}",
-				"{$blocks_uri}/{$block_slug}/{$block_slug}.css",
-				array(),
-				filemtime( $css_path )
-			);
-		}
-
-		if ( file_exists( $js_path ) ) {
-			wp_enqueue_script(
-				"block-{$block_slug}",
-				"{$blocks_uri}/{$block_slug}/{$block_slug}.js",
-				array(),
-				filemtime( $js_path ),
-				true
-			);
-		}
-	}
-}
-add_action( 'wp_enqueue_scripts', 'skel_enqueue_block_assets' );
-
-/**
  * Enqueue and register theme scripts and styles.
  *
  * Loads theme stylesheets and JS files, versioned automatically
@@ -132,14 +69,6 @@ function skel_enqueue_scripts(): void {
 	}
 
 	// wp_style_add_data( 'skel-style', 'rtl', 'replace' );
-
-	wp_enqueue_script(
-		'skel-swiper',
-		get_template_directory_uri() . '/assets/js/swiper-bundle.js',
-		array(),
-		filemtime( get_template_directory() . '/assets/js/swiper-bundle.js' ),
-		true
-	);
 
 	wp_enqueue_script(
 		'skel-plugins',
