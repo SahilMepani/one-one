@@ -49,7 +49,7 @@
 @mixin btn-icon {
 	flex-shrink: 0;
 
-	.label {
+	.btn-label {
 		flex-grow: 1;
 	}
 
@@ -130,7 +130,7 @@
 		border-radius: rem-calc(6);
 	}
 
-	span.label {
+	span.btn-label {
 		padding-inline: fluid(12, 16, 'sm');
 	}
 
@@ -175,7 +175,7 @@
 		}
 	}
 
-	.label {
+	.btn-label {
 		display: inline-block;
 	}
 

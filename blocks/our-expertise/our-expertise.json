@@ -1,0 +1,70 @@
+{
+	"title": "Our Expertise",
+	"needs_swiper": true,
+	"fields": [
+		{
+			"key": "field_our_expertise_block_options",
+			"label": "Our Expertise",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_our_expertise_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_our_expertise_subheading",
+			"label": "Subheading",
+			"name": "subheading",
+			"type": "text",
+			"default_value": "Our Expertise"
+		},
+		{
+			"key": "field_our_expertise_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "How I help you"
+		},
+		{
+			"key": "field_our_expertise_items",
+			"label": "Expertise Items",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"layout": "block",
+			"button_label": "Add Expertise",
+			"collapsed": "field_our_expertise_items_title",
+			"sub_fields": [
+				{
+					"key": "field_our_expertise_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": "br"
+				},
+				{
+					"key": "field_our_expertise_items_description",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "br"
+				},
+				{
+					"key": "field_our_expertise_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				}
+			]
+		}
+	]
+}

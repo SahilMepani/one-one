@@ -21,4 +21,5 @@ $block_types = array(
 	'Logo Slider',
 	'Brand Marquee',
 	'Home Hero',
+	'Our Expertise',
 );

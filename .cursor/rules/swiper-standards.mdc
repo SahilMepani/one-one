@@ -14,6 +14,10 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 
 ## 1. HTML Structure (PHP partial)
 
+> **MANDATORY:** Always render the pagination and navigation via the project's shared template parts — `template-parts/swiper-pagination.php` and `template-parts/swiper-navigation.php`. **Do NOT** hand-write the pagination `<div>`, the `.swiper-navigation` wrapper, the prev/next buttons, or their SVG icons in your block PHP. The template parts already produce the correct markup, classes, ARIA, and SVG icons; their styling lives in the global partials `_swiper-pagination.scss` and `_swiper-navigation.scss`.
+>
+> Likewise, **do NOT** write block-specific SCSS for layout, sizing, or shape of `.swiper-pagination`, `.swiper-pagination-line`, `.swiper-pagination-dot`, `.swiper-pagination-bullet`, `.swiper-navigation`, `.swiper-button-prev`, or `.swiper-button-next`. The global partials handle that. Only write **per-block color/theme overrides** when the design demands different colors than the defaults.
+
 ```php
 <section class="{slug}-section section">
 	<div class="container">
@@ -27,22 +31,12 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 		</div>
 
 		<!-- Controls (outside .swiper so they aren't clipped by overflow:hidden) -->
-		<div class="controls">
-			<!-- Add swiper-pagination-line for bar shape; directional animation is automatic if the CSS hook exists (see §4) -->
-			<div class="swiper-pagination swiper-pagination-line"></div>
-			<div class="swiper-navigation">
-				<button type="button" class="swiper-button-prev" aria-label="Previous slide">
-					<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-						<path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</button>
-				<button type="button" class="swiper-button-next" aria-label="Next slide">
-					<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-						<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</button>
+		<?php if ( count( $items ) > 1 ) : ?>
+			<div class="swiper-controls">
+				<?php get_template_part( 'template-parts/swiper-pagination' ); ?>
+				<?php get_template_part( 'template-parts/swiper-navigation' ); ?>
 			</div>
-		</div>
+		<?php endif; ?>
 	</div>
 </section>
 ```
@@ -51,12 +45,10 @@ Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; ch
 
 - The slider container gets **two classes**: `{slug}-slider` (JS hook) and `swiper` (Swiper core).
 - Each slide gets **two classes**: `slide` (styling — scoped by nesting inside `.{slug}-section`) and `swiper-slide` (Swiper core).
-- Child class names are **plain** (`.slide`, `.controls`, `.card`) — not BEM (`{slug}__slide`). Uniqueness comes from nesting inside `.{slug}-section` in SCSS.
-- Navigation/pagination elements sit **outside** the `.swiper` wrapper to avoid `overflow: hidden` clipping.
-- Navigation wrapper is always `.swiper-navigation` — **never** use block-specific nav wrapper classes.
-- Navigation buttons are always `.swiper-button-prev` and `.swiper-button-next` — **never** use block-specific button classes.
-- Buttons are `<button type="button">` with `aria-label`.
-- SVG icons use `aria-hidden="true"` and `stroke="currentColor"`.
+- Child class names are **plain** (`.slide`, `.card`) — not BEM (`{slug}__slide`). Uniqueness comes from nesting inside `.{slug}-section` in SCSS.
+- The controls wrapper is always `.swiper-controls` — its layout is provided globally by `_swiper-pagination.scss`.
+- Pagination + navigation are always rendered via `get_template_part(...)` calls. Never inline the markup, the SVGs, or the wrapper classes.
+- Navigation/pagination sit **outside** the `.swiper` wrapper so `overflow: hidden` doesn't clip them.
 
 ---
 
@@ -231,30 +223,49 @@ If the `.swiper` sits inside a flex or grid container, add:
 
 Without this, `min-inline-size: auto` prevents the slider from shrinking and breaks scrolling.
 
-### Navigation styling
+### Navigation styling (DO NOT redefine in block SCSS)
 
-Global navigation styles live in `src/sass/partials/template-parts/_swiper-navigation.scss`. Wrap nav buttons in a `.swiper-navigation` container to inherit these styles:
+Global navigation styles live in `src/sass/partials/template-parts/_swiper-navigation.scss`. The `template-parts/swiper-navigation.php` template part outputs the `.swiper-navigation` wrapper, the `.swiper-button-prev` / `.swiper-button-next` elements, and the SVG arrows already styled.
 
-- 44×44px circular buttons, `all: unset` base
+Default look provided globally:
+- 40×40px buttons with `all: unset` base
 - Disabled state: `opacity: 0.5; pointer-events: none`
 - Hover micro-animations on SVG arrows (`micro-left` / `micro-right` keyframes)
-- Style variants: `.style-floating` (absolute positioned), `.style-dark` (dark background)
+- Style variants via the `style` arg: `'floating'` → `.style-floating` (absolute), `'dark'` → `.style-dark`
 
-### Pagination styling
+If your design needs different colors (border, fill, hover bg), override **only the color properties** inside `.{slug}-section .swiper-navigation { … }` in the block SCSS. Never re-declare sizing, layout, base reset, gap, or hover animations.
 
-Global pagination styles live in `src/sass/partials/js-plugins/_swiper-custom.scss`. Available classes:
+### Pagination styling (DO NOT redefine in block SCSS)
 
-| Class                    | Look                | Status                                 |
-| ------------------------ | ------------------- | -------------------------------------- |
-| `swiper-pagination-dot`  | Circular dots       | Present in `_swiper-custom.scss`       |
-| `swiper-scrollbar`       | Draggable scrollbar | Present in `_swiper-custom.scss`       |
-| `swiper-pagination-line` | Equal-width bars    | **Not yet defined globally** — see note |
+Global pagination styles live in `src/sass/partials/template-parts/_swiper-pagination.scss`. The `template-parts/swiper-pagination.php` template part outputs the pagination element with the `swiper-pagination-line` class by default (equal-width bars). The directional-fill animation triggered by `data-direction` is wired up globally for both `.swiper-pagination-line` and `.swiper-pagination-dot`.
 
-> **Note:** `swiper-pagination-line` and the automatic directional-fill animation described below are the conventions for this project but **have not yet been added to `_swiper-custom.scss`**. The JS `snapIndexChange` handler still works (it only sets `data-direction`), but the visual fill won't render until the CSS hook is added globally. Until then, either add the styling in the block's own SCSS or extend `_swiper-custom.scss` separately. Keep block-specific tweaks in the block file; promote shared styling into the global partial when it stabilises.
+Available pagination shapes (all defined globally — just use the matching class via the template part or add it to the wrapper):
 
-### Directional animation (target behaviour)
+| Class                    | Look                | Defined in                          |
+| ------------------------ | ------------------- | ----------------------------------- |
+| `swiper-pagination-line` | Equal-width bars    | `_swiper-pagination.scss` (default) |
+| `swiper-pagination-dot`  | Circular dots       | `_swiper-pagination.scss`           |
+| `swiper-scrollbar`       | Draggable scrollbar | `_swiper-custom.scss`               |
 
-Once the CSS hook exists in `_swiper-custom.scss`, forward/backward fill animation should be applied by default to `swiper-pagination-line`, `swiper-pagination-dot`, and `swiper-scrollbar`.
+If your design needs different colors, override **only the bullet colors** inside `.{slug}-section`:
+
+```scss
+.{slug}-section {
+	.swiper-pagination-line .swiper-pagination-bullet {
+		background-color: $your-track-color;
+
+		&::after {
+			background-color: $your-fill-color; // active fill
+		}
+	}
+}
+```
+
+Never re-declare flex layout, gap, height, border-radius, position, opacity, or the directional `::after` transition rules — those are global.
+
+### Directional animation
+
+Forward/backward fill animation is already wired globally for `.swiper-pagination-line`, `.swiper-pagination-dot`, and `.swiper-scrollbar`.
 
 How it works:
 
@@ -262,25 +273,11 @@ How it works:
 - Backward swipe: directions reverse
 - The JS `snapIndexChange` handler sets `data-direction` on the pagination/scrollbar container (see §2)
 - The handler is bound on the Swiper instance **after** init, not in the config `on` object
-- The CSS reacts via attribute selectors like `.swiper-pagination[data-direction='forward'] .swiper-pagination-bullet-active::after { … }`
-
-Color overrides — override per-block in the block's SCSS (nested inside `.{slug}-section`):
-
-```scss
-.{slug}-section {
-	.swiper-pagination .swiper-pagination-bullet {
-		background-color: $your-track-color;
-
-		&::after {
-			background-color: $your-fill-color;
-		}
-	}
-}
-```
+- The CSS reacts via attribute selectors like `.swiper-pagination[data-direction='forward'] .swiper-pagination-bullet-active::after { … }` — already in `_swiper-pagination.scss`
 
 ### Custom overrides
 
-Block-specific pagination/nav tweaks go in the block's own SCSS file, not in the global partials.
+The only block-specific swiper styling allowed is **color theming** of the existing pagination bullets and nav buttons. Sizing, layout, animation, and base resets always come from the global partials. If a design genuinely needs a different shape, extend the global partial with a new modifier class — do not redefine the existing classes inside a block.
 
 ---
 

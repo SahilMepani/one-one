@@ -12,6 +12,140 @@
 			"key": "field_home_hero_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_home_hero_background_image",
+			"label": "Background Image",
+			"name": "background_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200",
+			"library": "all"
+		},
+		{
+			"key": "field_home_hero_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text"
+		},
+		{
+			"key": "field_home_hero_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Line breaks are preserved."
+		},
+		{
+			"key": "field_home_hero_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": ""
+		},
+		{
+			"key": "field_home_hero_cta",
+			"label": "CTA Button",
+			"name": "cta",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_home_hero_product_tab",
+			"label": "Featured Product",
+			"type": "tab"
+		},
+		{
+			"key": "field_home_hero_product_show",
+			"label": "Show Featured Product",
+			"name": "product_show",
+			"type": "true_false",
+			"ui": 1,
+			"default_value": 1
+		},
+		{
+			"key": "field_home_hero_product_image",
+			"label": "Product Image",
+			"name": "product_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200",
+			"library": "all",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_home_hero_product_show",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_home_hero_product_eyebrow",
+			"label": "Eyebrow",
+			"name": "product_eyebrow",
+			"type": "text",
+			"instructions": "Small line above the product title (e.g. \"ONE·ONE\").",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_home_hero_product_show",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_home_hero_product_title",
+			"label": "Title",
+			"name": "product_title",
+			"type": "text",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_home_hero_product_show",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_home_hero_product_description",
+			"label": "Description",
+			"name": "product_description",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_home_hero_product_show",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_home_hero_product_link",
+			"label": "Link",
+			"name": "product_link",
+			"type": "link",
+			"return_format": "array",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_home_hero_product_show",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
 		}
 	]
 }

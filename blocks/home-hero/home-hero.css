@@ -2,17 +2,10 @@
 .home-hero-section {
   color: #fbf8f3;
   display: grid;
-  min-block-size: clamp(40rem, 40rem + 11.25 * (100vw - 48rem) / 27, 51.25rem);
-  max-block-size: 100svh;
   position: relative;
   overflow: hidden;
 }
-
-.home-hero__container {
-  display: grid;
-}
-
-.home-hero__bg {
+.home-hero-section .bg {
   inline-size: 100%;
   block-size: 100%;
   position: absolute;
@@ -20,8 +13,7 @@
   inset-block-start: 0;
   z-index: 0;
 }
-
-.home-hero__bg-image {
+.home-hero-section .bg-image {
   inline-size: 100%;
   block-size: 100%;
   position: absolute;
@@ -29,32 +21,31 @@
   inset-block-start: 0;
   object-fit: cover;
 }
-
-.home-hero__bg-overlay {
-  background-color: rgba(54, 41, 37, 0.32);
+.home-hero-section .bg-overlay {
+  background-color: rgba(35, 30, 28, 0.32);
   inline-size: 100%;
   block-size: 100%;
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
 }
-
-.home-hero__inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-block: clamp(5.625rem, 5.625rem + 3.125 * (100vw - 48rem) / 27, 8.75rem) clamp(1.5rem, 1.5rem + 1.5 * (100vw - 48rem) / 27, 3rem);
+.home-hero-section .container {
+  display: grid;
   position: relative;
   z-index: 1;
 }
-
-@media (width >= 768px) {
-  .home-hero__content {
-    max-inline-size: 33.75rem;
-  }
+.home-hero-section .inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(2.5rem, 2.5rem + 2.5 * (100vw - 48rem) / 27, 5rem);
+  min-block-size: inherit;
+  padding-block: clamp(5.625rem, 5.625rem + 3.125 * (100vw - 48rem) / 27, 8.75rem) clamp(1.5rem, 1.5rem + 1.5 * (100vw - 48rem) / 27, 3rem);
 }
-
-.home-hero__label {
+.home-hero-section .content {
+  max-inline-size: 33.75rem;
+}
+.home-hero-section .label {
   background-color: rgba(251, 248, 243, 0.08);
   color: #fbf8f3;
   font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
@@ -66,106 +57,73 @@
   margin-block-end: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
   border-radius: 0.25rem;
 }
-
-.home-hero__heading {
+.home-hero-section .heading {
   color: #fbf8f3;
-  font-size: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(2.25rem, 2.25rem + 1.25 * (100vw - 48rem) / 27, 3.5rem);
+  font-style: italic;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-block-end: clamp(0.5rem, 0.5rem + 0.5 * (100vw - 48rem) / 27, 1rem);
+  margin-block-end: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
 }
-
-.home-hero__description {
-  color: #eae2d7;
+.home-hero-section .description {
+  color: rgba(251, 248, 243, 0.6);
   font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
   line-height: 1.4;
+  max-inline-size: 28rem;
   margin-block-end: clamp(1.5rem, 1.5rem + 0.5 * (100vw - 48rem) / 27, 2rem);
 }
-@media (width >= 768px) {
-  .home-hero__description {
-    max-inline-size: 28rem;
-  }
-}
-
-.home-hero__button {
-  color: #fbf8f3;
-  display: flex;
-  align-items: center;
-}
-
-.home-hero__button-label {
-  background-color: #362925;
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: clamp(0.0000625rem, 0.0000625rem + 0.9999375 * (100vw - 48rem) / 27, 1rem);
-  font-weight: 500;
-  line-height: 1.5rem;
-  padding-block: clamp(0.0000625rem, 0.0000625rem + 0.4999375 * (100vw - 48rem) / 27, 0.5rem);
-  padding-inline: clamp(0.0000625rem, 0.0000625rem + 0.9999375 * (100vw - 48rem) / 27, 1rem);
-  border-radius: 0.375rem;
-}
-
-.home-hero__button-icon {
-  background-color: #362925;
-  padding: clamp(0.0000625rem, 0.0000625rem + 0.4999375 * (100vw - 48rem) / 27, 0.5rem);
-  border-radius: 0.375rem;
-}
-.home-hero__button-icon svg {
-  inline-size: clamp(0.0000625rem, 0.0000625rem + 1.4999375 * (100vw - 48rem) / 27, 1.5rem);
-  block-size: clamp(0.0000625rem, 0.0000625rem + 1.4999375 * (100vw - 48rem) / 27, 1.5rem);
-}
-
-.home-hero__product {
+.home-hero-section .product {
   background-color: #fbf8f3;
   display: flex;
+  align-items: stretch;
   align-self: flex-end;
   inline-size: min(100%, 33rem);
   border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 1.5rem 1.875rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-
-.home-hero__product-image {
-  text-decoration: none;
-  display: block;
+.home-hero-section .product-image {
   flex-shrink: 0;
   inline-size: clamp(7.5rem, 7.5rem + 4.25 * (100vw - 48rem) / 27, 11.75rem);
   position: relative;
   overflow: hidden;
 }
-
-.home-hero__product-body {
+.home-hero-section .product-image img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.home-hero-section .product-body {
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: space-between;
   gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
   padding: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
 }
-
-.home-hero__product-header {
+.home-hero-section .product-header {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.25rem, 0.25rem + 0.25 * (100vw - 48rem) / 27, 0.5rem);
 }
-
-.home-hero__product-brand {
+.home-hero-section .product-eyebrow {
   color: #362925;
   font-family: "Libre Baskerville", serif;
   font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
   line-height: 1.4;
 }
-
-.home-hero__product-name {
+.home-hero-section .product-title {
   color: #362925;
   font-family: "Libre Baskerville", serif;
   font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
   line-height: 1.4;
+  margin-block-end: clamp(0.25rem, 0.25rem + 0.25 * (100vw - 48rem) / 27, 0.5rem);
 }
-.home-hero__product-name:hover, .home-hero__product-name:focus-visible {
-  color: #362925;
-}
-
-.home-hero__product-description {
-  color: #8c807d;
+.home-hero-section .product-description {
+  color: rgba(0, 0, 0, 0.4);
   font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: clamp(0.75rem, 0.75rem + 0.125 * (100vw - 48rem) / 27, 0.875rem);
   line-height: 1.4;
