@@ -1,11 +1,12 @@
 name: Deploy
 
+# Temporarily disabled — uncomment the push block below to re-enable auto-deploy
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - main
-            - staging
+    # push:
+    #     branches:
+    #         - main
+    #         - staging
 
 jobs:
     deploy-staging:

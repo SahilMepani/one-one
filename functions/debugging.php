@@ -28,7 +28,7 @@ if ( 'local' === wp_get_environment_type() ) {
 	 * by this point. Prefer setting these in wp-config.php directly.
 	 */
 	if ( ! defined( 'WP_DEBUG_LOG' ) ) {
-		define( 'WP_DEBUG_LOG', WP_CONTENT_DIR . '/themes/skeleton/debug.log' );
+		define( 'WP_DEBUG_LOG', WP_CONTENT_DIR . '/themes/one-one/debug.log' );
 	}
 
 	if ( ! defined( 'WP_DEBUG' ) ) {
