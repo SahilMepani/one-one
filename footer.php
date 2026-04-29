@@ -34,7 +34,11 @@
 	</div> <!-- .container -->
 </footer> <!-- #footer -->
 
-<a href="#" class="scroll-to-top scroll-to" aria-label="<?php esc_attr_e( 'Scroll to Top', 'skel' ); ?>"></a>
+<a href="#" class="scroll-to-top scroll-to" aria-label="Scroll to Top">
+	<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+		<path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
+</a>
 
 <?php wp_footer(); ?>
 

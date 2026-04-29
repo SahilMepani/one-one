@@ -19,8 +19,8 @@
 		margin-inline-start: rem-calc(20);
 		list-style: none;
 
-		&.current-menu-item>a,
-		&.current_page_parent>a {
+		&.current-menu-item > a,
+		&.current_page_parent > a {
 			color: #000;
 			text-decoration: underline;
 		}
@@ -29,6 +29,36 @@
 	a {
 		&:hover {
 			text-decoration: underline;
+		}
+	}
+}
+
+.scroll-to-top {
+	display: none;
+
+	@media (width >= $md) {
+		background-color: #fff;
+		color: #000;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: rem-calc(44);
+		block-size: rem-calc(44);
+		border-radius: rem-calc(6);
+		position: fixed;
+		right: rem-calc(24);
+		bottom: rem-calc(24);
+		z-index: 100;
+		transition: background-color 200ms ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: #ddd;
+		}
+
+		svg {
+			inline-size: rem-calc(24);
+			block-size: rem-calc(24);
 		}
 	}
 }
