@@ -23,4 +23,5 @@ $block_types = array(
 	'Home Hero',
 	'Our Expertise',
 	'Product Showcase',
+	'Text Banner',
 );

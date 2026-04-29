@@ -1,0 +1,17 @@
+{
+	"title": "Text Banner",
+	"fields": [
+		{
+			"key": "field_text_banner_block_options",
+			"label": "Text Banner",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_text_banner_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}
