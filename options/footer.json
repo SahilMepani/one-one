@@ -1,0 +1,97 @@
+{
+	"title": "Footer Options",
+	"options_page": "global-options-footer",
+	"fields": [
+		{
+			"key": "field_footer_option_logo",
+			"label": "Logo",
+			"name": "logo",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "medium",
+			"instructions": "Upload the footer logo."
+		},
+		{
+			"key": "field_footer_option_menus",
+			"label": "Menus",
+			"name": "menus",
+			"type": "repeater",
+			"min": 0,
+			"max": 3,
+			"layout": "block",
+			"button_label": "Add Menu Column",
+			"sub_fields": [
+				{
+					"key": "field_footer_option_menu_select",
+					"label": "Select Menu",
+					"name": "menu",
+					"type": "taxonomy",
+					"taxonomy": "nav_menu",
+					"field_type": "select",
+					"return_format": "id",
+					"add_term": 0,
+					"allow_null": 1,
+					"instructions": "Select a WordPress navigation menu. <a href='/wp-admin/nav-menus.php'>(Appearance → Menus)</a>"
+				},
+				{
+					"key": "field_footer_option_custom_title",
+					"label": "Custom Title",
+					"name": "custom_title",
+					"type": "text",
+					"instructions": "Leave blank to use the menu name."
+				},
+				{
+					"key": "field_footer_option_title_link",
+					"label": "Title Link",
+					"name": "title_link",
+					"type": "url",
+					"instructions": "Add a link to the title."
+				}
+			]
+		},
+		{
+			"key": "field_footer_option_office",
+			"label": "Office Location",
+			"name": "office",
+			"type": "group",
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_footer_option_office_country_flag",
+					"label": "Country Flag",
+					"name": "country_flag",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200",
+					"instructions": "Upload a circular flag icon (21x21px recommended)"
+				},
+				{
+					"key": "field_footer_option_office_country_name",
+					"label": "Country Name",
+					"name": "country_name",
+					"type": "text",
+					"default_value": "UAE"
+				},
+				{
+					"key": "field_footer_option_office_address",
+					"label": "Address",
+					"name": "address",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "br",
+					"instructions": "Line breaks are preserved.",
+					"default_value": "Level 8, The Office 5,\nOne Central, DTWC\nDubai, UAE"
+				}
+			]
+		},
+		{
+			"key": "field_footer_option_copyright",
+			"label": "Copyright Text",
+			"name": "copyright",
+			"type": "wysiwyg",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"instructions": "Footer copyright and legal links"
+		}
+	]
+}

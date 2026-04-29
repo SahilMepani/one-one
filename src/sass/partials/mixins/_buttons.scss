@@ -1,0 +1,145 @@
+@use '../config/blocks' as *;
+@use 'rem' as *;
+
+%btn {
+	font-family: $sans-serif-font-family;
+	font-size: rem-calc(16);
+	font-weight: 500;
+	line-height: 1.3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: fit-content;
+	user-select: none;
+	border: 0;
+
+	span {
+		text-box: trim-both cap alphabetic;
+	}
+}
+
+@mixin btn-input-clone($bg-color) {
+	background-color: $bg-color;
+	font-size: 1rem;
+	line-height: $input-line-height;
+	text-transform: uppercase;
+	padding-block-start: $input-padding-y;
+	padding-block-end: $input-padding-y;
+	border: rem-calc(1) solid $bg-color;
+
+	@media (width >=$md) {
+		padding-block-start: $input-padding-y-lg;
+		padding-block-end: $input-padding-y-lg;
+	}
+}
+
+@mixin btn-reset {
+	background: transparent;
+	color: $link-color;
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	inline-size: unset;
+	cursor: pointer;
+}
+
+@mixin btn-icon {
+	position: relative;
+	overflow: hidden;
+	gap: rem-calc(20);
+
+	svg {
+		fill: currentcolor;
+		inline-size: rem-calc(24);
+		max-block-size: rem-calc(24);
+		flex-shrink: 0;
+	}
+}
+
+@mixin btn-rarr {
+	&:hover,
+	&:focus-visible {
+		svg {
+			animation: btn-rarr 0.4s ease-in-out;
+		}
+	}
+}
+
+@mixin btn-barr {
+	&:hover,
+	&:focus-visible {
+		svg {
+			animation: btn-barr 0.4s ease-in-out;
+		}
+	}
+}
+
+@mixin btn-dark {
+	background: radial-gradient(
+		509.01% 118.28% at 100.22% 81.25%,
+		rgba(0, 0, 0, 0.4) 0%,
+		#000 100%
+	);
+	color: #fff;
+	backdrop-filter: blur(12px);
+
+	&:hover,
+	&:focus-visible {
+		color: #fff;
+	}
+}
+
+@mixin btn-light {
+	background: linear-gradient(
+		101deg,
+		rgba(255, 255, 255, 0.08) 8.04%,
+		rgba(255, 255, 255, 0.4) 92.32%
+	);
+	color: #080c11;
+
+	&:hover,
+	&:focus-visible {
+		color: #080c11;
+	}
+}
+
+@mixin sheen($sheen-color: rgba(255, 255, 255, 0.3)) {
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inline-size: 60%;
+		background: linear-gradient(
+			120deg,
+			transparent 0%,
+			$sheen-color 50%,
+			transparent 100%
+		);
+		inset-inline-start: -75%;
+		animation: sheen 5s ease-in-out infinite;
+	}
+}
+
+@mixin btn-sm {
+	min-block-size: rem-calc(36);
+	padding-inline: rem-calc(20);
+	padding-block: rem-calc(8); // safety net
+}
+
+@mixin btn-md {
+	min-block-size: rem-calc(64);
+	padding-inline: rem-calc(32);
+	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+	padding-block: rem-calc(8); // safety net
+	border-radius: rem-calc(32);
+}
+
+@mixin btn-lg {
+	min-block-size: rem-calc(60);
+	padding-inline: rem-calc(20);
+	padding-block: rem-calc(8); // safety net
+}

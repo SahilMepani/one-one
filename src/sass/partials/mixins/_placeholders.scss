@@ -1,0 +1,22 @@
+@use '../config/blocks' as *;
+
+%container {
+	inline-size: 100%;
+	padding-inline-end: $container-padding-x;
+	padding-inline-start: $container-padding-x;
+	margin-inline-end: auto;
+	margin-inline-start: auto;
+}
+
+%fill {
+	display: block;
+	inline-size: 100%;
+	block-size: 100%;
+	position: absolute;
+	inset: 0;
+}
+
+%fill-cover {
+	object-fit: cover;
+	@extend %fill;
+}

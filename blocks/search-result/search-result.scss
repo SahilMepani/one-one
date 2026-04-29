@@ -1,0 +1,74 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.search-result-section {
+	.search-container {
+		max-inline-size: rem-calc(800);
+	}
+
+	.search-form {
+		margin-block-end: rem-calc(24);
+	}
+
+	.list-result {
+		margin-block-end: rem-calc(40);
+
+		> li:last-child {
+			a {
+				border-bottom: none;
+			}
+		}
+
+		a {
+			display: block;
+			padding-block: rem-calc(16);
+			padding-inline-end: rem-calc(60);
+			border-bottom: rem-calc(1) solid #ddd;
+			position: relative;
+
+			&:hover,
+			&:focus-visible {
+				.arrow-block {
+					&::before {
+						opacity: 1;
+					}
+				}
+			}
+
+			.arrow-block {
+				inline-size: rem-calc(44);
+				position: absolute;
+				inset: rem-calc(-1) 0 rem-calc(-1) auto;
+
+				&::before {
+					background: #ffd600;
+					position: absolute;
+					inset: 0;
+					opacity: 0;
+					transition: opacity 0.2s ease-out;
+					content: '';
+				}
+
+				.chevron {
+					aspect-ratio: 6 / 10;
+					inline-size: rem-calc(6);
+					margin: auto;
+					position: absolute;
+					inset: 0;
+				}
+			}
+		}
+
+		.post-type {
+			font-size: rem-calc(14);
+			text-transform: capitalize;
+			margin-block-end: rem-calc(12);
+		}
+
+		.title {
+			font-family: $heading-font-family;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-block-end: 0;
+		}
+	}
+}

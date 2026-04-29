@@ -1,0 +1,20 @@
+@use "../abstracts" as *;
+
+p:empty {
+	// added by wp-editor
+	display: none;
+}
+
+.alignnone {
+	margin-block-start: rem-calc(10);
+}
+
+.wp-caption.alignleft {
+	float: left;
+	margin-block-start: 0;
+}
+
+.wp-caption.alignright {
+	float: right;
+	margin-block-start: 0;
+}

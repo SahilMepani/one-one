@@ -1,0 +1,38 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+/**
+ * Accessibility: Reduced Motion Mode
+ * Disables AOS animations if the user has system-wide motion reduction enabled.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+	[data-aos],
+	[data-aos-stagger-item],
+	[data-inview],
+	[data-slider-inview],
+	.swiper-slide {
+		visibility: visible !important;
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+		animation: none !important;
+		pointer-events: auto !important;
+	}
+
+	// If you want to preserve fade-only transitions (non-motion),
+	// you can selectively re-enable them here:
+
+	/*
+	[data-aos^='fade'] {
+		transition: opacity 0.2s ease-out !important;
+	}
+	*/
+
+	// Optional: force AOS JS to skip intersection observers if present
+	body::before {
+		display: none; // purely for debugging, can remove
+		content: 'Reduced Motion Mode Active';
+	}
+}

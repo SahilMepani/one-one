@@ -1,0 +1,262 @@
+{
+	"title": "Flexible Editor",
+	"fields": [
+		{
+			"key": "field_flexible_editor_block_options",
+			"label": "Flexible Editor",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_flexible_editor_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_flexible_editor_flexible_editor",
+			"label": "Flexible Editor",
+			"name": "flexible_editor",
+			"type": "flexible_content",
+			"layouts": [
+				{
+					"key": "layout_spacing",
+					"name": "spacing",
+					"label": "Spacing",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_flexible_editor_spacing",
+							"label": "Spacing",
+							"name": "spacing",
+							"type": "number"
+						}
+					]
+				},
+				{
+					"key": "layout_text",
+					"name": "text",
+					"label": "Text",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_flexible_editor_text",
+							"label": "Text",
+							"name": "text",
+							"type": "wysiwyg",
+							"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
+							"tabs": "all",
+							"toolbar": "full",
+							"media_upload": 1,
+							"delay": 1
+						}
+					]
+				},
+				{
+					"key": "layout_heading",
+					"name": "heading",
+					"label": "Heading",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_flexible_editor_heading_markup",
+							"label": "Heading Markup",
+							"name": "heading_markup",
+							"type": "select",
+							"choices": {
+								"h1": "H1",
+								"h2": "H2",
+								"h3": "H3",
+								"h4": "H4",
+								"h5": "H5",
+								"h6": "H6"
+							},
+							"default_value": "h2",
+							"return_format": "value",
+							"wrapper": {
+								"width": "50"
+							}
+						},
+						{
+							"key": "field_flexible_editor_heading_style",
+							"label": "Heading Style",
+							"name": "heading_style",
+							"type": "select",
+							"choices": {
+								"h1": "H1",
+								"h2": "H2",
+								"h3": "H3",
+								"h4": "H4",
+								"h5": "H5",
+								"h6": "H6"
+							},
+							"default_value": "h2",
+							"return_format": "value",
+							"wrapper": {
+								"width": "50"
+							}
+						},
+						{
+							"key": "field_flexible_editor_heading",
+							"label": "Heading",
+							"name": "heading",
+							"type": "text"
+						}
+					]
+				},
+				{
+					"key": "layout_media",
+					"name": "media",
+					"label": "Media",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_flexible_editor_media_type",
+							"label": "Media Type",
+							"name": "media_type",
+							"type": "button_group",
+							"choices": {
+								"image": "Image",
+								"video": "Video"
+							},
+							"default_value": "image",
+							"return_format": "value",
+							"wrapper": {
+								"width": "50"
+							}
+						},
+						{
+							"key": "field_flexible_editor_enable_popup",
+							"label": "Enable Popup",
+							"name": "enable_popup",
+							"type": "button_group",
+							"choices": {
+								"yes": "Yes",
+								"no": "No"
+							},
+							"default_value": "yes",
+							"return_format": "value",
+							"wrapper": {
+								"width": "50"
+							}
+						},
+						{
+							"key": "field_flexible_editor_image",
+							"label": "Image",
+							"name": "image",
+							"type": "image",
+							"return_format": "id",
+							"preview_size": "w200",
+							"library": "all",
+							"conditional_logic": [
+								[
+									{
+										"field": "field_flexible_editor_enable_popup",
+										"operator": "==",
+										"value": "yes"
+									}
+								]
+							]
+						},
+						{
+							"key": "field_flexible_editor_video",
+							"label": "Video",
+							"name": "video",
+							"type": "group",
+							"layout": "block",
+							"conditional_logic": [
+								[
+									{
+										"field": "field_flexible_editor_media_type",
+										"operator": "==",
+										"value": "video"
+									}
+								]
+							],
+							"sub_fields": [
+								{
+									"key": "field_flexible_editor_video_type",
+									"label": "Video Type",
+									"name": "video_type",
+									"type": "button_group",
+									"choices": {
+										"file": "File",
+										"url": "URL"
+									},
+									"default_value": "file",
+									"return_format": "value"
+								},
+								{
+									"key": "field_flexible_editor_video_file",
+									"label": "Video File",
+									"name": "video_file",
+									"type": "file",
+									"return_format": "url",
+									"library": "all",
+									"conditional_logic": [
+										[
+											{
+												"field": "field_flexible_editor_video_type",
+												"operator": "==",
+												"value": "file"
+											}
+										]
+									]
+								},
+								{
+									"key": "field_flexible_editor_stream_url",
+									"label": "Stream URL",
+									"name": "stream_url",
+									"type": "oembed",
+									"conditional_logic": [
+										[
+											{
+												"field": "field_flexible_editor_video_type",
+												"operator": "!=",
+												"value": "file"
+											}
+										]
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"key": "layout_text_cards",
+					"name": "text_cards",
+					"label": "Text Cards",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_flexible_editor_text_cards",
+							"label": "Cards",
+							"name": "text_cards",
+							"type": "repeater",
+							"layout": "block",
+							"button_label": "Add Card",
+							"sub_fields": [
+								{
+									"key": "field_flexible_editor_icon",
+									"label": "Icon",
+									"name": "icon",
+									"type": "image",
+									"return_format": "url",
+									"preview_size": "w200",
+									"library": "all"
+								},
+								{
+									"key": "field_flexible_editor_card_text",
+									"label": "Text",
+									"name": "text",
+									"type": "textarea"
+								}
+							]
+						}
+					]
+				}
+			],
+			"button_label": "Add Layout"
+		}
+	]
+}

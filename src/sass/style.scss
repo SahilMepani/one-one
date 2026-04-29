@@ -1,0 +1,51 @@
+@use 'partials/theme-header';
+@use 'partials/abstracts' as *;
+
+// Base
+@use 'partials/reset';
+@use 'partials/reboot';
+@use 'partials/base-selectors';
+
+// JS plugins
+// Added at the top of other files for easy overwrite
+@use 'partials/js-plugins/swiper-modular';
+@use 'partials/js-plugins/magnific-popup';
+@use 'partials/js-plugins/swiper-custom';
+@use 'partials/js-plugins/magnific-popup-custom';
+@use 'partials/js-plugins/lenis';
+@use 'partials/aos/index' as aos;
+
+// Base
+@use 'partials/font-face';
+@use 'partials/base-styles';
+
+// Components
+@use 'partials/components/content';
+@use 'partials/components/header';
+@use 'partials/components/header-menu';
+@use 'partials/components/search-form';
+@use 'partials/components/footer';
+
+// Template Parts
+@use 'partials/template-parts/swiper-navigation';
+@use 'partials/template-parts/swiper-pagination';
+@use 'partials/template-parts/social-links';
+@use 'partials/template-parts/breadcrumbs';
+
+// Templates
+@use 'partials/templates/index';
+@use 'partials/templates/single';
+@use 'partials/templates/multiple-slider';
+
+// WP plugins
+@use 'partials/wp-plugins/gravity-forms';
+
+// Helpers
+@use 'partials/helpers/buttons';
+@use 'partials/helpers/section-spacing';
+@use 'partials/helpers/miscellaneous';
+
+// Utilities
+@use 'partials/utilities/images';
+
+// @use 'partials/utilities/rtl';

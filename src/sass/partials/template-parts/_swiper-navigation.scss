@@ -1,0 +1,71 @@
+@use '../abstracts' as *;
+
+.swiper-navigation {
+	display: flex;
+	gap: fluid(8, 16);
+
+	&:has(.swiper-button-prev.swiper-button-disabled):has(
+			.swiper-button-next.swiper-button-disabled
+		) {
+		display: none !important;
+	}
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		all: unset;
+		background-color: transparent;
+		color: $primary;
+		line-height: rem-calc(40);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: rem-calc(40);
+		block-size: rem-calc(40);
+		border: 1px solid $primary;
+		border-radius: rem-calc(6);
+		position: relative;
+		z-index: 10;
+		transition: 0.2s ease-out;
+		box-sizing: border-box;
+		user-select: none;
+		cursor: pointer;
+
+		&.swiper-button-disabled {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+
+		svg {
+			color: currentcolor;
+			font-size: rem-calc(20);
+		}
+
+		&::after {
+			display: none; // overwrite arrow
+		}
+	}
+
+	.swiper-button-prev {
+		&:hover,
+		&:focus-visible {
+			background-color: $primary;
+			color: $pale;
+
+			svg {
+				animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
+			}
+		}
+	}
+
+	.swiper-button-next {
+		&:hover,
+		&:focus-visible {
+			background-color: $primary;
+			color: $pale;
+
+			svg {
+				animation: micro-right 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
+			}
+		}
+	}
+}

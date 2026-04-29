@@ -1,0 +1,37 @@
+{
+	"title": "Logo Slider",
+	"fields": [
+		{
+			"key": "field_logo_slider_block_options",
+			"label": "Logo Slider",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_logo_slider_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_logo_slider_logos",
+			"label": "Logos",
+			"name": "logos",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Logo",
+			"sub_fields": [
+				{
+					"key": "field_logo_slider_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"required": 1,
+					"return_format": "id",
+					"preview_size": "w200",
+					"library": "all"
+				}
+			]
+		}
+	]
+}

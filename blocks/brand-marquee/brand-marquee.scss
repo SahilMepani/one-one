@@ -1,0 +1,48 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.brand-marquee-section {
+	position: relative;
+	overflow: hidden;
+
+	.section-heading {
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(28);
+		font-weight: 400;
+		letter-spacing: -0.84px;
+		text-align: center;
+		margin-block-end: rem-calc(16);
+
+		i {
+			font-family: $serif-font-family;
+			font-style: italic;
+			font-weight: 600;
+		}
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		align-items: center;
+		justify-content: center;
+
+		@media (width >= $sm) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+
+	.logo-block {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		padding-block: rem-calc(20);
+		padding-inline: fluid(20, 40);
+		position: relative;
+		user-select: none;
+
+		img {
+			max-block-size: rem-calc(44);
+		}
+	}
+}

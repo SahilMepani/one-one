@@ -1,0 +1,73 @@
+---
+description: Theme configuration values - colors, typography, spacing, breakpoints, container
+globs: 'src/sass/**/*.scss'
+alwaysApply: false
+---
+
+# Theme Configuration
+
+## Colors
+
+```scss
+$body-color: #080c11;
+$primary-color: #1f2261;
+$secondary-color: #fdba00;
+$white: #fff;
+$black: #000;
+```
+
+## Typography
+
+```scss
+$sans-serif-font-family: 'Oldschool Grotesk', system-ui, sans-serif;
+$serif-font-family: 'Source Serif Pro', georgia, serif;
+$body-font-size: rem-calc(20);
+```
+
+### Heading Scale (fluid)
+
+```scss
+h1: fluid(44, 72)     h2: fluid(36, 64)     h3: fluid(32, 56)
+h4: fluid(24, 40)     h5: fluid(20, 32)     h6: fluid(16, 24)
+```
+
+### Display Scale (fluid)
+
+```scss
+display-1: fluid(72, 160)
+display-2: fluid(60, 120)
+display-3: fluid(40, 80)
+```
+
+## Breakpoints
+
+```scss
+$xs: 0px      $ph: 375px    $sm: 576px
+$md: 768px    $lg: 1024px   $xl: 1200px
+$xxl: 1400px
+```
+
+## Container
+
+```scss
+// Max-widths by breakpoint:
+// ph/sm: 100vw, md: 95vw, lg/xl/xxl: 93vw, xxl: 80rem (1280px)
+// Padding: fluid(20, 40)  ($container-padding-x)
+```
+
+## Section Spacing Classes
+
+| Class                                            | Value             |
+| ------------------------------------------------ | ----------------- |
+| `.spacing-top-small` / `.spacing-bottom-small`   | `fluid(20, 40)`   |
+| `.spacing-top-medium` / `.spacing-bottom-medium` | `fluid(40, 70)`   |
+| `.spacing-top-large` / `.spacing-bottom-large`   | `fluid(70, 140)`  |
+| `.spacing-top-xlarge` / `.spacing-bottom-xlarge` | `fluid(100, 160)` |
+
+## PHP Constants (from ACF Options)
+
+```php
+DEFAULT_THUMBNAIL_ID   // Fallback featured image
+PAGE_404_ID            // Custom 404 page ID
+PAGE_SEARCH_ID         // Search results page ID
+```

@@ -1,0 +1,35 @@
+@use "config" as *;
+@use "../abstracts" as *;
+
+// AOS Utility Mixins
+
+@mixin aos-visible {
+	visibility: visible;
+	transition-duration: calc(var(--aos-duration) * 1ms);
+	transition-timing-function: var(--aos-timing-function);
+	transition-delay: calc(var(--aos-delay) * 1ms);
+	pointer-events: auto;
+}
+
+@mixin aos-hidden {
+	visibility: hidden;
+	pointer-events: none;
+}
+
+@mixin aos-transform($x: 0, $y: 0, $z: 0, $scale: 1, $opacity: 1) {
+	opacity: $opacity;
+	transform: translate3d($x, $y, $z) scale($scale);
+}
+
+@mixin aos-direction($x: 0, $y: 0) {
+	transform: translate3d($x, $y, 0);
+}
+
+@mixin aos-active {
+	&[data-inview='true'],
+	[data-slider-inview='true'] &.swiper-slide,
+	[data-slider-inview='true'] .swiper-slide-active &,
+	[data-inview='true'] & {
+		@content;
+	}
+}

@@ -1,0 +1,33 @@
+@use '../mixins/rem' as *;
+@use 'colors' as *;
+@use 'maps' as *;
+
+// Text selection
+$text-selection-bg-color: beige;
+$text-selection-color: $body-color;
+
+// Custom Scrollbar
+$custom-scrollbar-enable: false;
+$track-inline-size: 0.5rem;
+$track-background: #eee;
+$track-border-radius: 100vw;
+$track-margin-block-start: rem-calc(5);
+$track-margin-block-end: rem-calc(5);
+$thumb-background: #aaa;
+$thumb-border-radius: 100vw;
+
+// Custom ease
+$custom-ease: cubic-bezier(0.215, 0, 0, 0.995);
+
+// Container padding
+$container-padding-x: fluid(20, 40);
+
+// Menu breakpoint
+$menu-breakpoint: $lg;
+
+/* Do not edit anything below */
+$z-search: 89;
+$z-header: 99;
+$z-mobile-menu: 99;
+$z-backdrop: 109;
+$z-popup: 119;

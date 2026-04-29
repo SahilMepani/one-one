@@ -1,0 +1,187 @@
+{
+	"title": "Two Columns",
+	"fields": [
+		{
+			"key": "field_two_columns_block_options",
+			"label": "Two Columns",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_two_columns_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_two_columns_section_background",
+			"label": "Section Background",
+			"name": "section_background",
+			"type": "button_group",
+			"required": 1,
+			"choices": {
+				"white": "White",
+				"grey": "Grey"
+			},
+			"default_value": "white"
+		},
+		{
+			"key": "field_two_columns_section_heading",
+			"label": "Section Heading",
+			"name": "section_heading",
+			"type": "text"
+		},
+		{
+			"key": "field_two_columns_column_order",
+			"label": "Column Order",
+			"name": "column_order",
+			"type": "button_group",
+			"instructions": "Set the column order on mobile.",
+			"choices": {
+				"default": "First & Second",
+				"reverse": "Second & First"
+			},
+			"wrapper": {
+				"width": "50"
+			}
+		},
+		{
+			"key": "field_two_columns_column_width",
+			"label": "Column Width",
+			"name": "column_width",
+			"type": "range",
+			"instructions": "Adjust the width of the first column as needed. The remaining width will be allocated to the second column. Total width of both columns equals 12.",
+			"required": 1,
+			"wrapper": {
+				"width": "50"
+			},
+			"default_value": 6,
+			"min": 1,
+			"max": 9,
+			"step": 1
+		},
+		{
+			"key": "field_two_columns_columns",
+			"label": "Columns",
+			"name": "columns",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Column",
+			"sub_fields": [
+				{
+					"key": "field_two_columns_content_type",
+					"label": "Content Type",
+					"name": "content_type",
+					"type": "button_group",
+					"choices": {
+						"text": "Text",
+						"image": "Image",
+						"video": "Video"
+					},
+					"default_value": "text",
+					"return_format": "value"
+				},
+				{
+					"key": "field_two_columns_text",
+					"label": "Text",
+					"name": "text",
+					"type": "wysiwyg",
+					"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
+					"tabs": "all",
+					"toolbar": "full",
+					"media_upload": 1,
+					"delay": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_two_columns_content_type",
+								"operator": "==",
+								"value": "text"
+							}
+						]
+					]
+				},
+				{
+					"key": "field_two_columns_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200",
+					"library": "all",
+					"conditional_logic": [
+						[
+							{
+								"field": "field_two_columns_content_type",
+								"operator": "!=",
+								"value": "text"
+							}
+						]
+					]
+				},
+				{
+					"key": "field_two_columns_video",
+					"label": "Video",
+					"name": "video",
+					"type": "group",
+					"layout": "block",
+					"conditional_logic": [
+						[
+							{
+								"field": "field_two_columns_content_type",
+								"operator": "==",
+								"value": "video"
+							}
+						]
+					],
+					"sub_fields": [
+						{
+							"key": "field_two_columns_video_type",
+							"label": "Video Type",
+							"name": "video_type",
+							"type": "button_group",
+							"choices": {
+								"file": "File",
+								"url": "URL"
+							},
+							"default_value": "file",
+							"return_format": "value"
+						},
+						{
+							"key": "field_two_columns_video_file",
+							"label": "Video File",
+							"name": "video_file",
+							"type": "file",
+							"return_format": "url",
+							"library": "all",
+							"conditional_logic": [
+								[
+									{
+										"field": "field_two_columns_video_type",
+										"operator": "==",
+										"value": "file"
+									}
+								]
+							]
+						},
+						{
+							"key": "field_two_columns_stream_url",
+							"label": "Stream URL",
+							"name": "stream_url",
+							"type": "oembed",
+							"conditional_logic": [
+								[
+									{
+										"field": "field_two_columns_video_type",
+										"operator": "!=",
+										"value": "file"
+									}
+								]
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

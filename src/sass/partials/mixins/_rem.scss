@@ -1,0 +1,114 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:map';
+@use '../config/breakpoints' as *;
+
+// Rem Calculation of Pixel Values
+// Never change this value
+$rem-base: 16px;
+
+@function strip-unit($number) {
+	@if meta.type-of($number)=='number' and not math.is-unitless($number) {
+		@return math.div($number, ($number * 0 + 1));
+	}
+
+	@return $number;
+}
+
+@function convert-to-rem($value, $base-value: $rem-base, $limit: true) {
+	// @if abs($value) < 8 and $limit {
+	// 	@return $value * 1px;
+	// }
+
+	$value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
+
+	@return $value;
+}
+
+@function rem-calc($values, $limit: true, $base-value: $rem-base) {
+	$max: list.length($values);
+
+	@if $max ==1 {
+		@return convert-to-rem(list.nth($values, 1), $base-value, $limit);
+	}
+
+	$rem-values: (
+	);
+
+@for $i from 1 through $max {
+	$rem-values: list.append($rem-values,
+			convert-to-rem(list.nth($values, $i), $base-value));
+}
+
+@return $rem-values;
+}
+
+@function fluid($min-value,
+	$max-value,
+	$min-breakpoint: 'md',
+	$max-breakpoint: 'xl'
+
+) {
+	@if $min-value ==0 {
+		$min-value: 0.001;
+	}
+
+	@if $max-value ==0 {
+		$max-value: 0.001;
+	}
+
+	$min-vw: 0;
+	$max-vw: 0;
+
+	@if map.has-key($grid-breakpoints, $min-breakpoint) {
+		$min-vw: map.get($grid-breakpoints, $min-breakpoint);
+	}
+
+	@else {
+		$min-vw: $min-breakpoint * 1px;
+	}
+
+	@if map.has-key($grid-breakpoints, $max-breakpoint) {
+		$max-vw: map.get($grid-breakpoints, $max-breakpoint);
+	}
+
+	@else {
+		$max-vw: $max-breakpoint * 1px;
+	}
+
+	// Convert breakpoints to rem for calculation consistency
+	$min-vw-rem: rem-calc($min-vw, false);
+	$max-vw-rem: rem-calc($max-vw, false);
+
+	$base-min-value: rem-calc($min-value, false);
+	$base-max-value: rem-calc($max-value, false);
+
+	$u1: math.unit($min-vw-rem);
+	$u2: math.unit($max-vw-rem);
+	$u3: math.unit($base-min-value);
+	$u4: math.unit($base-max-value);
+
+	@if $u1 ==$u2 and $u1 ==$u3 and $u1 ==$u4 {
+		$fluid-base: calc(#{$base-min-value} + #{(strip-unit($base-max-value) - strip-unit($base-min-value))} * ((100vw - #{$min-vw-rem}) / #{strip-unit($max-vw-rem - $min-vw-rem)}));
+
+		// clamp so value never goes below the value at the min breakpoint
+		@if $min-value < $max-value {
+			@return clamp(rem-calc($min-value),
+				$fluid-base,
+				rem-calc($max-value));
+		}
+
+		@else {
+			// when min >= max, keep original logic but still clamp
+			@return clamp(rem-calc($max-value),
+				$fluid-base,
+				rem-calc($min-value));
+		}
+	}
+
+	@else {
+		@error 'Invalid fluid() declaration.';
+		@return 0;
+	}
+}

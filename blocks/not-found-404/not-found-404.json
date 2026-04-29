@@ -1,0 +1,35 @@
+{
+	"title": "Not Found 404",
+	"fields": [
+		{
+			"key": "field_not_found_404_block_options",
+			"label": "Not Found 404",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_not_found_404_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_not_found_404_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "Page not found."
+		},
+		{
+			"key": "field_not_found_404_description",
+			"label": "Description",
+			"name": "description",
+			"type": "wysiwyg",
+			"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		}
+	]
+}

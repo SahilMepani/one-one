@@ -1,0 +1,34 @@
+@use '../abstracts' as *;
+
+.site-footer {
+	background-color: #f9f9f9;
+	font-size: rem-calc(13);
+	clear: both;
+	padding: 20px 0;
+	border-top: 1px solid #ddd;
+}
+
+// Footer menu
+.footer-menu {
+	float: inline-end;
+
+	@include list-unstyled;
+
+	li {
+		float: inline-start;
+		margin-inline-start: rem-calc(20);
+		list-style: none;
+
+		&.current-menu-item>a,
+		&.current_page_parent>a {
+			color: #000;
+			text-decoration: underline;
+		}
+	}
+
+	a {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

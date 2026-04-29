@@ -1,0 +1,8 @@
+@use '../abstracts' as *;
+
+.hero-gallery {
+	> div {
+		position: relative;
+		overflow: hidden;
+	}
+}

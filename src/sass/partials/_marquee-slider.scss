@@ -1,0 +1,91 @@
+@use 'abstracts' as *;
+
+.brand-marque-section {
+	background-color: #fff;
+	padding-block: fluid(30, 40) fluid(30, 50);
+	position: relative;
+	overflow: hidden;
+	border-block: rem-calc(1) solid rgb(12 24 28 / 12%);
+
+	.container {
+		// Mobile default: no container padding (marquee is edge-to-edge on mobile)
+		padding-inline: 0;
+
+		@media (width >= $md) {
+			padding-inline: $container-padding-x;
+		}
+	}
+
+	.section-heading {
+		font-size: rem-calc(14);
+		font-weight: 500;
+		text-align: center;
+		text-transform: uppercase;
+		margin-block-end: rem-calc(30);
+		opacity: 0.6;
+	}
+
+	.marquee {
+		background-color: inherit;
+		inline-size: 100%;
+		position: relative;
+		overflow: hidden;
+
+		/* Transparent mask fade on both sides */
+		&::before {
+			background-color: #fff;
+			position: absolute;
+			inset: 0;
+			z-index: 2;
+			content: '';
+			pointer-events: none;
+			mask-image: linear-gradient(
+				to right,
+				rgb(0 0 0 / 100%) 0%,
+				rgb(0 0 0 / 0%) 2rem,
+				rgb(0 0 0 / 0%) calc(100% - 2rem),
+				rgb(0 0 0 / 100%) 100%
+			);
+			mask-mode: alpha;
+		}
+	}
+
+	.marquee-track {
+		display: flex;
+		align-items: center;
+		width: max-content;
+		animation: marquee 15s linear infinite; // adjust speed here
+		will-change: transform;
+	}
+
+	.logo-block {
+		display: flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		padding-inline: rem-calc(24);
+		opacity: 0.7;
+		user-select: none;
+
+		img {
+			inline-size: auto;
+			max-block-size: rem-calc(37);
+		}
+	}
+
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-track {
+			animation: none;
+		}
+	}
+}

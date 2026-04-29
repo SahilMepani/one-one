@@ -1,0 +1,122 @@
+@use 'sass:map';
+@use '../mixins/rem' as *;
+@use 'colors' as *;
+
+$serif-font-family: 'Source Serif Pro', georgia, serif;
+$sans-serif-font-family:
+	'Oldschool Grotesk',
+	-apple-system,
+	blinkmacsystemfont,
+	'avenir next',
+	'avenir, segoe ui',
+	'helvetica neue',
+	helvetica,
+	ubuntu,
+	roboto,
+	noto,
+	arial,
+	sans-serif;
+$body-font-size: rem-calc(16);
+$body-font-family: $serif-font-family;
+$heading-font-family: $sans-serif-font-family;
+$paragraph-line-height: 1.5;
+$paragraph-margin-block-end: rem-calc(32);
+$heading-margin-block-end: rem-calc(32);
+$headings: h1, h2, h3, h4, h5, h6;
+
+// Typography styles.
+$typography-styles: (
+	h1: (
+		font-family: $heading-font-family,
+		font-size: fluid(44, 72),
+		font-weight: 400,
+		line-height: 1.066,
+		text-wrap: balance
+	),
+	h2: (
+		font-family: $heading-font-family,
+		font-size: fluid(36, 64),
+		font-weight: 400,
+		line-height: 1.1,
+		text-wrap: balance
+	),
+	h3: (
+		font-family: $heading-font-family,
+		font-size: fluid(32, 56),
+		font-weight: 400,
+		line-height: 1.14,
+		text-wrap: balance
+	),
+	h4: (
+		font-family: $heading-font-family,
+		font-size: fluid(24, 40),
+		font-weight: 400,
+		line-height: 1.2,
+		text-wrap: balance
+	),
+	h5: (
+		font-family: $heading-font-family,
+		font-size: fluid(20, 32),
+		font-weight: 400,
+		line-height: 1.25,
+		text-wrap: balance
+	),
+	h6: (
+		font-family: $heading-font-family,
+		font-size: fluid(16, 24),
+		font-weight: 400,
+		line-height: 1.3333,
+		text-wrap: balance
+	),
+	display-1: (
+		font-family: $heading-font-family,
+		font-size: fluid(72, 160),
+		font-weight: 400,
+		line-height: 1,
+		letter-spacing: rem-calc(-0.4),
+		text-wrap: balance
+	),
+	display-2: (
+		font-family: $heading-font-family,
+		font-size: fluid(60, 120),
+		font-weight: 400,
+		line-height: 1,
+		letter-spacing: rem-calc(-0.4),
+		text-wrap: balance
+	),
+	display-3: (
+		font-family: $heading-font-family,
+		font-size: fluid(40, 80),
+		font-weight: 400,
+		line-height: 1,
+		letter-spacing: rem-calc(-0.4),
+		text-wrap: balance
+	)
+);
+
+// Default text styles
+@mixin text($size) {
+	font-size: map.get(
+		(
+			small: fluid(15, 17),
+			medium: fluid(17, 20)
+		),
+		$size
+	);
+	font-weight: 400;
+	line-height: $paragraph-line-height;
+
+	p {
+		font-size: inherit;
+		line-height: inherit;
+	}
+}
+
+// Fonts
+@mixin font($name) {
+	@if $typography-styles and map.has-key($typography-styles, $name) {
+		@each $prop, $value in map.get($typography-styles, $name) {
+			#{$prop}: #{$value};
+		}
+	}
+}

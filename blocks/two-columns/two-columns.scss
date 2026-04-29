@@ -1,0 +1,64 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.two-columns-section {
+	.section-heading {
+	}
+
+	.row {
+		display: grid;
+		row-gap: rem-calc(24);
+
+		// Mobile default: reverse swaps stacking order.
+		// On desktop the explicit grid-column placements below override this, so order: -1 is a no-op there.
+		&.reverse {
+			> .col:nth-child(2) {
+				order: -1;
+			}
+		}
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(12, 1fr);
+			column-gap: fluid(24, 48);
+
+			> .col:nth-child(1) {
+				grid-column: 1 / calc(var(--grid-first-col) + 1);
+			}
+
+			> .col:nth-child(2) {
+				grid-column: calc(var(--grid-first-col) + 1) / -1;
+			}
+		}
+	}
+
+	.btn-dialog-open {
+		inline-size: 100% !important;
+	}
+}
+
+.img-dialog-block {
+	position: relative;
+	overflow: hidden;
+
+	.btn-dialog-open {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+
+		svg {
+			max-inline-size: fluid(44, 80);
+		}
+
+		&:hover,
+		&:focus-visible {
+			svg {
+				animation: play 0.3s ease-out;
+			}
+		}
+	}
+}
+
+@keyframes play {
+	50% {
+		transform: scale(0.75);
+	}
+}

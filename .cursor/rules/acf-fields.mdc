@@ -1,0 +1,218 @@
+---
+description: ACF field structures for blocks - field types, access patterns, image sizes
+globs: 'blocks/**/*.php'
+alwaysApply: false
+---
+
+# ACF Field Reference
+
+## Common Developer Fields
+
+All blocks include these fields in a "Developer" tab:
+
+```php
+// Spacing group
+$spacing        = get_field( 'spacing' );
+$spacing_top    = $spacing['top']['spacing_top'] ?? '';      // st-sm, st-md, st-lg, st-xl, custom
+$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? ''; // sb-sm, sb-md, sb-lg, sb-xl, custom
+
+// Custom spacing CSS variables
+$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
+$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+
+// Other developer fields
+$custom_classes = get_field( 'custom_classes' );  // text
+$custom_css     = get_field( 'custom_css' );      // text
+$unique_id      = get_field( 'unique_id' );       // text
+$display        = get_field( 'display' );         // true_false: 'on' or ''
+```
+
+## Field Types & Access Patterns
+
+### Image Field (Return: ID)
+
+**Always use `wp_get_attachment_image()` for output:**
+
+```php
+$image_id = get_field( 'image' );  // or $item['image'] in repeater
+if ( $image_id ) {
+	echo wp_get_attachment_image(
+		$image_id,
+		'w768',
+		false,
+		[
+			'class'   => 'img-cover',
+			'loading' => 'lazy',
+			'sizes'   => '(max-width: 768px) 100vw, 768px',
+		]
+	);
+}
+```
+
+**ACF JSON preview size must always be `w200`:**
+
+```json
+{
+	"type": "image",
+	"return_format": "id",
+	"preview_size": "w200"
+}
+```
+
+### Link Field (Return: Array)
+
+```php
+$link = get_field( 'link' );  // or $item['link']
+```
+
+```php
+if ( is_array( $link ) && $link['url'] ) { ?>
+	<a
+		href="<?php echo esc_url( $link['url'] ); ?>"
+		target="<?php echo esc_attr( $link['target'] ); ?>"
+		<?php echo ( '_blank' === $link['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
+		class="btn">
+		<?php
+		$text = ( $link['title'] ) ? $link['title'] : __( 'Read More', 'skel' );
+		echo '<span>' . esc_html( $text ) . '</span>';
+		if ( '_blank' === $link['target'] ) {
+			echo '<span class="sr-only">' . esc_html__( '(opens in a new tab)', 'skel' ) . '</span>';
+		}
+		?>
+	</a>
+}
+```
+
+### Repeater Field
+
+```php
+$items = get_field( 'items' );
+if ( is_array( $items ) && ! empty( $items ) ) {
+	foreach ( $items as $item ) {
+		$title = $item['title'] ?? '';
+		$image = $item['image'] ?? '';
+		$link  = $item['link'] ?? [];
+	}
+}
+```
+
+### Group Field
+
+```php
+$group = get_field( 'group_name' );
+$sub_field = $group['sub_field_name'] ?? '';
+```
+
+### Relationship / Post Object (Return: Post ID)
+
+```php
+$posts = get_field( 'related_posts' );  // Array of IDs
+if ( is_array( $posts ) && ! empty( $posts ) ) {
+	foreach ( $posts as $post_id ) {
+		$title   = get_the_title( $post_id );
+		$url     = get_permalink( $post_id );
+		$excerpt = get_the_excerpt( $post_id );
+	}
+}
+```
+
+### Taxonomy Field (Return: Term ID)
+
+```php
+$categories = get_field( 'categories' );  // Array of term IDs
+if ( is_array( $categories ) && ! empty( $categories ) ) {
+	// Use in tax_query
+	$tax_query[] = array(
+		'taxonomy' => 'category',
+		'terms'    => $categories,
+		'field'    => 'id',
+	);
+}
+```
+
+### Select / Radio / Button Group
+
+```php
+$option = get_field( 'option_name' );  // Returns value string
+if ( 'value1' === $option ) { }
+```
+
+### WYSIWYG
+
+```php
+$content = get_field( 'content' );
+echo wp_kses_post( $content );
+```
+
+### oEmbed
+
+```php
+$embed = get_field( 'video' );  // Returns iframe HTML
+$src   = skel_extract_oembed_src( $embed );  // Extract src URL
+```
+
+## Block-Specific Fields
+
+### Hero Slider
+
+```php
+$slider = get_field( 'slider' );  // repeater
+// $slide['desktop_image']  - image ID
+// $slide['mobile_image']   - image ID (optional)
+```
+
+### FAQs
+
+```php
+$faq_type = get_field( 'faq_type' );  // 'custom', 'selected', 'latest'
+
+// Custom type
+$custom_faq = get_field( 'custom_faq' );  // repeater
+// $faq['question']
+// $faq['answer']
+
+// Selected type
+$selected_faq = get_field( 'selected_faq' );  // relationship (post IDs)
+
+// Latest type
+$faq_categories = get_field( 'faq_categories' );  // taxonomy
+$faq_dividers   = get_field( 'faq_dividers' );    // taxonomy
+$faq_count      = get_field( 'faq_count' );       // number
+```
+
+### Two Columns
+
+```php
+$section_background = get_field( 'section_background' );  // select
+$section_heading    = get_field( 'section_heading' );     // text
+$column_order       = get_field( 'column_order' );        // select
+$column_width       = get_field( 'column_width' );        // text (CSS value)
+$columns            = get_field( 'columns' );             // repeater
+
+// Column repeater fields
+// $col['content_type']     - 'text', 'image', 'video'
+// $col['text']             - wysiwyg
+// $col['image']            - image ID
+// $col['video']['video_type']  - 'file', 'stream'
+// $col['video']['video_file']  - file URL
+// $col['video']['stream_url']  - oembed
+```
+
+## Image Sizes
+
+```php
+'thumbnail'  // 150x150
+'medium'     // 300x300
+'large'      // 1024x1024
+'w480'       // Custom: 480w
+'w768'       // Custom: 768w
+'w1400'      // Custom: 1400w
+'w1920'      // Custom: 1920w (full width)
+```
+
+## Default Thumbnail
+
+```php
+// Use constant for fallback
+$image_id = $item['image'];
+```

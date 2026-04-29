@@ -1,0 +1,17 @@
+{
+	"title": "{{title}}",
+	"fields": [
+		{
+			"key": "field_{{slug_snake}}_block_options",
+			"label": "{{title}}",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_{{slug_snake}}_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

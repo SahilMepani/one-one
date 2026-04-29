@@ -1,0 +1,317 @@
+// Swiper 12.x Core Styles (inlined from node_modules/swiper/swiper.css)
+// Note: Swiper 12.x no longer provides SCSS source files
+
+:root {
+	--swiper-theme-color: #007aff;
+}
+
+:host {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	z-index: 1;
+}
+
+.swiper {
+	display: block;
+	list-style: none;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	z-index: 1;
+}
+
+.swiper-vertical > .swiper-wrapper {
+	flex-direction: column;
+}
+
+.swiper-wrapper {
+	box-sizing: content-box;
+	display: flex;
+	block-size: 100%;
+	inline-size: 100%;
+	position: relative;
+	transition-property: transform;
+	transition-timing-function: var(
+		--swiper-wrapper-transition-timing-function,
+		initial
+	);
+	z-index: 1;
+}
+
+.swiper-android .swiper-slide,
+.swiper-ios .swiper-slide,
+.swiper-wrapper {
+	transform: translate3d(0px, 0, 0);
+}
+
+.swiper-horizontal {
+	touch-action: pan-y;
+}
+
+.swiper-vertical {
+	touch-action: pan-x;
+}
+
+.swiper-slide {
+	display: block;
+	flex-shrink: 0;
+	block-size: 100%;
+	inline-size: 100%;
+	position: relative;
+	transition-property: transform;
+}
+
+.swiper-slide-invisible-blank {
+	visibility: hidden;
+}
+
+// Auto Height
+.swiper-autoheight,
+.swiper-autoheight .swiper-slide {
+	block-size: auto;
+}
+
+.swiper-autoheight .swiper-wrapper {
+	align-items: flex-start;
+	transition-property: transform, height;
+}
+
+.swiper-backface-hidden .swiper-slide {
+	backface-visibility: hidden;
+	transform: translateZ(0);
+}
+
+// 3D Effects
+.swiper-3d.swiper-css-mode .swiper-wrapper {
+	perspective: 1200px;
+}
+
+.swiper-3d .swiper-wrapper {
+	transform-style: preserve-3d;
+}
+
+.swiper-3d {
+	perspective: 1200px;
+
+	.swiper-slide,
+	.swiper-cube-shadow {
+		transform-style: preserve-3d;
+	}
+}
+
+// CSS Mode
+.swiper-css-mode {
+	> .swiper-wrapper {
+		overflow: auto;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	> .swiper-wrapper > .swiper-slide {
+		scroll-snap-align: start start;
+	}
+
+	&.swiper-horizontal {
+		> .swiper-wrapper {
+			scroll-snap-type: x mandatory;
+		}
+
+		> .swiper-wrapper > .swiper-slide:first-child {
+			margin-inline-start: var(--swiper-slides-offset-before);
+			scroll-margin-inline-start: var(--swiper-slides-offset-before);
+		}
+
+		> .swiper-wrapper > .swiper-slide:last-child {
+			margin-inline-end: var(--swiper-slides-offset-after);
+		}
+	}
+
+	&.swiper-vertical {
+		> .swiper-wrapper {
+			scroll-snap-type: y mandatory;
+		}
+
+		> .swiper-wrapper > .swiper-slide:first-child {
+			margin-block-start: var(--swiper-slides-offset-before);
+			scroll-margin-block-start: var(--swiper-slides-offset-before);
+		}
+
+		> .swiper-wrapper > .swiper-slide:last-child {
+			margin-block-end: var(--swiper-slides-offset-after);
+		}
+	}
+
+	&.swiper-free-mode {
+		> .swiper-wrapper {
+			scroll-snap-type: none;
+		}
+
+		> .swiper-wrapper > .swiper-slide {
+			scroll-snap-align: none;
+		}
+	}
+
+	&.swiper-centered {
+		> .swiper-wrapper::before {
+			content: '';
+			flex-shrink: 0;
+			order: 9999;
+		}
+
+		> .swiper-wrapper > .swiper-slide {
+			scroll-snap-align: center center;
+			scroll-snap-stop: always;
+		}
+	}
+
+	&.swiper-centered.swiper-horizontal {
+		> .swiper-wrapper > .swiper-slide:first-child {
+			margin-inline-start: var(--swiper-centered-offset-before);
+		}
+
+		> .swiper-wrapper::before {
+			block-size: 100%;
+			min-block-size: 1px;
+			inline-size: var(--swiper-centered-offset-after);
+		}
+	}
+
+	&.swiper-centered.swiper-vertical {
+		> .swiper-wrapper > .swiper-slide:first-child {
+			margin-block-start: var(--swiper-centered-offset-before);
+		}
+
+		> .swiper-wrapper::before {
+			inline-size: 100%;
+			min-inline-size: 1px;
+			block-size: var(--swiper-centered-offset-after);
+		}
+	}
+}
+
+// 3D Shadows
+.swiper-3d {
+	.swiper-slide-shadow,
+	.swiper-slide-shadow-left,
+	.swiper-slide-shadow-right,
+	.swiper-slide-shadow-top,
+	.swiper-slide-shadow-bottom {
+		block-size: 100%;
+		inline-size: 100%;
+		left: 0;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		z-index: 10;
+	}
+
+	.swiper-slide-shadow {
+		background: rgba(0, 0, 0, 0.15);
+	}
+
+	.swiper-slide-shadow-left {
+		background-image: linear-gradient(
+			to left,
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0)
+		);
+	}
+
+	.swiper-slide-shadow-right {
+		background-image: linear-gradient(
+			to right,
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0)
+		);
+	}
+
+	.swiper-slide-shadow-top {
+		background-image: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0)
+		);
+	}
+
+	.swiper-slide-shadow-bottom {
+		background-image: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0.5),
+			rgba(0, 0, 0, 0)
+		);
+	}
+}
+
+// Lazy Preloader
+.swiper-lazy-preloader {
+	block-size: 42px;
+	border: 4px solid var(--swiper-preloader-color, var(--swiper-theme-color));
+	border-radius: 50%;
+	border-top-color: transparent;
+	box-sizing: border-box;
+	inline-size: 42px;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+	position: absolute;
+	top: 50%;
+	transform-origin: 50%;
+	z-index: 10;
+}
+
+.swiper:not(.swiper-watch-progress),
+.swiper-watch-progress .swiper-slide-visible {
+	.swiper-lazy-preloader {
+		animation: swiper-preloader-spin 1s infinite linear;
+	}
+}
+
+.swiper-lazy-preloader-white {
+	--swiper-preloader-color: #fff;
+}
+
+.swiper-lazy-preloader-black {
+	--swiper-preloader-color: #000;
+}
+
+@keyframes swiper-preloader-spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+// Effect Fade
+.swiper-fade {
+	&.swiper-free-mode .swiper-slide {
+		transition-timing-function: ease-out;
+	}
+
+	.swiper-slide {
+		pointer-events: none;
+		transition-property: opacity;
+
+		.swiper-slide {
+			pointer-events: none;
+		}
+	}
+
+	.swiper-slide-active {
+		pointer-events: auto;
+
+		& .swiper-slide-active {
+			pointer-events: auto;
+		}
+	}
+}

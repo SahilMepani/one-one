@@ -1,0 +1,41 @@
+.edit-post-visual-editor .core-block-preview {
+	padding: 30px;
+	color: gray;
+	text-align: center;
+	border: 2px dashed rgba(0, 0, 0, 0.5);
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li {
+	margin: 0;
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(1) {
+	inline-size: 100%;
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:nth-child(2) {
+	flex-shrink: 0;
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li a {
+	padding: 5px 20px 4px;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: none;
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:not(.active) a {
+	background: rgba(0, 0, 0, 0.03);
+}
+
+.edit-post-visual-editor .acf-block-fields > .acf-field > .acf-accordion-content > .acf-fields > .acf-tab-wrap > .acf-tab-group li:not(.active) a:hover {
+	background: rgba(0, 0, 0, 0.01);
+}

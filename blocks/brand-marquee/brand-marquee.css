@@ -1,0 +1,43 @@
+/* Do not edit anything below */
+.brand-marquee-section {
+  position: relative;
+  overflow: hidden;
+}
+.brand-marquee-section .section-heading {
+  font-family: "Oldschool Grotesk", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: -0.84px;
+  text-align: center;
+  margin-block-end: 1rem;
+}
+.brand-marquee-section .section-heading i {
+  font-family: "Source Serif Pro", georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+.brand-marquee-section .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+@media (width >= 576px) {
+  .brand-marquee-section .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.brand-marquee-section .logo-block {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding-block: 1.25rem;
+  padding-inline: clamp(1.25rem, 1.25rem + 1.25 * (100vw - 48rem) / 27, 2.5rem);
+  position: relative;
+  user-select: none;
+}
+.brand-marquee-section .logo-block img {
+  max-block-size: 2.75rem;
+}

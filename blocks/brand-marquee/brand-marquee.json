@@ -1,0 +1,49 @@
+{
+	"title": "Brand Marquee",
+	"fields": [
+		{
+			"key": "field_brand_marquee_block_options",
+			"label": "Brand Marquee",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_brand_marquee_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_brand_marquee_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Wrap text in {curly braces} for italic. e.g. We've {delivered 100+ websites}"
+		},
+		{
+			"key": "field_brand_marquee_logos",
+			"label": "Logos",
+			"name": "logos",
+			"type": "repeater",
+			"min": 1,
+			"max": 20,
+			"layout": "table",
+			"button_label": "Add Logo",
+			"sub_fields": [
+				{
+					"key": "field_brand_marquee_logos_image",
+					"label": "Logo (SVG only)",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200",
+					"library": "all",
+					"mime_types": "svg",
+					"instructions": "Upload SVG files only."
+				}
+			]
+		}
+	]
+}

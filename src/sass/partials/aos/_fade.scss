@@ -1,0 +1,80 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+// On mobile all fade-position animations are reduced to
+[data-aos^='fade'] {
+	opacity: 0;
+	transition-property: opacity, transform;
+
+	@include aos-hidden;
+
+	&[data-aos='fade-up'] {
+		@include aos-direction(0, var(--aos-distance));
+	}
+
+	// By default all fading mobile animations will be fade/fade-up only
+	@media (width >= $md) {
+		&[data-aos='fade-down'] {
+			@include aos-direction(0, calc(var(--aos-distance) * -1));
+		}
+
+		&[data-aos='fade-left'] {
+			@include aos-direction(var(--aos-distance), 0);
+		}
+
+		&[data-aos='fade-right'] {
+			@include aos-direction(calc(var(--aos-distance) * -1), 0);
+		}
+
+		&[data-aos='fade-left-full'] {
+			transform: translate3d(100%, 0, 0);
+		}
+
+		&[data-aos='fade-right-full'] {
+			transform: translate3d(-100%, 0, 0);
+		}
+
+		&[data-aos='fade-up-full'] {
+			transform: translate3d(0, 100%, 0);
+		}
+
+		&[data-aos='fade-down-full'] {
+			transform: translate3d(0, -100%, 0);
+		}
+
+		&[data-aos='fade-up-left'] {
+			transform: translate3d(var(--aos-distance), var(--aos-distance), 0);
+		}
+
+		&[data-aos='fade-up-right'] {
+			transform: translate3d(
+				calc(var(--aos-distance) * -1),
+				var(--aos-distance),
+				0
+			);
+		}
+
+		&[data-aos='fade-down-left'] {
+			transform: translate3d(
+				var(--aos-distance),
+				calc(var(--aos-distance) * -1),
+				0
+			);
+		}
+
+		&[data-aos='fade-down-right'] {
+			transform: translate3d(
+				calc(var(--aos-distance) * -1),
+				calc(var(--aos-distance) * -1),
+				0
+			);
+		}
+	}
+
+	// Show elements when inview
+	@include aos-active {
+		@include aos-visible;
+		@include aos-transform(0, 0, 0, 1, 1);
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"title": "General Options",
+	"options_page": "global-options-general",
+	"fields": [
+		{
+			"key": "field_global_default_featured_image",
+			"label": "Default Featured Image",
+			"name": "default_featured_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_global_pages_accordion",
+			"label": "Pages",
+			"type": "accordion",
+			"open": 0,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_global_pages_four_four",
+			"label": "404 Page",
+			"name": "four_four_page",
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
+		},
+		{
+			"key": "field_global_pages_search",
+			"label": "Search Page",
+			"name": "search_page",
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
+		},
+		{
+			"key": "field_global_pages_kb",
+			"label": "Knowledge Base Page",
+			"name": "kb_page",
+			"type": "post_object",
+			"post_type": ["page"],
+			"return_format": "id",
+			"allow_null": 1
+		}
+	]
+}

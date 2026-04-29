@@ -1,0 +1,121 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "1️⃣ Dry-run: Find all attributes (title/alt/target/placeholder/value/aria-label)",
+			"type": "shell",
+			"command": "find",
+			"args": [
+				".",
+				"-name",
+				"*.php",
+				"-exec",
+				"grep",
+				"-nH",
+				"-e",
+				"title=",
+				"-e",
+				"alt=",
+				"-e",
+				"target=",
+				"-e",
+				"placeholder=",
+				"-e",
+				"value=",
+				"-e",
+				"aria-label=",
+				"{}",
+				"+"
+			],
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "2️⃣ Preview (Static): esc_attr_e replacements (with proper syntax)",
+			"type": "shell",
+			"command": "find",
+			"args": [
+				".",
+				"-name",
+				"*.php",
+				"-exec",
+				"sed",
+				"-n",
+				"/esc_attr_/!s/\\(title\\|alt\\|target\\|placeholder\\|value\\|aria-label\\)=\"\\([^\"<]*\\)\"/\\1=\"<?php esc_attr_e('\\2', 'skel'); ?>\"/gp",
+				"{}",
+				"+"
+			],
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "3️⃣ Fix (Static): Apply esc_attr_e (with proper syntax)",
+			"type": "shell",
+			"command": "find",
+			"args": [
+				".",
+				"-name",
+				"*.php",
+				"-exec",
+				"sed",
+				"-i",
+				"/esc_attr_/!s/\\(title\\|alt\\|target\\|placeholder\\|value\\|aria-label\\)=\"\\([^\"<]*\\)\"/\\1=\"<?php esc_attr_e('\\2', 'skel'); ?>\"/g",
+				"{}",
+				"+"
+			],
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "4️⃣ Preview (Dynamic): esc_attr replacements",
+			"type": "shell",
+			"command": "find",
+			"args": [
+				".",
+				"-name",
+				"*.php",
+				"-exec",
+				"sed",
+				"-n",
+				"/esc_attr_/!s/\\(title\\|alt\\|target\\|placeholder\\|value\\|aria-label\\)=\"\\([^\"<]*\\)\"/\\1=\"<?php echo esc_attr( '\\2' ); ?>\"/gp",
+				"{}",
+				"+"
+			],
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		},
+		{
+			"label": "5️⃣ Fix (Dynamic): Apply esc_attr",
+			"type": "shell",
+			"command": "find",
+			"args": [
+				".",
+				"-name",
+				"*.php",
+				"-exec",
+				"sed",
+				"-i",
+				"/esc_attr_/!s/\\(title\\|alt\\|target\\|placeholder\\|value\\|aria-label\\)=\"\\([^\"<]*\\)\"/\\1=\"<?php echo esc_attr( '\\2' ); ?>\"/g",
+				"{}",
+				"+"
+			],
+			"problemMatcher": [],
+			"presentation": {
+				"reveal": "always",
+				"panel": "new"
+			}
+		}
+	]
+}

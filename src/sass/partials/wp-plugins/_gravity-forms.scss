@@ -1,0 +1,228 @@
+@use "../abstracts" as *;
+
+.gform_button {
+	line-height: rem-calc(19);
+	justify-content: center;
+	border: none;
+}
+
+div.gform_wrapper.gravity-theme {
+	.gform_required_legend {
+		color: #999;
+		text-align: right;
+		display: none;
+	}
+
+	.gform_description {
+
+	}
+
+	.gform_body {
+		.gfield_label {
+			color: #111 !important;
+			font-weight: 600;
+		}
+
+		.gform-field-label {
+			color: #111 !important;
+		}
+
+		.gfield {
+			margin-block-end: rem-calc(20);
+
+			::placeholder {
+				color: #000;
+				text-transform: uppercase;
+			}
+
+			input[type='text'],
+			input[type='email'],
+			input[type='url'],
+			input[type='tel'],
+			.chosen-choices,
+			textarea,
+			select {
+				// background-color: #f9f9f9;
+				line-height: rem-calc(27);
+				padding: rem-calc(10) rem-calc(15);
+				border: rem-calc(1) solid #111;
+				border-radius: 0;
+
+				&:focus-visible {
+					border-color: $primary-color;
+				}
+			}
+		}
+
+		select {
+			block-size: rem-calc(49);
+		}
+
+		.chosen-choices {}
+
+		.gfield_required {
+			font-size: rem-calc(16);
+
+			// display: none;
+			position: relative;
+		}
+
+		.gfield_checkbox {
+			display: grid;
+
+			// grid-template-columns: repeat(3, 1fr);
+			gap: fluid(10, 20);
+			margin-block-start: rem-calc(10);
+
+			.gchoice {
+				display: flex;
+				align-items: flex-start;
+				gap: rem-calc(8);
+
+				input {
+					display: none;
+
+					&:checked+label {
+						&::before {
+							background-color: $primary-color;
+							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+							border-color: $primary-color;
+						}
+					}
+				}
+
+				label {
+					line-height: 1.3;
+					display: flex;
+					flex-shrink: 0;
+					gap: rem-calc(12);
+					inline-size: 100%;
+					padding: rem-calc(5);
+					padding-inline-start: 0;
+
+					&::before {
+						display: block;
+						inline-size: rem-calc(20);
+						block-size: rem-calc(20);
+						border: rem-calc(1) solid #ccc;
+						border-radius: rem-calc(4);
+						content: '';
+					}
+				}
+			}
+		}
+
+		.gfield_validation_message {
+			font-size: rem-calc(14);
+			font-weight: 400;
+			padding: rem-calc(7) rem-calc(10);
+		}
+
+		.chosen-choices {}
+
+		.gfield_consent_description,
+		.gfield_description {
+			line-height: 1.5;
+		}
+
+		.gfield--type-consent {
+			.ginput_container_consent {
+				display: flex;
+				align-items: flex-start;
+				gap: rem-calc(10);
+
+				input {
+					display: none;
+
+					&:checked+label {
+						&::before {
+							background-color: $primary-color;
+							background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12' /%3E%3C/svg%3E");
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+							border-color: $primary-color;
+						}
+					}
+				}
+
+				.gform-field-label {
+					font-size: rem-calc(16);
+					line-height: 1.3;
+					display: flex;
+					gap: rem-calc(2);
+					padding: rem-calc(5);
+					padding-inline-start: 0;
+
+					@media (width >=$sm) {
+						display: flex;
+						gap: rem-calc(2);
+
+						&::before {
+							margin-block-end: 0;
+						}
+					}
+
+					&::before {
+						display: block;
+						flex-shrink: 0;
+						inline-size: rem-calc(20);
+						block-size: rem-calc(20);
+						margin-block-end: rem-calc(4);
+						margin-inline-end: rem-calc(12);
+						border: rem-calc(1) solid #ccc;
+						border-radius: rem-calc(4);
+						content: '';
+					}
+
+					a {
+						color: $primary-color;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+
+	.gform_validation_errors {
+		padding: rem-calc(10);
+		margin-block-end: rem-calc(24);
+		border-radius: 0;
+		box-shadow: none;
+
+		.gform_submission_error {
+			font-family: $body-font-family;
+			font-size: rem-calc(14);
+			font-weight: 400;
+			text-align: center;
+			padding: 0;
+		}
+	}
+
+	select {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E"); // Basic arrow
+		background-size: rem-calc(12) rem-calc(12);
+		background-position: right rem-calc(15) center;
+		background-repeat: no-repeat;
+		appearance: none;
+	}
+
+	option:first-child {
+		color: black;
+	}
+}
+
+.gform_confirmation_message {
+	// background-color: $lavender;
+	// color: #fff;
+	font-family: $heading-font-family;
+	font-size: fluid(24, 36);
+	text-align: center;
+	max-inline-size: rem-calc(700);
+	padding: rem-calc(40);
+	margin: 0 auto;
+	border: rem-calc(2) solid #000;
+}

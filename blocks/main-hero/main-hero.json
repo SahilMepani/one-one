@@ -1,0 +1,17 @@
+{
+	"title": "Main Hero",
+	"fields": [
+		{
+			"key": "field_main_hero_block_options",
+			"label": "Main Hero",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_main_hero_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

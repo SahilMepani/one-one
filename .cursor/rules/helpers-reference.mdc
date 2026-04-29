@@ -1,0 +1,274 @@
+---
+description: Helper functions reference - skel_get_svg, skel_get_the_excerpt, skel_render_acf_link, etc.
+globs: 'blocks/**/*.php'
+alwaysApply: false
+---
+
+# Helper Functions Reference
+
+## SVG Icons
+
+```php
+/**
+ * Generates an SVG icon using sprite.
+ *
+ * @param string $icon       Icon name (without 'icon-' prefix).
+ * @param array  $attributes Optional. Additional attributes.
+ *                           - 'class': Additional CSS classes
+ *                           - 'aria-hidden': 'true' for decorative icons
+ *                           - 'width', 'height': Dimensions
+ * @return string SVG HTML markup.
+ *
+ * @example
+ * echo skel_get_svg_svg( 'arrow-right' );
+ * echo skel_get_svg_svg( 'arrow-right', [ 'class' => 'icon-lg', 'aria-hidden' => 'true' ] );
+ */
+function skel_get_svg_svg( $icon, $attributes = array() ) {}
+```
+
+## Phone URL
+
+```php
+/**
+ * Generate a tel: URL from phone number.
+ * Strips parentheses, hyphens, dots, pipes, and spaces.
+ *
+ * @param string|false $phone_number The phone number.
+ * @return string The tel: URL.
+ *
+ * @example
+ * <a href="<?php echo skel_get_phone_url( '+971 50 123 4567' ); ?>">Call</a>
+ * // Output: tel:+9715012345567
+ */
+function skel_get_phone_url( string|false $phone_number = false ): string {}
+```
+
+## Excerpts
+
+```php
+/**
+ * Retrieves a truncated excerpt for a post.
+ *
+ * @param int      $limit   Word limit. Default 50.
+ * @param int|null $post_id Post ID. Default current post.
+ * @return string Truncated excerpt with '...' if exceeded.
+ *
+ * @example
+ * echo esc_html( skel_get_the_excerpt( 20 ) );
+ * echo esc_html( skel_get_the_excerpt( 30, $post_id ) );
+ */
+function skel_get_the_excerpt( int $limit = 50, ?int $post_id = null ): string {}
+
+/**
+ * Shorten text to specified length, preserving whole words.
+ *
+ * @param string $input  The input text.
+ * @param int    $length Maximum character length.
+ * @return string Shortened text with '...' appended.
+ *
+ * @example
+ * echo esc_html( skel_get_text_shorter( $title, 100 ) );
+ */
+function skel_get_text_shorter( string $input, int $length ): string {}
+```
+
+## Direction / RTL Support
+
+```php
+/**
+ * Get direction class based on WPML language.
+ *
+ * @return string 'dir-ltr' or 'dir-rtl'
+ *
+ * @example
+ * <div class="<?php echo esc_attr( skel_direction_class() ); ?>">
+ */
+function skel_direction_class(): string|null {}
+
+/**
+ * Get Swiper direction class for RTL support.
+ *
+ * @return string 'swiper' or 'swiper-rtl'
+ *
+ * @example
+ * <div class="<?php echo esc_attr( skel_swiper_direction_class() ); ?>">
+ */
+function skel_swiper_direction_class(): string|null {}
+```
+
+## Thumbnail
+
+```php
+/**
+ * Get post thumbnail ID with fallback.
+ *
+ * @param int $post_id The post ID.
+ * @return int Thumbnail ID or DEFAULT_THUMBNAIL_ID constant.
+ *
+ * @example
+ * $thumb_id = skel_get_post_thumbnail_id( get_the_ID() );
+ */
+function skel_get_post_thumbnail_id( $post_id ) {}
+```
+
+## Terms
+
+```php
+/**
+ * Get term names as string (no links).
+ *
+ * @param int    $post_id   Post ID.
+ * @param string $taxonomy  Taxonomy slug.
+ * @param string $separator Separator between terms. Default ' '.
+ * @return string Term names joined by separator.
+ *
+ * @example
+ * echo esc_html( skel_get_the_terms( get_the_ID(), 'category', ', ' ) );
+ */
+function skel_get_the_terms( int $post_id, string $taxonomy, string $separator = ' ' ): string {}
+
+/**
+ * Get term data array with name and ID.
+ *
+ * @param int    $post_id  Post ID.
+ * @param string $taxonomy Taxonomy slug.
+ * @return array Array of ['name' => string, 'id' => int]
+ *
+ * @example
+ * $terms = skel_get_the_terms_data( get_the_ID(), 'category' );
+ * foreach ( $terms as $term ) {
+ *     echo $term['name'];
+ * }
+ */
+function skel_get_the_terms_data( int $post_id, string $taxonomy ): array {}
+```
+
+## YouTube
+
+```php
+/**
+ * Extract valid YouTube link from various URL formats.
+ *
+ * @param string $link YouTube URL (any format).
+ * @return string|false Valid YouTube watch URL or false.
+ *
+ * @example
+ * $url = skel_get_validate_youtube_link( 'https://youtu.be/abc123' );
+ * // Returns: https://www.youtube.com/watch?v=abc123
+ */
+function skel_get_validate_youtube_link( string $link ): string|false {}
+
+/**
+ * Convert YouTube URL to standard watch format.
+ *
+ * @param string $url YouTube URL.
+ * @return string Standard YouTube watch URL.
+ */
+function skel_get_yt_link( string $url ): string {}
+```
+
+## oEmbed
+
+```php
+/**
+ * Extract src URL from oEmbed iframe HTML.
+ * Converts youtube.com to youtube-nocookie.com.
+ *
+ * @param string $html The oEmbed HTML containing iframe.
+ * @return string|null The src URL or null.
+ *
+ * @example
+ * $embed_html = get_field( 'video' );  // ACF oEmbed field
+ * $src = skel_extract_oembed_src( $embed_html );
+ * <iframe src="<?php echo esc_url( $src ); ?>"></iframe>
+ */
+function skel_extract_oembed_src( $html ) {}
+```
+
+## Utilities
+
+```php
+/**
+ * Generate random lowercase string.
+ *
+ * @param int $length Length. Default 10.
+ * @return string Random string.
+ *
+ * @example
+ * $id = skel_get_random_string( 8 );  // e.g., 'abcdefgh'
+ */
+function skel_get_random_string( int $length = 10 ): string {}
+
+/**
+ * Get full URL of current request.
+ *
+ * @return string Full URL with protocol.
+ *
+ * @example
+ * $current_url = skel_get_full_url();
+ */
+function skel_get_full_url(): string {}
+
+/**
+ * Insert page content into another page.
+ *
+ * @param int  $id      Page ID to insert.
+ * @param bool $display Whether to echo. Default false.
+ * @return string|null The page content.
+ *
+ * @example
+ * skel_insert_page( 123, true );  // Echo content
+ * $content = skel_insert_page( 123 );  // Return content
+ */
+function skel_insert_page( int $id, bool $display = false ): ?string {}
+```
+
+## Pagination
+
+```php
+/**
+ * Display posts pagination.
+ *
+ * @param int $total_pages Total number of pages.
+ * @return void
+ *
+ * @example
+ * $query = new WP_Query( $args );
+ * skel_posts_pagination( $query->max_num_pages );
+ */
+function skel_posts_pagination( int $total_pages ): void {}
+```
+
+## SVG Content
+
+```php
+/**
+ * Get raw SVG file content from theme's /images/svg/ directory.
+ *
+ * @param string $image SVG filename without extension.
+ * @param array $attributes Optional. Array of attributes to add to SVG element. Default aria-hidden="true".
+ * @return string|false SVG content or false.
+ *
+ * @example
+ * $svg = skel_get_svg_content( 'logo' );
+ * echo $svg;  // Raw SVG markup with aria-hidden="true"
+ *
+ * $svg = skel_get_svg_content( 'arrow', [ 'class' => 'icon', 'aria-hidden' => 'true' ] );
+ * echo $svg;  // SVG with custom class
+ */
+function skel_get_svg_content( string $image, array $attributes = array() ): string|false {}
+
+/**
+ * Output an SVG icon with optional attributes.
+ *
+ * @param string $image SVG filename without extension.
+ * @param array $attributes Optional. Array of attributes to add to SVG element. Default aria-hidden="true".
+ * @return string SVG content or empty string on failure.
+ *
+ * @example
+ * echo skel_get_svg_svg( 'arrow-right' );
+ * echo skel_get_svg_svg( 'arrow-right', [ 'class' => 'icon' ] );
+ * echo skel_get_svg_svg( 'check', [ 'class' => 'icon', 'aria-label' => 'Completed' ] );
+ */
+function skel_get_svg_svg( string $image, array $attributes = array() ): string {}
+```

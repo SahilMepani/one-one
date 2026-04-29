@@ -1,0 +1,24 @@
+@use "../abstracts" as *;
+
+.list-social-links {
+	display: flex;
+	align-items: center;
+	gap: rem-calc(16);
+
+	> li {
+		aspect-ratio: 1;
+		inline-size: fluid(24, 32);
+	}
+
+	a {
+		color: inherit;
+		display: block;
+		position: relative;
+		transition: all 0.1s ease-out;
+
+		&:hover,
+		&:focus-visible {
+			transform: scale(1.2);
+		}
+	}
+}

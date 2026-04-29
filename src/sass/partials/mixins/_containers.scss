@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use 'sass:math';
+@use '../config' as *;
+@use 'placeholders' as *;
+
+// Responsive containers that are 100% wide until a breakpoint
+.container {
+	@extend %container;
+
+	@each $breakpoint, $container-max-width in $container-max-widths {
+		$breakpoint-value: map.get($grid-breakpoints, $breakpoint);
+
+		@media (width >=#{$breakpoint-value}) {
+			max-inline-size: $container-max-width;
+		}
+	}
+}
+
+.container-fluid {
+	padding: 0 5vw;
+
+	@extend %container;
+}

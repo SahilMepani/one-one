@@ -1,0 +1,87 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.faq-section {
+	.section-heading {
+		text-align: center;
+	}
+
+	.accordion {
+		border-bottom: rem-calc(1) solid #343434;
+
+		&.js-active {
+			.accordion-heading {
+				.icon {
+					&::before,
+					&::after {
+						transform: translateX(-50%) translateY(-50%)
+							rotate(180deg);
+					}
+
+					&::after {
+						opacity: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.accordion-heading {
+		line-height: 1.3;
+		padding-block: fluid(16, 24);
+		padding-inline-end: rem-calc(50);
+		margin-block-end: 0;
+		position: relative;
+		cursor: pointer;
+		user-select: none;
+
+		.icon {
+			inline-size: rem-calc(24);
+			block-size: rem-calc(24);
+			border: rem-calc(2) solid #000;
+			border-radius: 50%;
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block-start: fluid(24, 24);
+
+			&::before,
+			&::after {
+				background: #000;
+				display: block;
+				inline-size: rem-calc(15);
+				block-size: rem-calc(2);
+				transition: 0.25s ease-out;
+				content: '';
+			}
+
+			&::before,
+			&::after {
+				position: absolute;
+				inset-inline-start: 50%;
+				inset-block-start: 50%;
+				transform: translateX(-50%) translateY(-50%);
+			}
+
+			&::after {
+				transform: translateX(-50%) translateY(-50%) rotate(90deg);
+			}
+		}
+	}
+
+	.accordion-content {
+		.inner-block {
+			padding-block-end: fluid(16, 24);
+		}
+	}
+
+	// Required
+	.accordion-content {
+		max-block-size: 0;
+		transition: max-height 0.25s ease-out;
+		overflow: hidden;
+		will-change: max-height;
+	}
+
+	.btn-cta {
+		margin: rem-calc(40) auto 0;
+	}
+}

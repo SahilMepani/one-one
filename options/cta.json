@@ -1,0 +1,105 @@
+{
+	"title": "CTA Options",
+	"options_page": "global-options-cta",
+	"fields": [
+		{
+			"key": "field_global_cta_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Wrap text in {curly braces} for italic. Each line appears on a separate line.",
+			"default_value": "Book a\n{discovery} call?"
+		},
+		{
+			"key": "field_global_cta_card_title",
+			"label": "Card Title",
+			"name": "card_title",
+			"type": "text",
+			"default_value": "Lets Talk!"
+		},
+		{
+			"key": "field_global_cta_card_description",
+			"label": "Card Description",
+			"name": "card_description",
+			"type": "text",
+			"default_value": "A 30-min discovery call to see how we can help."
+		},
+		{
+			"key": "field_global_cta_button",
+			"label": "Button",
+			"name": "button",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_global_cta_show_socials",
+			"label": "Show Social Links",
+			"name": "show_socials",
+			"type": "true_false",
+			"default_value": 1,
+			"ui": 1
+		},
+		{
+			"key": "field_global_cta_social_x",
+			"label": "X (Twitter)",
+			"name": "social_x",
+			"type": "url",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_global_cta_show_socials",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_global_cta_social_instagram",
+			"label": "Instagram",
+			"name": "social_instagram",
+			"type": "url",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_global_cta_show_socials",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_global_cta_social_linkedin",
+			"label": "LinkedIn",
+			"name": "social_linkedin",
+			"type": "url",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_global_cta_show_socials",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_global_cta_social_facebook",
+			"label": "Facebook",
+			"name": "social_facebook",
+			"type": "url",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_global_cta_show_socials",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			]
+		}
+	]
+}

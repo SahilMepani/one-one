@@ -1,0 +1,337 @@
+---
+description: Swiper slider standards - HTML structure, JS init pattern, SCSS styling, navigation/pagination, responsive destroy/init, accessibility
+globs: 'blocks/**/*.{php,js,scss}'
+alwaysApply: false
+---
+
+# Swiper Standards
+
+This project uses **Swiper 12.x** via a global `window.Swiper` (registered from `src/js/swiper-init.js`). Modules (Navigation, Pagination, Autoplay, FreeMode, Scrollbar, A11y, EffectFade, Thumbs) are registered globally via `Swiper.use([...])` — no per-block module imports needed. Call `new Swiper(...)` directly.
+
+Block SCSS rules are always nested inside an outer `.{slug}-section` wrapper; child classes are plain (`.slide`, `.controls`, `.card`) — no BEM `__` prefixes. Uniqueness comes from nesting, not prefixes.
+
+---
+
+## 1. HTML Structure (PHP partial)
+
+```php
+<section class="{slug}-section section">
+	<div class="container">
+		<!-- Slider -->
+		<div class="{slug}-slider swiper">
+			<div class="swiper-wrapper">
+				<div class="slide swiper-slide">
+					<!-- slide content -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Controls (outside .swiper so they aren't clipped by overflow:hidden) -->
+		<div class="controls">
+			<!-- Add swiper-pagination-line for bar shape; directional animation is automatic if the CSS hook exists (see §4) -->
+			<div class="swiper-pagination swiper-pagination-line"></div>
+			<div class="swiper-navigation">
+				<button type="button" class="swiper-button-prev" aria-label="Previous slide">
+					<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<button type="button" class="swiper-button-next" aria-label="Next slide">
+					<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+```
+
+### Key points
+
+- The slider container gets **two classes**: `{slug}-slider` (JS hook) and `swiper` (Swiper core).
+- Each slide gets **two classes**: `slide` (styling — scoped by nesting inside `.{slug}-section`) and `swiper-slide` (Swiper core).
+- Child class names are **plain** (`.slide`, `.controls`, `.card`) — not BEM (`{slug}__slide`). Uniqueness comes from nesting inside `.{slug}-section` in SCSS.
+- Navigation/pagination elements sit **outside** the `.swiper` wrapper to avoid `overflow: hidden` clipping.
+- Navigation wrapper is always `.swiper-navigation` — **never** use block-specific nav wrapper classes.
+- Navigation buttons are always `.swiper-button-prev` and `.swiper-button-next` — **never** use block-specific button classes.
+- Buttons are `<button type="button">` with `aria-label`.
+- SVG icons use `aria-hidden="true"` and `stroke="currentColor"`.
+
+---
+
+## 2. JS Init Pattern
+
+```javascript
+(() => {
+	if (typeof Swiper === 'undefined') {
+		console.warn('Swiper is not loaded');
+		return;
+	}
+
+	const sliders = document.querySelectorAll('.{slug}-slider');
+
+	sliders.forEach((el, i) => {
+		const swiperClass = `{slug}-slider-${i}`;
+		el.classList.add(swiperClass);
+
+		const section = el.closest('.{slug}-section');
+		const prevBtn = section?.querySelector('.swiper-button-prev');
+		const nextBtn = section?.querySelector('.swiper-button-next');
+		const pagination = section?.querySelector('.swiper-pagination');
+		const scrollbar = section?.querySelector('.swiper-scrollbar');
+
+		if (prevBtn) prevBtn.classList.add(`${swiperClass}-prev`);
+		if (nextBtn) nextBtn.classList.add(`${swiperClass}-next`);
+		if (pagination) pagination.classList.add(`${swiperClass}-pagination`);
+		if (scrollbar) scrollbar.classList.add(`${swiperClass}-scrollbar`);
+
+		const slides = el.querySelectorAll('.swiper-slide');
+		if (slides.length <= 0) return;
+
+		// Single slide — just mark active, no Swiper needed
+		if (slides.length === 1) {
+			slides.forEach(slide => slide.classList.add('swiper-slide-active'));
+			return;
+		}
+
+		const swiper = new Swiper(`.${swiperClass}`, {
+			slidesPerView: 'auto',
+			spaceBetween: 16,
+			speed: 500,
+			grabCursor: true,
+			navigation: {
+				prevEl: `.${swiperClass}-prev`,
+				nextEl: `.${swiperClass}-next`
+			},
+			pagination: {
+				el: `.${swiperClass}-pagination`,
+				clickable: true,
+				type: 'bullets'
+			}
+		});
+
+		// Directional animation — bind AFTER init using snapIndexChange
+		// (slideChange + activeIndex is unreliable with slidesPerView: 'auto')
+		if (pagination || scrollbar) {
+			let prevSnap = swiper.snapIndex;
+
+			swiper.on('snapIndexChange', () => {
+				const direction =
+					swiper.snapIndex >= prevSnap ? 'forward' : 'backward';
+
+				if (pagination) {
+					pagination.setAttribute('data-direction', direction);
+				}
+
+				if (scrollbar) {
+					scrollbar.setAttribute('data-direction', direction);
+				}
+
+				prevSnap = swiper.snapIndex;
+			});
+		}
+	});
+})();
+```
+
+### Rules
+
+- **Guard** — always check `typeof Swiper === 'undefined'` first.
+- **Unique selectors** — append `-${i}` index to the slider class so multiple instances on the same page don't collide.
+- **Parent lookup** — use `el.closest('.{slug}-section')` to scope nav/pagination lookups.
+- **Single slide bailout** — if only 1 slide, mark it active and skip Swiper instantiation.
+- **No module imports** — Swiper + modules are global; just call `new Swiper(...)`.
+- **IIFE** — wrap everything in `(() => { ... })()`.
+- **Direction handler** — bind `snapIndexChange` on the instance **after** init (not in the config `on` object); `slideChange`/`activeIndex` is unreliable with `slidesPerView: 'auto'`.
+
+---
+
+## 3. Responsive Destroy / Init (Mobile-Only Slider)
+
+When a slider should only be active below a breakpoint, use this pattern:
+
+```javascript
+(() => {
+	if (typeof Swiper === 'undefined') {
+		console.warn('Swiper is not loaded');
+		return;
+	}
+
+	const BP = 1024; // breakpoint in px
+	const sliders = document.querySelectorAll('.{slug}-slider');
+
+	sliders.forEach((el, i) => {
+		const swiperClass = `{slug}-slider-${i}`;
+		el.classList.add(swiperClass);
+
+		let swiperInstance = null;
+
+		function initSwiper() {
+			if (swiperInstance) return;
+			swiperInstance = new Swiper(`.${swiperClass}`, {
+				slidesPerView: 'auto',
+				spaceBetween: 24,
+				speed: 500,
+				grabCursor: true
+			});
+		}
+
+		function destroySwiper() {
+			if (!swiperInstance) return;
+			swiperInstance.destroy(true, true);
+			swiperInstance = null;
+		}
+
+		function handleResize() {
+			if (window.innerWidth >= BP) {
+				destroySwiper();
+			} else {
+				initSwiper();
+			}
+		}
+
+		handleResize();
+		window.addEventListener('resize', handleResize);
+	});
+})();
+```
+
+- Call `destroy(true, true)` to clean up DOM and event listeners.
+- Track the instance in a `let` so you can null-check before init/destroy.
+
+---
+
+## 4. SCSS Rules
+
+### Slide sizing
+
+Use `slidesPerView: 'auto'` in JS and set slide width via SCSS (all rules nested inside `.{slug}-section`):
+
+```scss
+.{slug}-section {
+	.slide {
+		inline-size: fluid(280, 400);  // responsive slide width
+		max-inline-size: 95%;
+	}
+}
+```
+
+### Flex/grid parent fix
+
+If the `.swiper` sits inside a flex or grid container, add:
+
+```scss
+.{slug}-section {
+	.{slug}-slider {
+		min-inline-size: 0;
+	}
+}
+```
+
+Without this, `min-inline-size: auto` prevents the slider from shrinking and breaks scrolling.
+
+### Navigation styling
+
+Global navigation styles live in `src/sass/partials/template-parts/_swiper-navigation.scss`. Wrap nav buttons in a `.swiper-navigation` container to inherit these styles:
+
+- 44×44px circular buttons, `all: unset` base
+- Disabled state: `opacity: 0.5; pointer-events: none`
+- Hover micro-animations on SVG arrows (`micro-left` / `micro-right` keyframes)
+- Style variants: `.style-floating` (absolute positioned), `.style-dark` (dark background)
+
+### Pagination styling
+
+Global pagination styles live in `src/sass/partials/js-plugins/_swiper-custom.scss`. Available classes:
+
+| Class                    | Look                | Status                                 |
+| ------------------------ | ------------------- | -------------------------------------- |
+| `swiper-pagination-dot`  | Circular dots       | Present in `_swiper-custom.scss`       |
+| `swiper-scrollbar`       | Draggable scrollbar | Present in `_swiper-custom.scss`       |
+| `swiper-pagination-line` | Equal-width bars    | **Not yet defined globally** — see note |
+
+> **Note:** `swiper-pagination-line` and the automatic directional-fill animation described below are the conventions for this project but **have not yet been added to `_swiper-custom.scss`**. The JS `snapIndexChange` handler still works (it only sets `data-direction`), but the visual fill won't render until the CSS hook is added globally. Until then, either add the styling in the block's own SCSS or extend `_swiper-custom.scss` separately. Keep block-specific tweaks in the block file; promote shared styling into the global partial when it stabilises.
+
+### Directional animation (target behaviour)
+
+Once the CSS hook exists in `_swiper-custom.scss`, forward/backward fill animation should be applied by default to `swiper-pagination-line`, `swiper-pagination-dot`, and `swiper-scrollbar`.
+
+How it works:
+
+- Forward swipe: active bullet fills **left → right**, previous bullet empties **right → left**
+- Backward swipe: directions reverse
+- The JS `snapIndexChange` handler sets `data-direction` on the pagination/scrollbar container (see §2)
+- The handler is bound on the Swiper instance **after** init, not in the config `on` object
+- The CSS reacts via attribute selectors like `.swiper-pagination[data-direction='forward'] .swiper-pagination-bullet-active::after { … }`
+
+Color overrides — override per-block in the block's SCSS (nested inside `.{slug}-section`):
+
+```scss
+.{slug}-section {
+	.swiper-pagination .swiper-pagination-bullet {
+		background-color: $your-track-color;
+
+		&::after {
+			background-color: $your-fill-color;
+		}
+	}
+}
+```
+
+### Custom overrides
+
+Block-specific pagination/nav tweaks go in the block's own SCSS file, not in the global partials.
+
+---
+
+## 5. Accessibility Checklist
+
+- [ ] Navigation buttons have `aria-label` describing direction ("Previous slide", "Next slide")
+- [ ] SVG icons have `aria-hidden="true"`
+- [ ] Buttons are `<button type="button">`, not `<div>` or `<a>`
+- [ ] The `A11y` module is registered globally (already done in `swiper-init.js`)
+- [ ] Each slide uses semantic markup (`<article>`, `<figure>`, etc.) where appropriate
+
+---
+
+## 6. Available Modules (registered globally)
+
+| Module     | Use case                       |
+| ---------- | ------------------------------ |
+| Navigation | Prev/next arrow buttons        |
+| Pagination | Bullets, fraction, progressbar |
+| Autoplay   | Auto-advance slides            |
+| FreeMode   | Momentum-based free scrolling  |
+| Scrollbar  | Draggable scrollbar indicator  |
+| A11y       | ARIA attributes & keyboard nav |
+| EffectFade | Crossfade transition           |
+| Thumbs     | Thumbnail gallery syncing      |
+
+To enable a new module, uncomment it in `src/js/swiper-init.js` and add it to the `Swiper.use([])` array.
+
+---
+
+## 7. Common Options Reference
+
+```javascript
+{
+	slidesPerView: 'auto',    // let CSS control width (preferred)
+	spaceBetween: 16,         // gap in px
+	speed: 500,               // transition ms
+	grabCursor: true,         // shows grab cursor on hover
+	loop: false,              // avoid unless design requires it (duplicates DOM)
+	autoplay: {
+		delay: 5000,
+		disableOnInteraction: true,
+		pauseOnMouseEnter: true
+	},
+	breakpoints: {            // use sparingly — prefer CSS fluid() for sizing
+		768: { slidesPerView: 2 },
+		1024: { slidesPerView: 3 }
+	}
+}
+```
+
+### Prefer `slidesPerView: 'auto'` over numeric values
+
+Set slide `inline-size` in SCSS with `fluid()` — this gives smooth responsive scaling instead of jarring breakpoint jumps. Only use numeric `slidesPerView` + `breakpoints` when the design explicitly requires fixed column counts.

@@ -1,0 +1,6 @@
+*.html
+js/**/*.js
+src/js/plugins
+extra/**/*.js
+style.css
+style-rtl.css

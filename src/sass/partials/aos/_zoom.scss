@@ -1,0 +1,59 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+[data-aos^='zoom'] {
+	opacity: 0;
+	transition-property: opacity, transform;
+
+	@include aos-hidden;
+
+	@include aos-active {
+		@include aos-visible;
+		@include aos-transform(0, 0, 0, 1, 1);
+	}
+
+	&[data-aos='zoom-in'] {
+		@include aos-transform(0, 0, 0, 0.1, 0);
+	}
+
+	&[data-aos='zoom-in-up'] {
+		@include aos-transform(0, var(--aos-distance), 0, 0.6, 0);
+	}
+
+	&[data-aos='zoom-in-down'] {
+		@include aos-transform(0, calc(var(--aos-distance) * -1), 0, 0.6, 0);
+	}
+
+	&[data-aos='zoom-in-left'] {
+		@include aos-transform(var(--aos-distance), 0, 0, 0.6, 0);
+	}
+
+	&[data-aos='zoom-in-right'] {
+		@include aos-transform(calc(var(--aos-distance) * -1), 0, 0, 0.6, 0);
+	}
+
+	&[data-aos='zoom-out'] {
+		@include aos-transform(0, 0, 0, 1.2, 1);
+	}
+
+	&[data-aos='zoom-fade-out'] {
+		@include aos-transform(0, 0, 0, 2, 0);
+	}
+
+	&[data-aos='zoom-out-up'] {
+		@include aos-transform(0, var(--aos-distance), 0, 1.2, 0);
+	}
+
+	&[data-aos='zoom-out-down'] {
+		@include aos-transform(0, calc(var(--aos-distance) * -1), 0, 1.2, 0);
+	}
+
+	&[data-aos='zoom-out-left'] {
+		@include aos-transform(var(--aos-distance), 0, 0, 1.2, 0);
+	}
+
+	&[data-aos='zoom-out-right'] {
+		@include aos-transform(calc(var(--aos-distance) * -1), 0, 0, 1.2, 0);
+	}
+}

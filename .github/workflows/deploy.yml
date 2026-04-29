@@ -1,0 +1,73 @@
+name: Deploy
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+            - staging
+
+jobs:
+    deploy-staging:
+        if: github.ref == 'refs/heads/staging'
+        runs-on: ubuntu-latest
+        concurrency:
+            group: deploy-staging-${{ github.ref }}
+            cancel-in-progress: true
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4.1.6
+
+            - name: Deploy to Staging via SSH
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.STAGING_SERVER_IP }}
+                  username: ${{ secrets.STAGING_USERNAME }}
+                  password: ${{ secrets.STAGING_PASSWORD }}
+                  port: ${{ secrets.STAGING_PORT }}
+                  script: |
+                      set -euo pipefail
+                      cd /www/inneraktive_649/public/wp-content/themes/skeleton
+                      git rev-parse --short HEAD
+                      git fetch origin staging
+                      git reset --hard origin/staging
+                      test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+                      echo "Staging deployment completed."
+
+            - name: Clear Kinsta Cache
+              run: |
+                  curl -X POST "https://api.kinsta.com/v2/sites/71b87d17-69f9-46ff-8c06-5b126bda322c/cache/purge" \
+                    -H "Authorization: Bearer ${{ secrets.KINSTA_API_KEY }}" \
+                    -H "Content-Type: application/json"
+
+    deploy-live:
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        concurrency:
+            group: deploy-live-${{ github.ref }}
+            cancel-in-progress: false
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4.1.6
+
+            - name: Deploy to Live via SSH
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.KINSTA_SERVER_IP }}
+                  username: ${{ secrets.KINSTA_USERNAME }}
+                  password: ${{ secrets.PASSWORD }}
+                  port: ${{ secrets.PORT }}
+                  script: |
+                      set -euo pipefail
+                      cd /www/inneraktive_649/public/wp-content/themes/skeleton
+                      git rev-parse --short HEAD
+                      git fetch origin main
+                      git reset --hard origin/main
+                      test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+                      echo "Live deployment completed."
+
+            - name: Clear Kinsta Cache
+              run: |
+                  curl -X POST "https://api.kinsta.com/v2/sites/71b87d17-69f9-46ff-8c06-5b126bda322c/cache/purge" \
+                    -H "Authorization: Bearer ${{ secrets.KINSTA_API_KEY }}" \
+                    -H "Content-Type: application/json"

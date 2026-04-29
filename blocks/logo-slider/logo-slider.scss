@@ -1,0 +1,27 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.logo-slider-section {
+	background-color: #f7f3f0;
+
+	.logo-slider {
+		overflow: visible;
+	}
+
+	.swiper-wrapper {
+		transition-timing-function: linear !important;
+	}
+
+	.swiper-slide {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		inline-size: auto;
+		user-select: none;
+
+		.logo-block {
+			img {
+				inline-size: fluid(100, 150);
+			}
+		}
+	}
+}

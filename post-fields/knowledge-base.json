@@ -1,0 +1,15 @@
+{
+	"title": "KB Article Details",
+	"post_type": "knowledge-base",
+	"position": "side",
+	"fields": [
+		{
+			"key": "field_knowledge-base_read_time",
+			"label": "Read Time",
+			"name": "read_time",
+			"type": "number",
+			"min": 1,
+			"default_value": 3
+		}
+	]
+}

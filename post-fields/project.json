@@ -1,0 +1,22 @@
+{
+	"title": "Project Details",
+	"post_type": "project",
+	"position": "side",
+	"fields": [
+		{
+			"key": "field_project_heading",
+			"label": "Project Heading",
+			"name": "project_heading",
+			"type": "textarea",
+			"rows": 2
+		},
+		{
+			"key": "field_project_project_colors",
+			"label": "Project Background Color",
+			"name": "project_colors",
+			"type": "color_picker",
+			"enable_opacity": 0,
+			"return_format": "string"
+		}
+	]
+}

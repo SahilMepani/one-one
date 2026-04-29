@@ -1,0 +1,97 @@
+@use "../abstracts" as *;
+
+.creative-slider {
+	overflow: visible;
+
+	.swiper-wrapper {
+		overflow: visible;
+	}
+
+	.swiper-slide {
+		inline-size: fluid(267, 437);
+	}
+
+	.img-cover-block {
+		aspect-ratio: 267 / 337;
+
+		@media (width >= $md) {
+			aspect-ratio: 437 / 553;
+		}
+	}
+
+	.swiper-pagination {
+		margin-block-start: rem-calc(16);
+	}
+
+	.swiper-navigation {
+		display: none;
+
+		@media (width >= $md) {
+			display: flex;
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block-start: 0;
+		}
+	}
+}
+
+.text-image-slider-section {
+	overflow: hidden;
+
+	> .container {
+		padding: unset;
+		position: relative;
+	}
+
+	.text-slider-col {
+		background-color: #eee;
+		display: grid;
+		padding: rem-calc(20) rem-calc(20) 0;
+		position: relative;
+		grid-template-rows: max-content auto;
+
+		.swiper {
+			inline-size: 100%;
+		}
+
+		.swiper-navigation {
+			position: absolute;
+			inset-inline-end: 0;
+			inset-block-end: 0;
+		}
+
+		.heading {
+			text-transform: uppercase;
+		}
+
+		.description {
+			font-size: rem-calc(16);
+			margin-block-start: fluid(16, 40);
+		}
+	}
+
+	.image-slider-col {
+		.swiper-slide {
+			block-size: fluid(365, 620);
+			position: relative;
+		}
+
+		.img-cover-block {
+			position: absolute;
+			inset: 0;
+		}
+	}
+
+	@media (width >= 768px) {
+		padding-block-start: rem-calc(40);
+
+		> .container {
+			display: grid;
+			grid-template-columns: 50% 50%;
+		}
+
+		.image-slider-col {
+			order: 1;
+		}
+	}
+}

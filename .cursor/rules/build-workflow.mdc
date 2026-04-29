@@ -1,0 +1,61 @@
+---
+description: Build workflow, compilation, and asset pipeline - Gulp tasks, npm commands, SCSS compilation
+globs: 'gulpfile.mjs'
+alwaysApply: false
+---
+
+# Build Workflow
+
+## Commands
+
+```bash
+npm start          # Watch mode (dev build + BrowserSync)
+npm run dev        # Same as npm start
+npm run build      # Production build (NODE_ENV=production)
+npm run sass       # Compile SCSS only
+npm run js         # Compile JS only
+npm run build:dev  # Dev build (no watch, no server)
+```
+
+## Gulp Tasks (gulpfile.mjs)
+
+| Task | Input | Output | Notes |
+|---|---|---|---|
+| `sassTask` | `src/sass/style.scss` | `style.css` | Main stylesheet |
+| `blockSassTask` | `blocks/**/*.scss` | `blocks/**/*.css` (in-place) | Per-block styles |
+| `customJsTask` | `src/js/custom/**/*.js` | `assets/js/custom.js` | Concat, DOMContentLoaded wrapped |
+| `pluginsJsTask` | `src/js/plugins/*.js` | `assets/js/plugins.js` | Simple concat |
+| `swiperJsTask` | `src/js/swiper-init.js` | `assets/js/swiper-bundle.js` | esbuild bundle |
+| `imagesTask` | source images | `assets/images/` | Sharp optimization |
+| `webpTask` | source images | `assets/images/` | WebP conversion |
+| `purgeCSSTask` | style.css | purged style.css | Production only |
+| `rtlCssTask` | style.css | style-rtl.css | RTL stylesheet |
+
+## PostCSS Pipeline
+
+- **Dev**: autoprefixer + sort-media-queries
+- **Prod**: autoprefixer + sort-media-queries + cssnano (minify)
+
+## Manual Block SCSS Compilation
+
+When not using Gulp watch:
+
+```bash
+npx sass blocks/{slug}/{slug}.scss blocks/{slug}/{slug}.css --no-source-map
+```
+
+## Asset Enqueueing (functions/enqueue-scripts.php)
+
+- Block CSS/JS only loaded when block exists on page (`has_block()`)
+- CSS versioned by `filemtime()` for cache busting
+- Block JS gets `defer` attribute automatically
+- Block JS depends on `skel-swiper` script handle
+
+## JS File Pipeline
+
+| Source | Output | Method |
+|---|---|---|
+| `src/js/plugins/*.js` | `assets/js/plugins.js` | Gulp concat |
+| `src/js/custom/*.js` | `assets/js/custom.js` | Gulp concat (DOMContentLoaded wrapped) |
+| `src/js/swiper-init.js` | `assets/js/swiper-bundle.js` | esbuild bundle |
+| `blocks/{slug}/{slug}.js` | (loaded directly) | Enqueued conditionally per-page |

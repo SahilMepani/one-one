@@ -1,0 +1,109 @@
+@use 'abstracts' as *;
+
+/* ----------  Required  ---------- */
+.modal-backdrop {
+	background: rgb(0 0 0 / 50%);
+	visibility: hidden;
+	position: fixed;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+
+	body:has([data-modal-backdrop].js-active) & {
+		visibility: visible;
+		z-index: $z-backdrop;
+		opacity: 1;
+		pointer-events: unset;
+	}
+}
+
+body:has([data-modal-backdrop].js-active) {
+	// block-size: 100svh;
+	// overflow: hidden;
+}
+
+select {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E"); // Basic arrow
+	background-size: rem-calc(12) rem-calc(12);
+	background-position: right rem-calc(15) center;
+	background-repeat: no-repeat;
+	appearance: none;
+}
+
+option:first-child {
+	color: black;
+}
+
+.dialog {
+	background-color: #333;
+	padding: 0;
+	margin: auto;
+	border: 0;
+	z-index: 10;
+	transition: 0.25s ease-out;
+	overflow: hidden;
+	user-select: none;
+
+	@media (width >=$md) {
+		max-inline-size: 75%;
+	}
+
+	// overflow: hidden;
+
+	&::backdrop {
+		background: rgb(0 0 0 / 80%);
+	}
+
+	.btn-dialog-close {
+		background-color: rgb(0 0 0 / 50%);
+		color: #fff;
+		font-size: rem-calc(20);
+		display: block;
+		align-items: center;
+		justify-content: center;
+		inline-size: rem-calc(40);
+		block-size: rem-calc(40);
+		border-radius: rem-calc(5);
+		position: absolute;
+		inset-inline-end: fluid(5, 15);
+		inset-block-start: fluid(5, 15);
+		z-index: 1;
+
+		svg {
+			inline-size: rem-calc(24);
+		}
+	}
+
+	video,
+	iframe {
+		aspect-ratio: 16/9;
+		inline-size: 75vw;
+	}
+}
+
+.icon-block {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	inline-size: 1em;
+	block-size: 1em;
+
+	svg {
+		fill: currentcolor;
+		inline-size: 100%;
+		block-size: 100%;
+
+		path[stroke] {
+			fill: none;
+			stroke: currentcolor;
+		}
+	}
+}
+
+// .container-small {
+// 	@extend %container;
+
+// 	max-inline-size: rem-calc(1100);
+// }

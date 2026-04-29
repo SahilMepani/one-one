@@ -1,0 +1,14 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+@use 'mixins' as *;
+
+[data-aos] {
+	transition-delay: unset;
+
+	@include aos-hidden;
+
+	@include aos-active {
+		@include aos-visible;
+	}
+}

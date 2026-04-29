@@ -1,0 +1,40 @@
+@use '../abstracts' as *;
+
+// AOS Global Configuration
+$stagger-limit: 10 !default;
+$aos-distance-mobile: 20px !default;
+$aos-distance-desktop: 40px !default;
+
+:root {
+	--aos-duration: 750;
+	--aos-delay: 50;
+	--aos-distance: #{$aos-distance-mobile};
+	--aos-stagger-interval: 200;
+	--aos-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+	--aos-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+	--aos-ease-in: cubic-bezier(0.42, 0, 1, 1);
+	--aos-ease-out: cubic-bezier(0, 0, 0.58, 1);
+	--aos-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+	--aos-ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	--aos-ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--aos-ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	--aos-ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+	--aos-ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+	--aos-ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	--aos-ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-ease-in-cubic: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-cubic: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-ease-in-quart: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+	--aos-ease-out-quart: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	--aos-ease-in-out-quart: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	--aos-timing-function: var(--aos-ease-out);
+}
+
+@media (width >=$md) {
+	:root {
+		--aos-distance: #{$aos-distance-desktop};
+	}
+}

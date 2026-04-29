@@ -1,0 +1,60 @@
+/* Do not edit anything below */
+.faq-section .section-heading {
+  text-align: center;
+}
+.faq-section .accordion {
+  border-bottom: 0.0625rem solid #343434;
+}
+.faq-section .accordion.js-active .accordion-heading .icon::before, .faq-section .accordion.js-active .accordion-heading .icon::after {
+  transform: translateX(-50%) translateY(-50%) rotate(180deg);
+}
+.faq-section .accordion.js-active .accordion-heading .icon::after {
+  opacity: 0;
+}
+.faq-section .accordion-heading {
+  line-height: 1.3;
+  padding-block: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  padding-inline-end: 3.125rem;
+  margin-block-end: 0;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+.faq-section .accordion-heading .icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border: 0.125rem solid #000;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: clamp(1.5rem, 1.5rem + 0 * (100vw - 48rem) / 27, 1.5rem);
+}
+.faq-section .accordion-heading .icon::before, .faq-section .accordion-heading .icon::after {
+  background: #000;
+  display: block;
+  inline-size: 0.9375rem;
+  block-size: 0.125rem;
+  transition: 0.25s ease-out;
+  content: "";
+}
+.faq-section .accordion-heading .icon::before, .faq-section .accordion-heading .icon::after {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.faq-section .accordion-heading .icon::after {
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+}
+.faq-section .accordion-content .inner-block {
+  padding-block-end: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+}
+.faq-section .accordion-content {
+  max-block-size: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+  will-change: max-height;
+}
+.faq-section .btn-cta {
+  margin: 2.5rem auto 0;
+}

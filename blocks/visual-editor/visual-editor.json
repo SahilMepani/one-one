@@ -1,0 +1,61 @@
+{
+	"title": "Visual Editor",
+	"post_types": ["page"],
+	"fields": [
+		{
+			"key": "field_visual_editor_block_options",
+			"label": "Visual Editor",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_visual_editor_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_visual_editor_background",
+			"label": "Background",
+			"name": "background",
+			"type": "button_group",
+			"required": 1,
+			"wrapper": {
+				"width": "50"
+			},
+			"choices": {
+				"white": "White",
+				"offwhite": "Off White"
+			},
+			"default_value": "white"
+		},
+		{
+			"key": "field_visual_editor_layout",
+			"label": "Layout",
+			"name": "layout",
+			"type": "button_group",
+			"required": 1,
+			"wrapper": {
+				"width": "50"
+			},
+			"choices": {
+				"small": "Small",
+				"medium": "Medium",
+				"large": "Large",
+				"full": "Full"
+			},
+			"default_value": "medium"
+		},
+		{
+			"key": "field_visual_editor_content",
+			"label": "Content",
+			"name": "content",
+			"type": "wysiwyg",
+			"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		}
+	]
+}

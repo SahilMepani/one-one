@@ -1,0 +1,24 @@
+{
+	"title": "Analytics",
+	"options_page": "global-options-analytics",
+	"fields": [
+		{
+			"key": "field_global_analytics_head_code",
+			"label": "Head code",
+			"name": "head_code",
+			"type": "textarea",
+			"instructions": "Add code at the end of the &lt;head&gt; tag",
+			"rows": 8,
+			"new_lines": ""
+		},
+		{
+			"key": "field_global_analytics_footer_code",
+			"label": "Footer code",
+			"name": "footer_code",
+			"type": "textarea",
+			"instructions": "Add code at the end of the &lt;body&gt; tag",
+			"rows": 8,
+			"new_lines": ""
+		}
+	]
+}

@@ -1,0 +1,43 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+[data-aos^='flip'] {
+	transition-property: opacity, transform;
+	backface-visibility: hidden;
+}
+
+[data-aos='flip-left'] {
+	transform: perspective(2500px) rotateY(-100deg);
+
+	@include aos-transform(0, 0, 0, 1, 0);
+
+	@include aos-active {
+		opacity: 1;
+		transform: perspective(2500px) rotateY(0);
+	}
+}
+
+[data-aos='flip-right'] {
+	transform: perspective(2500px) rotateY(100deg);
+
+	@include aos-active {
+		transform: perspective(2500px) rotateY(0);
+	}
+}
+
+[data-aos='flip-up'] {
+	transform: perspective(2500px) rotateX(-100deg);
+
+	@include aos-active {
+		transform: perspective(2500px) rotateX(0);
+	}
+}
+
+[data-aos='flip-down'] {
+	transform: perspective(2500px) rotateX(100deg);
+
+	@include aos-active {
+		transform: perspective(2500px) rotateX(0);
+	}
+}

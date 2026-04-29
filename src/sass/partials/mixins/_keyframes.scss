@@ -1,0 +1,76 @@
+@use '../config' as *;
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes play {
+	50% {
+		transform: scale(0.75);
+	}
+}
+
+@keyframes btn-rarr {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	40% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+
+	41% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes btn-barr {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	40% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+
+	41% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes sheen {
+	0%,
+	15% {
+		inset-inline-start: -75%;
+	}
+
+	35% {
+		inset-inline-start: 125%;
+	}
+
+	100% {
+		inset-inline-start: 125%;
+	}
+}

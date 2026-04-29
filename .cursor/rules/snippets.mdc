@@ -1,0 +1,341 @@
+---
+description: Code snippets - block boilerplate, repeater loop, WP_Query, swiper slider, accordion, dialog, toggle patterns
+globs: 'blocks/**/*'
+alwaysApply: false
+---
+
+# Code Snippets
+
+## ACF Block Boilerplate
+
+```php
+<?php
+/**
+ * Block Name ACF block
+ *
+ * @package Skeleton
+ * @subpackage ACF
+ */
+
+// Set thumbnail preview in backend.
+if ( skel_render_block_preview( $block ) ) {
+	return;
+}
+
+// Return early if display is off.
+$display = get_field( 'display' );
+if ( 'on' !== $display ) {
+	return;
+}
+
+// Data options.
+$items = get_field( 'items' );
+
+if ( ! is_array( $items ) || empty( $items ) ) {
+	return;
+}
+
+// Developer options.
+$dev_options = skel_get_block_developer_options();
+?>
+
+<section
+	class="{block-name}-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
+	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
+	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
+
+	<div class="container">
+		<?php foreach ( $items as $item ) : ?>
+			<!-- Item content -->
+		<?php endforeach; ?>
+	</div>
+
+</section>
+```
+
+## Responsive Image
+
+```php
+<?php
+$image_id = $item['image'];
+if ( $image_id ) :
+	echo wp_get_attachment_image(
+		$image_id,
+		'w1920',
+		false,
+		[
+			'class'   => 'img-responsive',
+			'loading' => 'lazy',
+			'sizes'   => 'auto',
+			'data-inview'   => '',
+			'data-aos'   => 'fade'
+		]
+	);
+<?php endif; ?>
+```
+
+## ACF Link Button
+
+```php
+<?php
+$link = get_field( 'link' );
+if ( is_array( $link ) && $link['url'] ) : ?>
+	<a
+		href="<?php echo esc_url( $link['url'] ); ?>"
+		target="<?php echo esc_attr( $link['target'] ); ?>"
+		<?php echo ( '_blank' === $link['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
+		class="btn btn-primary">
+		<?php
+		$text = ( $link['title'] ) ? $link['title'] : __( 'Learn More', 'skel' );
+		echo '<span>' . esc_html( $text ) . '</span>';
+		if ( '_blank' === $link['target'] ) {
+			echo '<span class="sr-only">' . esc_html__( '(opens in a new tab)', 'skel' ) . '</span>';
+		}
+		?>
+	</a>
+<?php endif; ?>
+```
+
+## Repeater Loop
+
+```php
+<?php
+$items = get_field( 'items' );
+if ( is_array( $items ) && ! empty( $items ) ) :
+	foreach ( $items as $item ) :
+		$title = $item['title'] ?? '';
+		$image = $item['image'] ?? '';
+		$link  = $item['link'] ?? [];
+		?>
+		<div class="item">
+			<?php if ( $title ) : ?>
+				<h3><?php echo esc_html( $title ); ?></h3>
+			<?php endif; ?>
+		</div>
+		<?php
+	endforeach;
+endif;
+?>
+```
+
+## WP Query Loop
+
+```php
+<?php
+$args = array(
+	'post_type'      => 'post',
+	'post_status'    => 'publish',
+	'posts_per_page' => 6,
+	'no_found_rows'  => true, // Disable pagination count for performance
+	'update_post_term_cache' => false,
+);
+
+$query = new WP_Query( $args );
+
+if ( $query->have_posts() ) :
+	while ( $query->have_posts() ) :
+		$query->the_post();
+		?>
+		<article <?php post_class(); ?>>
+			<?php the_title( '<h2>', '</h2>' ); ?>
+		</article>
+		<?php
+	endwhile;
+	wp_reset_postdata();
+endif;
+?>
+```
+
+## Taxonomy Query
+
+```php
+<?php
+$categories = get_field( 'categories' );  // ACF taxonomy field
+
+$args = array(
+	'post_type'      => 'post',
+	'post_status'    => 'publish',
+	'posts_per_page' => -1,
+	'no_found_rows'  => true,
+);
+
+if ( is_array( $categories ) && ! empty( $categories ) ) {
+	$args['tax_query'] = array(  // phpcs:ignore
+		array(
+			'taxonomy' => 'category',
+			'terms'    => $categories,
+			'field'    => 'id',
+		),
+	);
+}
+
+$query = new WP_Query( $args );
+?>
+```
+
+## Swiper Slider
+
+```php
+<div class="swiper <?php echo esc_attr( skel_swiper_direction_class() ); ?> block-slider">
+	<div class="swiper-wrapper">
+		<?php foreach ( $items as $item ) : ?>
+			<div class="swiper-slide">
+				<!-- Slide content -->
+			</div>
+		<?php endforeach; ?>
+	</div>
+
+	<div class="swiper-pagination"></div>
+
+	<?php if ( count( $items ) > 1 ) : ?>
+		<?php
+		get_template_part(
+			'template-parts/swiper-navigation',
+			null,
+			array( 'style' => 'floating' )
+		);
+		?>
+	<?php endif; ?>
+</div>
+```
+
+## JS Module Pattern
+
+```javascript
+(() => {
+	const elements = document.querySelectorAll('.js-component');
+
+	if (!elements.length) return;
+
+	elements.forEach((el, index) => {
+		const uniqueClass = `component-${index}`;
+		el.classList.add(uniqueClass);
+
+		// Setup logic here
+	});
+})();
+```
+
+## JS Swiper Init
+
+```javascript
+(() => {
+	const sliders = document.querySelectorAll('.block-slider');
+
+	sliders.forEach((el, i) => {
+		const swiperClass = `block-slider-${i}`;
+		el.classList.add(swiperClass);
+
+		const slides = el.querySelectorAll('.swiper-slide');
+		if (slides.length <= 1) return;
+
+		const parent = el.closest('.block-section');
+		const prevClass = `block-prev-${i}`;
+		const nextClass = `block-next-${i}`;
+		const paginationClass = `block-pagination-${i}`;
+
+		const prevBtn = parent?.querySelector('.swiper-button-prev');
+		const nextBtn = parent?.querySelector('.swiper-button-next');
+		const pagination = parent?.querySelector('.swiper-pagination');
+
+		if (prevBtn) prevBtn.classList.add(prevClass);
+		if (nextBtn) nextBtn.classList.add(nextClass);
+		if (pagination) pagination.classList.add(paginationClass);
+
+		new Swiper(`.${swiperClass}`, {
+			slidesPerView: 1,
+			spaceBetween: 16,
+			loop: true,
+			speed: 300,
+			navigation: {
+				prevEl: `.${prevClass}`,
+				nextEl: `.${nextClass}`
+			},
+			pagination: {
+				el: `.${paginationClass}`,
+				clickable: true
+			},
+			breakpoints: {
+				768: { slidesPerView: 2 },
+				1024: { slidesPerView: 3 }
+			}
+		});
+	});
+})();
+```
+
+## SCSS Block Structure
+
+```scss
+.block-name-section {
+	// Container
+	.container {
+		// Grid/layout styles
+	}
+
+	// Item
+	.item {
+		// Item styles
+	}
+
+	// Responsive
+	@media (width >= $md) {
+		// Tablet+
+	}
+
+	@media (width >= $lg) {
+		// Desktop+
+	}
+}
+```
+
+## Accordion HTML
+
+```php
+<div class="accordion" data-aos-stagger-item data-aos="fade-up">
+	<button class="accordion-heading h5" type="button" aria-expanded="false">
+		<?php echo esc_html( $title ); ?>
+		<span class="icon"></span>
+	</button>
+	<div class="accordion-content" aria-hidden="true">
+		<div class="inner-block">
+			<?php echo wp_kses_post( $content ); ?>
+		</div>
+	</div>
+</div>
+```
+
+## Dialog Pattern
+
+```php
+<?php $dialog_id = skel_get_random_string(); ?>
+
+<button class="btn js-dialog-open" data-dialog="<?php echo esc_attr( $dialog_id ); ?>">
+	<?php esc_html_e( 'Open', 'skel' ); ?>
+</button>
+
+<dialog class="dialog js-dialog" data-dialog="<?php echo esc_attr( $dialog_id ); ?>">
+	<button class="btn btn-dialog-close js-dialog-close">
+		<?php echo skel_get_svg( 'close', array( 'aria-hidden' => 'true' ) ); ?>
+		<span class="screen-reader-text"><?php esc_html_e( 'Close', 'skel' ); ?></span>
+	</button>
+
+	<div class="dialog-content">
+		<!-- Content -->
+	</div>
+</dialog>
+```
+
+## Toggle Pattern
+
+```php
+<!-- Trigger -->
+<button data-toggle-click="menu" data-toggle-group="menus" aria-expanded="false">
+	<?php esc_html_e( 'Toggle Menu', 'skel' ); ?>
+</button>
+
+<!-- Target -->
+<div data-toggle-link="menu" aria-hidden="true">
+	<!-- Content shown when js-active -->
+</div>
+```

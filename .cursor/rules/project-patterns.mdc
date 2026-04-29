@@ -1,0 +1,232 @@
+---
+description: Skeleton theme project-specific patterns - block structure, data attributes, helpers, image/swiper patterns
+globs: 'blocks/**/*'
+alwaysApply: false
+---
+
+# Skeleton Patterns
+
+**Domain**: `'skel'` | **Prefix**: `skel_` | **Indent**: Tabs
+
+## ACF Blocks
+
+### Block Folder Structure
+
+Each block is self-contained in `blocks/{slug}/`:
+
+```
+blocks/
+  main-hero/
+    main-hero.php      ← Block template
+    main-hero.scss     ← Source styles
+    main-hero.css      ← Compiled styles (auto-generated, git-ignored)
+    main-hero.js       ← Block scripts
+    main-hero.json     ← ACF field group
+    preview.png        ← Block preview image
+  blank/               ← Template for new blocks
+    blank.php
+    blank.scss
+    blank.js
+    blank.json
+```
+
+### Register New Block
+
+In `blocks/config.php`:
+
+```php
+$block_types = array( 'Hero Slider', 'New Block' );
+```
+
+### Auto-Generated Files
+
+When registered, creates in `blocks/{slug}/`:
+
+- `{slug}.php` - Block template
+- `{slug}.scss` - Block styles (compiles to `{slug}.css`)
+- `{slug}.js` - Block scripts (always generated)
+- `{slug}.json` - ACF field group
+- Uses `blocks/blank/` as template source
+
+### Conditional Asset Loading
+
+CSS/JS only enqueues when block is present on page via `has_block()`. No manual enqueuing needed.
+
+### Block Template Structure
+
+```php
+<?php
+// 1. Preview image (required)
+if ( isset( $block['data']['preview_image'] ) ) {
+	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+	return;
+}
+
+// 2. Display check
+if ( 'on' !== get_field( 'display' ) ) { return; }
+
+// 3. Data options
+$items = get_field( 'items' );
+if ( ! is_array( $items ) || empty( $items ) ) { return; }
+
+// 4. Developer options
+$spacing        = get_field( 'spacing' );
+$spacing_top    = $spacing['top']['spacing_top'] ?? '';
+$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
+$custom_classes = get_field( 'custom_classes' );
+$custom_css     = get_field( 'custom_css' );
+$unique_id      = get_field( 'unique_id' );
+
+// 5. Custom spacing CSS vars
+$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
+$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+?>
+<section
+	class="block-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
+	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
+	id="<?php echo esc_attr( $unique_id ); ?>">
+	<div class="container">
+		<?php foreach ( $items as $item ) : ?><!-- Content --><?php endforeach; ?>
+	</div>
+</section>
+```
+
+## HTML Structure
+
+| Element         | Class Pattern     | Example                           |
+| --------------- | ----------------- | --------------------------------- |
+| Section wrapper | `*-section`       | `hero-section`, `faq-section`     |
+| Content block   | `*-block`         | `content-block`, `img-block`      |
+| Image container | `img-cover-block` | With `img-cover` class on `<img>` |
+| Grid container  | `*-grid`          | `items-grid`, `cards-grid`        |
+| Row container   | `row`             | Flex row with columns             |
+
+## Data Attributes
+
+### Animations
+
+| Attribute               | Purpose                          |
+| ----------------------- | -------------------------------- |
+| `data-inview`           | Viewport trigger for animations  |
+| `data-aos="fade-up"`    | AOS animation type               |
+| `data-aos-stagger-item` | Child elements stagger animation |
+
+### Toggles
+
+| Attribute                   | Purpose                          |
+| --------------------------- | -------------------------------- |
+| `data-toggle-click="name"`  | Click trigger                    |
+| `data-toggle-hover="name"`  | Hover trigger                    |
+| `data-toggle-link="name"`   | Target element                   |
+| `data-toggle-group="group"` | Group (only one active)          |
+| `data-toggle-lenis`         | Disable Lenis scroll when active |
+
+### Other
+
+| Attribute              | Purpose                |
+| ---------------------- | ---------------------- |
+| `data-sticky`          | Sticky element         |
+| `data-close-scroll`    | Close on scroll        |
+| `data-close-click-out` | Close on outside click |
+| `data-esc`             | Close on Escape key    |
+| `data-dialog="id"`     | Dialog trigger/target  |
+
+## Helper Functions
+
+```php
+// Icons
+<?php echo skel_get_svg( 'arrow-right', [ 'class' => 'icon', 'aria-hidden' => 'true' ] ); ?>
+
+// URLs
+<a href="<?php echo skel_get_phone_url( '+971 50 123 4567' ); ?>">Call</a>
+
+// Text
+<?php echo esc_html( skel_get_the_excerpt( 20 ) ); ?>
+<?php echo esc_html( skel_get_text_shorter( $text, 100 ) ); ?>
+
+// Direction (WPML)
+<div class="<?php echo esc_attr( skel_direction_class() ); ?>">
+<div class="<?php echo esc_attr( skel_swiper_direction_class() ); ?>">
+
+// oEmbed
+$src = skel_extract_oembed_src( get_field( 'video' ) );
+
+// Random ID
+$dialog_id = skel_get_random_string();
+```
+
+## Image Pattern
+
+**Always use `wp_get_attachment_image()` instead of manual image output:**
+
+```php
+<?php
+$image_id = $item['image'];
+if ( $image_id ) :
+	echo wp_get_attachment_image(
+		$image_id,
+		'w768',
+		false,
+		[
+			'class'   => 'img-cover',
+			'loading' => 'lazy',
+			'sizes'   => '(max-width: 768px) 100vw, 768px',
+		]
+	);
+endif;
+?>
+```
+
+## JavaScript Pattern
+
+```javascript
+(() => {
+	const elements = document.querySelectorAll('.js-component');
+	if (!elements.length) return;
+
+	elements.forEach((el, i) => {
+		el.classList.add(`component-${i}`);
+		// Logic
+	});
+})();
+```
+
+## Swiper Pattern
+
+```php
+<div class="swiper <?php echo esc_attr( skel_swiper_direction_class() ); ?> block-slider">
+	<div class="swiper-wrapper">
+		<?php foreach ( $items as $item ) : ?>
+			<div class="swiper-slide"><!-- Slide --></div>
+		<?php endforeach; ?>
+	</div>
+	<div class="swiper-pagination"></div>
+	<?php if ( count( $items ) > 1 ) :
+		get_template_part( 'template-parts/swiper-navigation', null, [ 'style' => 'floating' ] );
+	endif; ?>
+</div>
+```
+
+## CSS Classes
+
+### State Classes (JS)
+
+- `js-active` - Active/open state
+- `js-visible` - Visible in viewport
+- `js-open` - Open state (menus, modals)
+
+### Spacing Classes
+
+- `st-sm`, `st-md`, `st-lg`, `st-xl` - Spacing top
+- `sb-sm`, `sb-md`, `sb-lg`, `sb-xl` - Spacing bottom
+
+### Background Classes
+
+- `bg-white`, `bg-light`, `bg-dark`
+
+## See Also
+
+- `acf-fields.mdc` - ACF field structures
+- `helpers-reference.mdc` - Helper function docs
+- `snippets.mdc` - Code snippets
+- `examples/` - Template files

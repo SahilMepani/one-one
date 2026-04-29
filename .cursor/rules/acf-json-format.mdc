@@ -1,0 +1,316 @@
+---
+description: ACF field group JSON file format for blocks
+globs: 'blocks/**/*.json'
+alwaysApply: false
+---
+
+# ACF JSON Field Format
+
+## Block JSON Structure
+
+Each block has a `.json` file defining its ACF field group:
+
+```json
+{
+	"title": "Block Name",
+	"fields": [
+		{
+			"key": "field_{slug}_block_options",
+			"label": "Block Name",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_{slug}_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_{slug}_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		}
+	]
+}
+```
+
+## Key Convention
+
+Always prefix with `field_{block_slug}_`:
+
+```json
+{ "key": "field_main_hero_heading", "name": "heading", "type": "text" }
+```
+
+For sub*fields in repeaters: `field*{slug}_{repeater}_{field}`:
+
+```json
+{ "key": "field_main_hero_items_title", "name": "title", "type": "text" }
+```
+
+## Auto-Injected Fields (DO NOT add to JSON)
+
+These are added automatically at block registration:
+
+- **Settings tab** with display on/off (button_group)
+- **Spacing group** (top/bottom: small/medium/large/xlarge/custom/none)
+- **Custom CSS** (textarea)
+- **Custom Classes** (text)
+- **Unique ID** (text)
+
+## Block Optional Settings (top-level)
+
+```json
+{
+    "title": "Block Name",
+    "active": false,
+    "settings": {
+        "category": "uncategorized",
+        "icon": "layout",
+        "post_types": ["page", "post"]
+    },
+    "fields": [...]
+}
+```
+
+- `active: false` → disables the block
+- `post_types` → defaults to `["page"]` if not specified
+
+## Common Field Types (JSON format)
+
+### Image (ALWAYS return ID, preview w200)
+
+```json
+{
+	"key": "field_{slug}_image",
+	"label": "Image",
+	"name": "image",
+	"type": "image",
+	"return_format": "id",
+	"preview_size": "w200"
+}
+```
+
+### Link
+
+```json
+{
+	"key": "field_{slug}_link",
+	"label": "Link",
+	"name": "link",
+	"type": "link",
+	"return_format": "array"
+}
+```
+
+### Select
+
+```json
+{
+	"key": "field_{slug}_style",
+	"label": "Style",
+	"name": "style",
+	"type": "select",
+	"choices": {
+		"default": "Default",
+		"alternate": "Alternate"
+	},
+	"default_value": "default"
+}
+```
+
+### Button Group
+
+```json
+{
+	"key": "field_{slug}_layout",
+	"label": "Layout",
+	"name": "layout",
+	"type": "button_group",
+	"choices": {
+		"left": "Left",
+		"center": "Center",
+		"right": "Right"
+	},
+	"default_value": "left"
+}
+```
+
+### Textarea
+
+```json
+{
+	"key": "field_{slug}_heading",
+	"label": "Heading",
+	"name": "heading",
+	"type": "textarea",
+	"rows": 2,
+	"new_lines": "br",
+	"instructions": "Line breaks are preserved"
+}
+```
+
+### Repeater
+
+```json
+{
+	"key": "field_{slug}_items",
+	"label": "Items",
+	"name": "items",
+	"type": "repeater",
+	"min": 1,
+	"max": 6,
+	"layout": "block",
+	"button_label": "Add {item}",
+	"collapsed": "field_{slug}_items_title",
+	"sub_fields": [
+		{
+			"key": "field_{slug}_items_title",
+			"label": "Title",
+			"name": "title",
+			"type": "text"
+		},
+		{
+			"key": "field_{slug}_items_image",
+			"label": "Image",
+			"name": "image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		}
+	]
+}
+```
+
+### Group
+
+```json
+{
+	"key": "field_{slug}_cta",
+	"label": "CTA",
+	"name": "cta",
+	"type": "group",
+	"layout": "block",
+	"sub_fields": [
+		{
+			"key": "field_{slug}_cta_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		}
+	]
+}
+```
+
+### WYSIWYG
+
+```json
+{
+	"key": "field_{slug}_content",
+	"label": "Content",
+	"name": "content",
+	"type": "wysiwyg",
+	"tabs": "all",
+	"toolbar": "full",
+	"media_upload": 0,
+	"delay": 1
+}
+```
+
+### Number
+
+```json
+{
+	"key": "field_{slug}_count",
+	"label": "Count",
+	"name": "count",
+	"type": "number",
+	"default_value": 3,
+	"min": 1,
+	"max": 12
+}
+```
+
+### True/False
+
+```json
+{
+	"key": "field_{slug}_show_title",
+	"label": "Show Title",
+	"name": "show_title",
+	"type": "true_false",
+	"default_value": 1
+}
+```
+
+### oEmbed (Video)
+
+```json
+{
+	"key": "field_{slug}_video",
+	"label": "Video",
+	"name": "video",
+	"type": "oembed"
+}
+```
+
+### Post Object
+
+```json
+{
+	"key": "field_{slug}_post",
+	"label": "Post",
+	"name": "post",
+	"type": "post_object",
+	"post_type": ["post"],
+	"return_format": "id",
+	"multiple": 0
+}
+```
+
+### Relationship
+
+```json
+{
+	"key": "field_{slug}_posts",
+	"label": "Posts",
+	"name": "posts",
+	"type": "relationship",
+	"post_type": ["post"],
+	"return_format": "id",
+	"min": 1,
+	"max": 6
+}
+```
+
+### Tab
+
+```json
+{
+	"key": "field_{slug}_content_tab",
+	"label": "Content",
+	"type": "tab"
+}
+```
+
+### Conditional Logic
+
+```json
+{
+	"key": "field_{slug}_custom_text",
+	"label": "Custom Text",
+	"name": "custom_text",
+	"type": "text",
+	"conditional_logic": [
+		[
+			{
+				"field": "field_{slug}_style",
+				"operator": "==",
+				"value": "custom"
+			}
+		]
+	]
+}
+```

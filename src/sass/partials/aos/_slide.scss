@@ -1,0 +1,43 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+[data-aos^='slide'] {
+	transition-property: transform;
+
+	@include aos-active {
+		transform: translate3d(0, 0, 0);
+	}
+
+	&[data-aos='slide-up'] {
+		@include aos-direction(0, var(--aos-distance));
+	}
+
+	&[data-aos='slide-down'] {
+		@include aos-direction(0, calc(var(--aos-distance) * -1));
+	}
+
+	&[data-aos='slide-left'] {
+		@include aos-direction(var(--aos-distance), 0);
+	}
+
+	&[data-aos='slide-right'] {
+		@include aos-direction(calc(var(--aos-distance) * -1), 0);
+	}
+
+	&[data-aos='slide-up-full'] {
+		transform: translate3d(0, 100%, 0);
+	}
+
+	&[data-aos='slide-down-full'] {
+		transform: translate3d(0, -100%, 0);
+	}
+
+	&[data-aos='slide-left-full'] {
+		transform: translate3d(100%, 0, 0);
+	}
+
+	&[data-aos='slide-right-full'] {
+		transform: translate3d(-100%, 0, 0);
+	}
+}

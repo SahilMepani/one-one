@@ -1,0 +1,31 @@
+@use "config" as *;
+@use "../abstracts" as *;
+@use "mixins" as *;
+
+[data-aos^='clip-path-'] {
+	transition-property: clip-path;
+
+	@include aos-active {
+		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+	}
+}
+
+[data-aos='clip-path-right'] {
+	clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
+}
+
+[data-aos='clip-path-left'] {
+	clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+}
+
+[data-aos='clip-path-up'] {
+	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+[data-aos='clip-path-down'] {
+	clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
+}
+
+[data-aos='clip-path-open'] {
+	clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
+}

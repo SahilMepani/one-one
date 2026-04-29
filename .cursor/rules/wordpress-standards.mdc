@@ -1,0 +1,25 @@
+---
+description: WordPress theme development - template hierarchy, hooks, theme setup
+globs: 'functions/**/*.php'
+alwaysApply: false
+---
+
+# WordPress Reference
+
+## Identity
+Domain: `'skel'` | Prefix: `skel_`
+
+## Template Hierarchy
+```
+Front: front-page.php → home.php → index.php
+Single: single-{type}.php → single.php → index.php
+Page: page-{slug}.php → page.php → index.php
+Archive: archive-{type}.php → archive.php → index.php
+```
+
+## Hooks
+```php
+add_action( 'after_setup_theme', 'skel_setup' );
+add_action( 'wp_enqueue_scripts', 'skel_enqueue_scripts' );
+add_filter( 'body_class', 'skel_body_classes' );
+```

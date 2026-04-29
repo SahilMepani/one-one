@@ -1,0 +1,20 @@
+/* Do not edit anything below */
+.logo-slider-section {
+  background-color: #f7f3f0;
+}
+.logo-slider-section .logo-slider {
+  overflow: visible;
+}
+.logo-slider-section .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+.logo-slider-section .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: auto;
+  user-select: none;
+}
+.logo-slider-section .swiper-slide .logo-block img {
+  inline-size: clamp(6.25rem, 6.25rem + 3.125 * (100vw - 48rem) / 27, 9.375rem);
+}

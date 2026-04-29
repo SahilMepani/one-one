@@ -1,0 +1,47 @@
+@use '../abstracts' as *;
+
+// Make all slides equal height
+.swiper-slide {
+	block-size: auto;
+}
+
+.swiper-scrollbar {
+	background-color: #eee;
+	block-size: rem-calc(8);
+	border-radius: rem-calc(3);
+	inset-inline: 0;
+	margin-block-start: fluid(20, 40);
+}
+
+.swiper-scrollbar-drag {
+	background-color: #000;
+	block-size: 100%;
+	border-radius: rem-calc(3);
+	cursor: grab;
+
+	&:active {
+		cursor: grabbing;
+	}
+}
+
+// Scrollbar drag
+.swiper-scrollbar {
+	.swiper-scrollbar-drag {
+		transform-origin: left center;
+		animation: scrollbar-fill 300ms ease-out forwards;
+	}
+
+	&[data-direction='backward'] .swiper-scrollbar-drag {
+		transform-origin: right center;
+	}
+}
+
+@keyframes scrollbar-fill {
+	from {
+		transform: scaleX(0);
+	}
+
+	to {
+		transform: scaleX(1);
+	}
+}

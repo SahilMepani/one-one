@@ -1,0 +1,181 @@
+---
+description: Known pitfalls and antipatterns — shared across all AI tools
+globs: 'blocks/**/*'
+alwaysApply: false
+---
+
+# Known Pitfalls
+
+## 1. SCSS `&` Parent Selector
+
+Never use `&` to reference outer ancestors in deep nesting.
+
+```scss
+// WRONG — produces `.modifier .outer .inner`
+.outer {
+	.inner {
+		.modifier & { }
+	}
+}
+
+// RIGHT — keep selectors flat or restructure
+.modifier .outer .inner { }
+```
+
+Also avoid `&__` / `&--` SCSS nesting shorthand in block SCSS — and do not use BEM `__` class names at all. Every rule lives nested inside the outer `.{slug}-section` wrapper, using **plain child class names**. Modifiers keep the `--` suffix and are written in full (no `&--` shorthand).
+
+```scss
+// ❌ WRONG — BEM class names and `&__` shorthand
+.home-hero {
+	&__title { }
+	&__cta { }
+}
+.home-hero__title { }
+.home-hero__cta { }
+
+// ✅ RIGHT — nested inside the section wrapper, plain child names
+.home-hero-section {
+	.title { }
+	.cta { }
+	.tag--dark { } // modifier written in full, never `&--dark`
+}
+```
+
+## 2. `.img-cover` Class
+
+Uses `position: absolute`. Only use on full-bleed images inside a `.img-cover-block` wrapper. Never on small contained images.
+
+```php
+// CORRECT
+<div class="img-cover-block">
+	<?php echo wp_get_attachment_image( $image_id, 'w768', false, [ 'class' => 'img-cover' ] ); ?>
+</div>
+```
+
+## 3. Block JSON Field Keys
+
+Always prefix field keys: `field_{block_slug}_{field_name}`
+
+```json
+// WRONG
+{ "key": "field_title" }
+
+// RIGHT
+{ "key": "field_hero_slider_title" }
+```
+
+## 4. Auto-Injected Fields
+
+Settings / Spacing / Display / Custom CSS / Classes / Unique ID are auto-injected at block registration. Never add these to the block's `.json` file.
+
+## 5. Swiper Inside Flex/Grid Parent
+
+Flex/grid children default to `min-inline-size: auto`, preventing shrink below content width. Swiper expands to fit all slides, breaking scroll.
+
+**Fix:** Add `min-inline-size: 0` to the `.swiper` element.
+
+```scss
+.swiper {
+	min-inline-size: 0;
+}
+```
+
+## 6. SVG Helper
+
+Use `skel_get_svg()`. The `skel_svg()` function is deprecated and removed.
+
+```php
+// WRONG
+echo skel_svg( 'arrow-right' );
+
+// RIGHT
+echo skel_get_svg( 'arrow-right', array( 'aria-hidden' => 'true' ) );
+```
+
+## 7. Always Use WordPress Built-in Functions First
+
+**MUST** use native WordPress functions before writing custom code. Never implement a custom solution when WordPress already provides one.
+
+```php
+// WRONG — custom slug check
+$slug = get_post_field( 'post_name', get_queried_object_id() );
+if ( in_array( $slug, array( 'contact', 'contact-us' ), true ) ) { }
+
+// RIGHT — built-in WordPress conditional
+if ( is_page( array( 'contact', 'contact-us' ) ) ) { }
+```
+
+Common built-ins to use:
+- `is_page()`, `is_single()`, `is_archive()`, `is_home()`, `is_front_page()` — page conditionals
+- `get_permalink()`, `get_the_ID()`, `get_queried_object()` — post/page data
+- `wp_get_attachment_image()`, `wp_get_attachment_url()` — media
+- `get_template_part()` — template inclusion
+- `wp_enqueue_script()`, `wp_enqueue_style()` — asset loading
+
+Check the [WordPress Function Reference](https://developer.wordpress.org/reference/) before writing custom logic.
+
+## 9. Guard foreach Arrays
+
+Always check that an array is not empty before iterating with `foreach`. Missing this causes PHP warnings when the field returns `null` or `false`.
+
+```php
+// WRONG — no guard
+foreach ( $items as $item ) { }
+
+// RIGHT — guard with is_array + ! empty
+if ( is_array( $items ) && ! empty( $items ) ) :
+	foreach ( $items as $item ) : ?>
+		...
+	<?php endforeach;
+endif;
+```
+
+Use `?? array()` only when iterating **without** a guard, so the variable is always a safe type:
+
+```php
+// No guard — need ?? array() to avoid warning
+$items = get_field( 'items' ) ?? array();
+foreach ( $items as $item ) { ... }
+
+// Guard present — ?? array() is redundant, skip it
+$items = get_field( 'items' );
+if ( is_array( $items ) && ! empty( $items ) ) {
+	foreach ( $items as $item ) { ... }
+}
+```
+
+## 8. SCSS Block Import — Always `abstracts-blocks`
+
+Block SCSS files must import **`abstracts-blocks`**, not `abstracts`. If you see `abstracts` (without `-blocks`) in a block file, it's a bug — correct it. Do not "match what's already in the file" — the correct form is always `abstracts-blocks` in block SCSS.
+
+```scss
+// ✅ CORRECT — in every blocks/{slug}/{slug}.scss
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+// ❌ WRONG — missing -blocks suffix
+@use '../../src/sass/partials/abstracts' as *;
+```
+
+## 10. Using `@media` to Change Values Instead of `fluid()`
+
+`@media` is for **layout changes** (grid columns, flex direction, show/hide, position). It is **not** for changing values like font-size, padding, gap, or margin — those should use `fluid(min, max)`. If the only thing changing at a breakpoint is a numeric value, rewrite with `fluid()`.
+
+```scss
+// ❌ WRONG — @media used to tweak a value
+.title {
+	font-size: rem-calc(18);
+
+	@media (width >= $md) {
+		font-size: rem-calc(28);
+	}
+}
+
+// ✅ RIGHT — fluid() handles the scale
+.title {
+	font-size: fluid(18, 28);
+}
+```
+
+Reserve `@media` for things that genuinely restructure the layout (e.g. 1 column → 3 columns, stacked → side-by-side).
+
+Also: **always mobile-first** (`width >= $bp`), never desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.

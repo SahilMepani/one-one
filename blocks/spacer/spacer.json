@@ -1,0 +1,17 @@
+{
+	"title": "Spacer",
+	"fields": [
+		{
+			"key": "field_spacer_block_options",
+			"label": "Spacer",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_spacer_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

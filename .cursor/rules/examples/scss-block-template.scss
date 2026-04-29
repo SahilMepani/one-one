@@ -1,0 +1,156 @@
+/**
+ * [Block Name] Styles
+ *
+ * Template for creating new ACF block SCSS files.
+ * This file is auto-generated at src/sass/partials/acf-blocks/_{slug}.scss
+ *
+ * @package Skeleton
+ */
+
+.block-name-section {
+	// ============================================
+	// SECTION CONTAINER
+	// ============================================
+
+	// ============================================
+	// HEADING
+	// ============================================
+	.section-heading {
+		text-align: center;
+		margin-block-end: fluid(24, 40);
+	}
+
+	// ============================================
+	// GRID LAYOUT
+	// ============================================
+	.items-grid {
+		display: grid;
+		gap: fluid(24, 32);
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (width >= $lg) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	// ============================================
+	// ITEM CARD
+	// ============================================
+	.item {
+		display: flex;
+		flex-direction: column;
+		gap: fluid(16, 24);
+	}
+
+	// ============================================
+	// IMAGE CONTAINER
+	// ============================================
+	.img-cover-block {
+		aspect-ratio: 16 / 9;
+		border-radius: rem-calc(8);
+		overflow: hidden;
+
+		.img-cover {
+			transition: transform 0.3s ease;
+		}
+
+		&:hover .img-cover {
+			transform: scale(1.05);
+		}
+	}
+
+	// ============================================
+	// CONTENT
+	// ============================================
+	.content-block {
+		display: flex;
+		flex-direction: column;
+		gap: fluid(8, 12);
+	}
+
+	.item-title {
+		// Title styles
+	}
+
+	.item-description {
+		// Description styles
+
+		p:last-child {
+			margin-block-end: 0;
+		}
+	}
+
+	// ============================================
+	// BUTTONS / LINKS
+	// ============================================
+	.btn-link {
+		display: inline-flex;
+		align-items: center;
+		gap: rem-calc(8);
+
+		.icon {
+			transition: transform 0.2s ease;
+		}
+
+		&:hover .icon {
+			transform: translateX(4px);
+		}
+	}
+
+	// ============================================
+	// CTA SECTION
+	// ============================================
+	.section-cta {
+		text-align: center;
+		margin-block-start: fluid(32, 48);
+	}
+
+	// ============================================
+	// RESPONSIVE ADJUSTMENTS
+	// ============================================
+	@media (width >= $md) {
+		// Tablet adjustments
+	}
+
+	@media (width >= $lg) {
+		// Desktop adjustments
+	}
+
+	@media (width >= $xl) {
+		// Large desktop adjustments
+	}
+}
+
+// ============================================
+// SLIDER VARIANT
+// ============================================
+
+/*
+.block-slider-section {
+	.swiper {
+		overflow: visible;
+	}
+
+	.swiper-slide {
+		height: auto;
+	}
+
+	// Navigation
+	.swiper-navigation {
+		display: none;
+
+		@media (width >= $md) {
+			display: flex;
+		}
+	}
+
+	// Pagination
+	.swiper-pagination {
+		position: static;
+		margin-block-start: fluid(24, 32);
+	}
+}
+*/

@@ -1,0 +1,17 @@
+{
+	"title": "Search Result",
+	"fields": [
+		{
+			"key": "field_search_result_block_options",
+			"label": "Search Result",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_search_result_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+---
+description: Skip SCSS/CSS linting and auto-fixes
+globs: '**/*.scss'
+alwaysApply: false
+---
+
+# SCSS/CSS Linting
+
+- Never run SCSS/CSS linters (Stylelint)
+- Never fix SCSS/CSS linter errors
+- Skip SCSS files when calling ReadLints tool
+- Do not suggest or apply SCSS/CSS formatting fixes

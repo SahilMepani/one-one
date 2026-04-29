@@ -1,0 +1,45 @@
+/* Do not edit anything below */
+.two-columns-section .row {
+  display: grid;
+  row-gap: 1.5rem;
+}
+.two-columns-section .row.reverse > .col:nth-child(2) {
+  order: -1;
+}
+@media (width >= 768px) {
+  .two-columns-section .row {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: clamp(1.5rem, 1.5rem + 1.5 * (100vw - 48rem) / 27, 3rem);
+  }
+  .two-columns-section .row > .col:nth-child(1) {
+    grid-column: 1/calc(var(--grid-first-col) + 1);
+  }
+  .two-columns-section .row > .col:nth-child(2) {
+    grid-column: calc(var(--grid-first-col) + 1)/-1;
+  }
+}
+.two-columns-section .btn-dialog-open {
+  inline-size: 100% !important;
+}
+
+.img-dialog-block {
+  position: relative;
+  overflow: hidden;
+}
+.img-dialog-block .btn-dialog-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.img-dialog-block .btn-dialog-open svg {
+  max-inline-size: clamp(2.75rem, 2.75rem + 2.25 * (100vw - 48rem) / 27, 5rem);
+}
+.img-dialog-block .btn-dialog-open:hover svg, .img-dialog-block .btn-dialog-open:focus-visible svg {
+  animation: play 0.3s ease-out;
+}
+
+@keyframes play {
+  50% {
+    transform: scale(0.75);
+  }
+}

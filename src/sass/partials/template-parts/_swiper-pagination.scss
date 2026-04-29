@@ -1,0 +1,111 @@
+@use '../abstracts' as *;
+
+.swiper-controls {
+	display: flex;
+	align-items: center;
+	gap: fluid(16, 48);
+}
+
+.swiper-pagination {
+	all: unset;
+	display: flex;
+	flex: 1 1 0;
+	align-items: center;
+	gap: fluid(4, 8);
+	min-inline-size: 0;
+	position: static;
+
+	.swiper-pagination-bullet {
+		all: unset;
+		background-color: $mist;
+		block-size: fluid(6, 8);
+		margin: 0;
+
+		&::after {
+			background-color: $primary;
+		}
+	}
+}
+
+.swiper-pagination-line {
+	display: flex;
+	align-items: center;
+	gap: rem-calc(6);
+
+	.swiper-pagination-bullet {
+		flex: 1 1 0;
+		min-inline-size: 0;
+		block-size: rem-calc(6);
+		border-radius: rem-calc(16);
+		opacity: 1;
+		cursor: pointer;
+	}
+}
+
+.swiper-pagination-dot {
+	all: unset; // overwrite default from swiper
+	display: flex;
+	justify-content: center;
+	gap: rem-calc(10);
+
+	span {
+		all: unset; // overwrite default from swiper
+		background-color: rgba(#000, 40%);
+		display: inline-block;
+		inline-size: rem-calc(10);
+		block-size: rem-calc(10);
+		border-radius: 50%;
+		position: relative;
+		cursor: pointer;
+
+		&.swiper-pagination-bullet-active {
+			background-color: #000;
+			transition: 0.2s;
+		}
+	}
+}
+
+/* ----------  Directional fill transition (auto-applied)  ---------- */
+// Requires the slideChange JS handler to set data-direction on the container.
+// No extra JS classes needed — the transition fires when Swiper toggles bullet-active.
+
+// Pagination bullets (line & dot)
+.swiper-pagination-line,
+.swiper-pagination-dot {
+	.swiper-pagination-bullet {
+		position: relative;
+		overflow: hidden;
+
+		&::after {
+			background-color: #000;
+			border-radius: inherit;
+			position: absolute;
+			inset: 0;
+			transform: scaleX(0);
+			transition: transform 500ms ease-out;
+			content: '';
+			transform-origin: right center; // emptying direction (forward)
+		}
+
+		// Hide static active bg — the ::after handles the fill visually
+		&-active {
+			background-color: transparent;
+
+			&::after {
+				transform: scaleX(1);
+				transform-origin: left center; // filling direction (forward)
+			}
+		}
+	}
+
+	// Backward: reverse origins
+	&[data-direction='backward'] {
+		.swiper-pagination-bullet::after {
+			transform-origin: left center;
+		}
+
+		.swiper-pagination-bullet-active::after {
+			transform-origin: right center;
+		}
+	}
+}

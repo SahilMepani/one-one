@@ -1,0 +1,27 @@
+.search-form {
+	position: relative;
+
+	.search {
+		inline-size: 100%;
+		padding: rem-calc(20) rem-calc(16);
+		border: rem-calc(1) solid #d1d1d1;
+	}
+
+	input[type='search']::-webkit-search-cancel-button {
+		display: none;
+	}
+
+	.submit {
+		background-color: transparent;
+		inline-size: rem-calc(44);
+		border: none;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+
+		svg {
+			inline-size: rem-calc(24);
+		}
+	}
+}

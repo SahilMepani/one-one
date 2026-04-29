@@ -1,0 +1,129 @@
+@use '../config/blocks' as *;
+@use 'rem' as *;
+
+@mixin stagger-animation($animation, $child, $interval: 100) {
+	$delay: $interval;
+
+	visibility: visible;
+	animation-name: $animation;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+
+	@for $i from 1 through $child {
+		$delay: $delay + $interval;
+
+		&:nth-child(#{$i}) {
+			animation-delay: $delay + 'ms';
+		}
+	}
+}
+
+@mixin pseudo-underline($space-above-line: rem-calc(1),
+	$line-height: rem-calc(1),
+	$text-color: currentColor,
+	$line-color: currentColor,
+	$hover-text-color: currentColor,
+	$hover-line-color: currentColor) {
+	color: $text-color;
+	padding-block-end: $space-above-line;
+	position: relative;
+	transition: 0.2s;
+
+	&::before {
+		background-color: $line-color;
+		block-size: $line-height;
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0;
+		content: '';
+		z-index: 1;
+	}
+
+	&::after {
+		background-color: $hover-line-color;
+		block-size: $line-height;
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0;
+		transform: scaleX(0);
+		transition: 0.3s transform;
+		content: '';
+		transform-origin: 100% 100%;
+		z-index: 1;
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: $hover-text-color;
+
+		&::after {
+			transform: scaleX(1);
+			transform-origin: 0 0;
+		}
+	}
+}
+
+@mixin animate-line-on-hover($space-above-line: rem-calc(1),
+	$pseudo-padding: 0,
+	$line-height: rem-calc(1),
+	$text-color: currentColor,
+	$line-color: currentColor) {
+	/* If text is wrapped in two lines, it stops working so avoid using it for larger text */
+	padding-block-start: $pseudo-padding;
+	padding-block-end: $space-above-line;
+	margin-block-end: $pseudo-padding;
+	position: relative;
+	transition: 0.2s;
+
+	&::before {
+		background-color: $line-color;
+		block-size: $line-height;
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0;
+		transform: scaleX(0);
+		transition: 0.3s transform;
+		content: '';
+		transform-origin: 100% 100%;
+		z-index: 1;
+	}
+
+	&::after {
+		// pseudo padding at bottom
+		inline-size: 100%;
+		block-size: $pseudo-padding;
+		position: absolute;
+		inset-inline-start: 0;
+		inset-block-end: $pseudo-padding * -1;
+		content: '';
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: $text-color;
+
+		&::before {
+			transform: scaleX(1);
+			transform-origin: 0 0;
+		}
+	}
+}
+
+@mixin animate-background-underline-on-hover($text-color: currentColor,
+	$background-start-color: currentColor,
+	$background-end-color: currentColor) {
+	background-image: linear-gradient(to right,
+			$background-start-color,
+			$background-end-color);
+	background-size: 0 rem-calc(2);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	padding-block-end: rem-calc(2);
+	transition: background 0.2s ease-out;
+
+	&:hover,
+	&:active {
+		background-size: 100% rem-calc(2);
+		color: $text_color;
+	}
+}

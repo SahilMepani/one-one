@@ -1,0 +1,112 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.flexible-editor-section {
+	.text-block {
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
+		}
+	}
+
+	.media-block {
+		&:not(:first-child) {
+			margin-block-start: rem-calc(32);
+		}
+
+		&:not(:last-child) {
+			margin-block-end: rem-calc(32);
+		}
+
+		position: relative;
+		overflow: hidden;
+
+		.btn-dialog-open {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+
+			svg {
+				color: $primary-color;
+				max-inline-size: fluid(44, 80);
+				opacity: 0.8;
+			}
+
+			&:hover,
+			&:focus-visible {
+				svg {
+					animation: play 0.3s ease-out;
+				}
+			}
+		}
+
+		.dialog {
+			background-color: #333;
+			max-inline-size: 75%;
+			padding: 0;
+			margin: auto;
+			border: 0;
+			z-index: 10;
+			transition: 0.25s ease-out;
+			overflow: hidden;
+			user-select: none;
+
+			// overflow: hidden;
+
+			&::backdrop {
+				background: rgb(0 0 0 / 80%);
+			}
+
+			.btn-dialog-close {
+				background-color: rgb(0 0 0 / 50%);
+				color: #fff;
+				font-size: rem-calc(20);
+				display: block;
+				align-items: center;
+				justify-content: center;
+				inline-size: rem-calc(40);
+				block-size: rem-calc(40);
+				border-radius: rem-calc(5);
+				position: absolute;
+				inset-inline-end: rem-calc(15);
+				inset-block-start: rem-calc(15);
+				z-index: 1;
+
+				svg {
+					inline-size: rem-calc(24);
+				}
+			}
+
+			video,
+			iframe {
+				inline-size: 75vw;
+			}
+		}
+
+		video,
+		iframe {
+			aspect-ratio: 16/9;
+			inline-size: 100%;
+		}
+	}
+
+	.heading-block {
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
+		}
+	}
+
+	.text-cards-block {
+		&:not(:last-child) {
+			margin-block-end: fluid(32, 48);
+		}
+
+		.text-card-slider {
+			overflow: visible;
+		}
+
+		.icon-block {
+			inline-size: rem-calc(32);
+			block-size: rem-calc(32);
+			margin-block-end: rem-calc(12);
+		}
+	}
+}

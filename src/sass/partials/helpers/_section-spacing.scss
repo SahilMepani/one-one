@@ -1,0 +1,50 @@
+@use '../abstracts' as *;
+@use 'sass:math';
+@use 'sass:map';
+
+.section-display-off {
+	display: none !important;
+}
+
+:where(.section) {
+	$sizes: map.set($section-spacings, 'custom', 0);
+
+	overflow: hidden;
+
+	@each $size, $values in $sizes {
+		@each $position in ('top', 'bottom') {
+			/* stylelint-disable */
+			&.spacing-#{$position}-#{$size} {
+				@if $size == 'custom' {
+					$mobile: var(--spacing-#{$position}-mobile);
+					$desktop: var(--spacing-#{$position}-desktop);
+					$min-bp: strip-unit($sm); // 576
+					$max-bp: strip-unit($xl); // 1200
+					$bp-diff: $max-bp - $min-bp; // 624
+					padding-#{$position}: clamp(
+						calc(#{$mobile} * 1px),
+						calc(
+							#{$mobile} *
+								1px +
+								(#{$desktop} - #{$mobile}) *
+								((100vw - #{$min-bp}px) / #{$bp-diff})
+						),
+						calc(#{$desktop} * 1px)
+					);
+				} @else {
+					padding-#{$position}: fluid($values...);
+				}
+			}
+			/* stylelint-enable */
+		}
+	}
+}
+
+// Incase if you want to use spacing-top-classes different for other places except the section
+@each $spacing, $values in $section-spacings {
+	@each $position in ('top', 'bottom') {
+		.spacing-#{$position}-#{$spacing} {
+			padding-#{$position}: fluid($values...);
+		}
+	}
+}

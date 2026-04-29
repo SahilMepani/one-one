@@ -1,0 +1,22 @@
+@use "../abstracts" as *;
+
+/*! rtl:begin:ignore */
+
+// Phone numbers
+.phone-rtl {
+	/*! rtl:ignore */
+	text-align: right;
+	display: inline-block;
+
+	/*! rtl:ignore */
+	direction: ltr;
+}
+
+// Table
+table th,
+table td {
+	/*! rtl:ignore */
+	text-align: start;
+}
+
+/*! rtl:end:ignore */

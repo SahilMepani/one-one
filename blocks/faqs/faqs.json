@@ -1,0 +1,108 @@
+{
+	"title": "Faqs",
+	"fields": [
+		{
+			"key": "field_faqs_block_options",
+			"label": "Faqs",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_faqs_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+
+		{
+			"key": "field_faqs_faq_type",
+			"label": "FAQ Type",
+			"name": "faq_type",
+			"type": "button_group",
+			"choices": {
+				"latest": "Latest",
+				"selected": "Selected",
+				"custom": "Custom"
+			},
+			"default_value": "latest",
+			"return_format": "value"
+		},
+		{
+			"key": "field_faqs_faq_count",
+			"label": "FAQ Count",
+			"name": "faq_count",
+			"type": "number",
+			"default_value": -1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "latest"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_faqs_button",
+			"label": "Button",
+			"name": "button",
+			"type": "link",
+			"return_format": "array"
+		},
+
+		{
+			"key": "field_faqs_selected_faq",
+			"label": "Selected FAQs",
+			"name": "selected_faq",
+			"type": "relationship",
+			"post_type": ["faq"],
+			"return_format": "id",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "selected"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_faqs_custom_faq",
+			"label": "Custom FAQs",
+			"name": "custom_faq",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add FAQ",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_faqs_faq_type",
+						"operator": "==",
+						"value": "custom"
+					}
+				]
+			],
+			"sub_fields": [
+				{
+					"key": "field_faqs_question",
+					"label": "Question",
+					"name": "question",
+					"type": "text"
+				},
+				{
+					"key": "field_faqs_answer",
+					"label": "Answer",
+					"name": "answer",
+					"type": "wysiwyg",
+					"instructions": "DO NOT COPY-PASTE TEXT ON THE \"VISUAL\" TAB. USE \"TEXT\" TAB INSTEAD",
+					"tabs": "all",
+					"toolbar": "full",
+					"media_upload": 1,
+					"delay": 1
+				}
+			]
+		}
+	]
+}

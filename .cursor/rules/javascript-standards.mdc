@@ -1,0 +1,38 @@
+---
+description: JavaScript quick reference
+globs: "**/*.js"
+alwaysApply: false
+---
+
+# JS Reference
+
+## Pattern
+```javascript
+(() => {
+	const element = document.querySelector('.element');
+	if (!element) return;
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		element.classList.toggle('js-active');
+	};
+
+	element.addEventListener('click', handleClick);
+})();
+```
+
+## Rules
+- No spaces in parentheses: `if (x) {}`, `fn(a, b)`
+- Tabs, camelCase, `const` default, `let` if reassigning, never `var`
+- Class prefix: `js-active`, `js-open`
+
+## Async
+```javascript
+const fetchData = async (url) => {
+	try {
+		const res = await fetch(url);
+		if (!res.ok) throw new Error('HTTP error');
+		return await res.json();
+	} catch (err) { console.error('Error:', err); return null; }
+};
+```

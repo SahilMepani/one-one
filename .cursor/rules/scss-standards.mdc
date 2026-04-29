@@ -1,0 +1,184 @@
+---
+description: SCSS quick reference
+globs: '**/*.scss'
+alwaysApply: false
+---
+
+# SCSS Reference
+
+## Critical
+
+```scss
+// ❌ NEVER:
+font-size: 18px; // raw px
+@media (min-width: 768px) {
+} // raw px in media query
+@media (width < $md) {
+} // desktop-first — NOT allowed in this project
+@include bp-down() {
+} // legacy helper
+@include bp-up() {
+} // legacy helper
+font-size: 18px;
+@media (width >= $md) {
+	font-size: 22px;
+} // don't use @media to change values — use fluid()
+
+// ✅ ALWAYS:
+gap: rem-calc(16); // Fixed values → rem-calc()
+font-size: fluid(16, 24); // Responsive values → fluid(min, max)
+@media (width >= $md) {
+} // Mobile-first only — progressive enhancement for layout changes
+```
+
+## Media Query Rule (READ THIS)
+
+This project uses two complementary tools for responsiveness:
+
+1. **`fluid(min, max)` for _values_** — font sizes, spacing, padding, margins, gaps, radii. Never change these with `@media`.
+2. **`@media` for _layout changes only_** — grid column count, flex direction, show/hide, position. Allowed when a layout genuinely restructures at a breakpoint, not as a way to tweak values.
+
+**All `@media` queries MUST be mobile-first** (`width >= $bp`), not desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.
+
+```scss
+// ✅ GOOD — fluid() for values, mobile-first @media only for layout shape
+.card-grid {
+	display: grid;
+	grid-template-columns: 1fr; // Mobile default
+	gap: fluid(16, 32); // Value scales fluidly — no @media needed
+
+	@media (width >= $md) {
+		grid-template-columns: repeat(2, 1fr); // Layout change
+	}
+
+	@media (width >= $lg) {
+		grid-template-columns: repeat(3, 1fr); // Layout change
+	}
+}
+
+// ❌ BAD — desktop-first + @media used to change a value
+.card-grid {
+	grid-template-columns: repeat(3, 1fr); // desktop default
+	gap: rem-calc(32);
+
+	@media (width < $md) {
+		// desktop-first direction forbidden
+		grid-template-columns: 1fr;
+		gap: rem-calc(16); // value change — should be fluid() instead
+	}
+}
+```
+
+**If the only thing changing at a breakpoint is a value (font-size, padding, gap, etc.), use `fluid()`, not `@media`.**
+
+## Functions
+
+```scss
+rem-calc(16)              // → 1rem
+fluid(16, 24)             // Responsive: 16px min, 24px max
+fluid(16, 24, md, xl)     // Custom breakpoints
+```
+
+## Breakpoints
+
+```scss
+$sm: 576px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1200px;
+$xxl: 1400px;
+```
+
+**No custom breakpoints.** You cannot add breakpoints of your own. Every `@media` query must use one of the breakpoints defined in `src/sass/partials/config/_breakpoints.scss` (`$xs`, `$ph`, `$sm`, `$md`, `$lg`, `$xl`, `$xxl`, `$xxxl`), and must reference the **variable name** — never the raw px value.
+
+```scss
+// ❌ NEVER:
+@media (width >= 900px) {
+} // raw px
+@media (width >= 820px) {
+} // unlisted breakpoint
+
+// ✅ ALWAYS:
+@media (width >= $md) {
+} // use the variable from _breakpoints.scss
+```
+
+## Responsive Design
+
+**Mobile-first approach** — write mobile styles as the default, then progressively enhance for larger screens using `@media (width >= $bp)`. Desktop-first `@media (width < $bp)` is **not allowed** in this project.
+
+```scss
+.component {
+	// Mobile styles (default, unconditional)
+	display: block;
+	grid-template-columns: 1fr;
+	gap: fluid(16, 24); // Value scales fluidly — no @media needed
+
+	// Tablet+ — layout change only
+	@media (width >= $md) {
+		display: flex;
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	// Desktop+ — layout change only
+	@media (width >= $lg) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+```
+
+**Remember:** `@media` is for _layout changes_ (grid columns, flex direction, visibility), not _value changes_. Use `fluid()` for values that scale.
+
+**Legacy exception:** A few pre-existing partials (`src/sass/partials/components/_header-menu.scss`, `src/sass/partials/mixins/_miscellaneous.scss` — the `swiper-cards-overflow-down` mixin) still use desktop-first `@media (width < $bp)` because rewriting them carries regression risk on live, shared UI. Mobile-first is **mandatory for all new code**, all block SCSS, and any partial you touch for unrelated reasons. Don't copy the legacy pattern into new work.
+
+## Exceptions
+
+1px borders, box shadows, values under 4px
+
+## Config tokens — reuse first
+
+Before writing any rule using a color, font, font-size, spacing, breakpoint, z-index, or easing value, check the config partials and reuse what already exists. If a new shared token is needed, add it to the matching config file rather than hardcoding inline.
+
+**`src/sass/partials/config/_typography.scss`**
+
+- Vars: `$serif-font-family`, `$sans-serif-font-family`, `$body-font-size`, `$body-font-family`, `$heading-font-family`, `$paragraph-line-height`, `$paragraph-margin-block-end`, `$heading-margin-block-end`
+- Map: `$typography-styles` (h1–h6)
+- Mixins: `@include font(h1..h6)`, `@include text(small|medium)`
+
+**`src/sass/partials/config/_colors.scss`**
+
+- Palette: `$pale`, `$mist`, `$sand`, `$muted`, `$deep`
+- Semantic: `$primary-color`, `$secondary-color`, `$success-color`, `$info-color`, `$warning-color`
+- Typography: `$body-color`, `$heading-color`, `$link-color`, `$link-hover-color`
+
+**`src/sass/partials/config/_variables.scss`**
+
+- `$container-padding-x`, `$menu-breakpoint`, `$custom-ease`
+- Z-index scale: `$z-search`, `$z-header`, `$z-mobile-menu`, `$z-backdrop`, `$z-popup`
+- Selection and scrollbar tokens
+
+```scss
+// ❌ NEVER:
+.card {
+	color: #080c11;
+	font-family: 'Libre Baskerville', serif;
+	font-size: 2rem;
+}
+// ✅ ALWAYS:
+.card {
+	color: $body-color;
+	@include font(h2);
+}
+```
+
+Always `@use` the partial in the consuming file rather than redeclaring values.
+
+### When to add a new token vs. inline
+
+Add to `_colors.scss` / `_typography.scss` / `_variables.scss` if:
+
+- The value appears in **≥2 blocks** (or clearly will), OR
+- It's a **brand or semantic concept** (brand color, section spacing step, z-index layer, easing curve), OR
+- It's a value you keep re-deriving (a specific radius, a recurring border color)
+
+Inline the raw value if it's a **one-off decorative value specific to this block** (e.g. a unique overlay opacity, a block-specific aspect ratio). When in doubt, prefer adding a token — hardcoded values drift faster than shared ones.
