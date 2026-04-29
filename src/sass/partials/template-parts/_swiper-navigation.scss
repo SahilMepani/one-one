@@ -14,14 +14,14 @@
 	.swiper-button-next {
 		all: unset;
 		background-color: transparent;
-		color: $primary;
+		color: $primary-color;
 		line-height: rem-calc(40);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		inline-size: rem-calc(40);
 		block-size: rem-calc(40);
-		border: 1px solid $primary;
+		border: 1px solid $primary-color;
 		border-radius: rem-calc(6);
 		position: relative;
 		z-index: 10;
@@ -48,8 +48,8 @@
 	.swiper-button-prev {
 		&:hover,
 		&:focus-visible {
-			background-color: $primary;
-			color: $pale;
+			background-color: $primary-color;
+			color: $secondary-color;
 
 			svg {
 				animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
@@ -60,8 +60,8 @@
 	.swiper-button-next {
 		&:hover,
 		&:focus-visible {
-			background-color: $primary;
-			color: $pale;
+			background-color: $primary-color;
+			color: $secondary-color;
 
 			svg {
 				animation: micro-right 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);

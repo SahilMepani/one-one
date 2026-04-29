@@ -524,7 +524,7 @@ if ( ! defined( 'WP_POST_REVISIONS' ) ) {
 }
 
 function skel_get_italic_braces( $text ) {
-	$text = preg_replace( '/\{(.+?)\}/', '<i class="ff-serif">$1</i>', $text );
+	$text = preg_replace( '/\{(.+?)\}/', '<i>$1</i>', $text );
 	$text = preg_replace( '/\[(.+?)\]/', '<strong>$1</strong>', $text );
 	return wp_kses(
 		$text,

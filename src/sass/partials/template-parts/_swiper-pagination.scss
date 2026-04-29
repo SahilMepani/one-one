@@ -17,12 +17,12 @@
 
 	.swiper-pagination-bullet {
 		all: unset;
-		background-color: $mist;
+		background-color: $secondary-color;
 		block-size: fluid(6, 8);
 		margin: 0;
 
 		&::after {
-			background-color: $primary;
+			background-color: $primary-color;
 		}
 	}
 }

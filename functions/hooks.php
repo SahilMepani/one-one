@@ -135,18 +135,6 @@ add_action( 'pre_get_posts', 'searchfilter' );
 
 
 /**
- * Theme setup function for localization.
- *
- * Registers the theme's text domain 'skel' for translation and
- * loads the translation files from the '/lang' directory within the theme.
- */
-function skel_load_theme_textdomain() {
-	load_theme_textdomain( 'skel', get_template_directory() . '/lang' );
-}
-add_action( 'init', 'skel_load_theme_textdomain' );
-
-
-/**
  * Adds preload hints to the response headers for specified CSS files.
  *
  * This function adds HTTP Link headers to preload specified CSS files.
