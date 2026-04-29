@@ -77,47 +77,6 @@
 						</svg>
 					</button>
 
-					<ul class="header-menu">
-						<li>
-							<a href="<?php echo home_url( '/projects/' ); ?>">Projects</a>
-							<div class="header-dropdown-block">
-								<ul class="header-sub-menu two-col">
-									<li>
-										<a href="#">
-											<div class="inner-block">
-												<div class="icon-block">
-													<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/boost.svg' ); ?>">
-												</div>
-												<span>Boost</span>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<a href="<?php echo home_url( '/services/' ); ?>">Services</a>
-							<div class="header-dropdown-block">
-								<ul class="header-sub-menu one-col">
-									<li>
-										<a href="#">
-											<div class="inner-block">
-												<div class="icon-block">
-													<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/icons/boost.svg' ); ?>">
-												</div>
-												<span>Boost</span>
-											</div>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<a href="<?php echo home_url( '/how-we-work/' ); ?>">How we Work</a>
-						</li>
-						<li><a href="<?php echo home_url( '/about-us/' ); ?>">About Us</a></li>
-						<li><a href="<?php echo home_url( '/insights/' ); ?>">Insights</a></li>
-					</ul>
 				</nav>
 			</div> <!-- .inner-container -->
 		</div>

@@ -2,6 +2,7 @@
 
 .site-header {
 	font-family: $sans-serif-font-family;
+	display: none !important;
 
 	// border-block-end: rem-calc(1) solid transparent;
 	position: sticky;

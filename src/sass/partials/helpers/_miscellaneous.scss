@@ -72,118 +72,28 @@
 	}
 }
 
-.bg-video {
-	min-inline-size: 100%;
-	block-size: 100%;
-	min-block-size: 56.25vw;
+.img-link {
+	overflow: hidden;
 
-	/* 100 * 9 / 16 */
-	position: absolute;
-
-	/* % of surrounding element */
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-
-	/* % of current element */
-	@media (orientation: landscape) {
-		inline-size: 177.7778vh;
-
-		/* 100 * 16 / 9 */
+	img {
+		transition: 200ms ease-out;
 	}
-}
 
-.bg-cover {
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-.posts-pagination {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: fluid(5, 10);
-	padding-block: fluid(30, 50);
-	border-bottom: rem-calc(1) solid rgba(#000, 0.75);
-
-	.page-numbers {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		inline-size: fluid(30, 50);
-		block-size: fluid(30, 50);
-		transition: 250ms ease-out;
-
-		&[class~='dots'] {
-			pointer-events: none;
-		}
-
-		&.current:first-child {
-			margin-inline-start: auto;
-		}
-
-		&.current:last-child {
-			margin-inline-end: auto;
-		}
-
-		&:hover {
-			background-color: rgba(#999, 0.75);
-		}
-
-		&.current {
-			background-color: $primary-color;
-			color: #fff;
-		}
-
-		&.prev,
-		&.next {
-			inline-size: fluid(30, 60);
-			block-size: fluid(30, 60);
-			border: rem-calc(1) solid $primary-color;
-			border-radius: 50%;
-
-			svg {
-				inline-size: fluid(6, 12);
-			}
-
-			&:hover {
-				background-color: $primary-color;
-				color: #fff;
-			}
-		}
-
-		&.prev {
-			margin-inline-end: auto;
-		}
-
-		&.next {
-			margin-inline-start: auto;
+	&:hover,
+	&:focus-visible {
+		img {
+			transform: scale(1.2);
 		}
 	}
 }
 
-.loader {
-	display: inline-block;
-	inline-size: fluid(24, 48);
-	block-size: fluid(24, 48);
-	border: fluid(3, 5) solid #333;
-	border-bottom-color: transparent;
-	border-radius: 50%;
-	animation: rotation 1s linear infinite;
-	box-sizing: border-box;
-	pointer-events: none;
+.text-link {
+	--line-color: #{$muted};
 
-	&.small {
-		inline-size: rem-calc(24);
-		block-size: rem-calc(24);
-	}
-
-	&.center {
-		margin: auto;
-		border-width: rem-calc(3);
-		position: absolute;
-		inset: 0;
+	&:hover,
+	&:focus-visible {
+		text-decoration: underline var(--line-color) 1px;
+		text-underline-offset: 2px;
 	}
 }
 

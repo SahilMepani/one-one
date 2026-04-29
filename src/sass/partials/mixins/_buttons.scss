@@ -2,8 +2,9 @@
 @use 'rem' as *;
 
 %btn {
+	background: none;
 	font-family: $sans-serif-font-family;
-	font-size: rem-calc(16);
+	font-size: fluid(14, 16, 'sm');
 	font-weight: 500;
 	line-height: 1.3;
 	display: flex;
@@ -12,6 +13,7 @@
 	inline-size: fit-content;
 	user-select: none;
 	border: 0;
+	padding: 0;
 
 	span {
 		text-box: trim-both cap alphabetic;
@@ -45,19 +47,12 @@
 }
 
 @mixin btn-icon {
-	position: relative;
-	overflow: hidden;
-	gap: rem-calc(20);
+	flex-shrink: 0;
 
-	svg {
-		fill: currentcolor;
-		inline-size: rem-calc(24);
-		max-block-size: rem-calc(24);
-		flex-shrink: 0;
+	.label {
+		flex-grow: 1;
 	}
-}
 
-@mixin btn-rarr {
 	&:hover,
 	&:focus-visible {
 		svg {
@@ -66,23 +61,35 @@
 	}
 }
 
-@mixin btn-barr {
+@mixin btn-icon-dark {
+	@include btn-icon;
+	span {
+		background-color: $deep;
+		color: $pale;
+	}
+
 	&:hover,
 	&:focus-visible {
-		svg {
-			animation: btn-barr 0.4s ease-in-out;
-		}
+		color: $pale;
+	}
+}
+
+@mixin btn-icon-light {
+	@include btn-icon;
+	span {
+		background: #fbf8f3;
+		color: #362925;
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: #362925;
 	}
 }
 
 @mixin btn-dark {
-	background: radial-gradient(
-		509.01% 118.28% at 100.22% 81.25%,
-		rgba(0, 0, 0, 0.4) 0%,
-		#000 100%
-	);
+	background-color: $magento;
 	color: #fff;
-	backdrop-filter: blur(12px);
 
 	&:hover,
 	&:focus-visible {
@@ -91,55 +98,150 @@
 }
 
 @mixin btn-light {
-	background: linear-gradient(
-		101deg,
-		rgba(255, 255, 255, 0.08) 8.04%,
-		rgba(255, 255, 255, 0.4) 92.32%
-	);
-	color: #080c11;
+	background: #fbf8f3;
+	color: #362925;
 
 	&:hover,
 	&:focus-visible {
-		color: #080c11;
+		color: #362925;
 	}
 }
 
-@mixin sheen($sheen-color: rgba(255, 255, 255, 0.3)) {
-	position: relative;
-	overflow: hidden;
+@mixin btn-dark-outline {
+	border: 1px solid $deep;
+	color: $deep;
 
-	&::before {
-		content: '';
-		position: absolute;
-		inset-block: 0;
-		inline-size: 60%;
-		background: linear-gradient(
-			120deg,
-			transparent 0%,
-			$sheen-color 50%,
-			transparent 100%
-		);
-		inset-inline-start: -75%;
-		animation: sheen 5s ease-in-out infinite;
+	&:hover,
+	&:focus-visible {
+		background-color: $deep;
+		border-color: $deep;
+		color: $pale;
 	}
-}
-
-@mixin btn-sm {
-	min-block-size: rem-calc(36);
-	padding-inline: rem-calc(20);
-	padding-block: rem-calc(8); // safety net
 }
 
 @mixin btn-md {
-	min-block-size: rem-calc(64);
-	padding-inline: rem-calc(32);
-	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-	padding-block: rem-calc(8); // safety net
-	border-radius: rem-calc(32);
+	border-radius: rem-calc(6);
+
+	span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-block-size: fluid(36, 40, 'sm');
+		border-radius: rem-calc(6);
+	}
+
+	span.label {
+		padding-inline: fluid(12, 16, 'sm');
+	}
+
+	span.svg-block {
+		inline-size: fluid(36, 40, 'sm');
+		overflow: hidden;
+	}
+
+	svg {
+		font-size: fluid(20, 24, 'sm');
+	}
 }
 
-@mixin btn-lg {
-	min-block-size: rem-calc(60);
-	padding-inline: rem-calc(20);
-	padding-block: rem-calc(8); // safety net
+@mixin btn-cart {
+	color: $deep;
+	font-family: $sans-serif-font-family;
+	font-size: fluid(14, 16);
+	font-weight: 500;
+	line-height: rem-calc(24);
+	text-decoration: none;
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: rem-calc(8);
+	min-block-size: rem-calc(42);
+	padding-block: rem-calc(8);
+	padding-inline: rem-calc(16);
+	margin-inline-start: auto;
+	border: 1px solid currentColor;
+	border-radius: rem-calc(6);
+	transition:
+		background-color 0.2s ease-out,
+		border-color 0.2s ease-out;
+
+	&:hover,
+	&:focus-visible {
+		background-color: $deep;
+		color: $pale;
+
+		svg {
+			animation: btn-barr 0.4s ease-in-out;
+		}
+	}
+
+	.label {
+		display: inline-block;
+	}
+
+	.icon {
+		display: inline-flex;
+		align-items: center;
+		align-self: stretch;
+		justify-content: center;
+		padding-block: rem-calc(8);
+		padding-inline: rem-calc(8);
+		margin-block: rem-calc(-8);
+		margin-inline: rem-calc(8) rem-calc(-16);
+		border-inline-start: 1px solid currentColor;
+
+		svg {
+			inline-size: fluid(20, 24);
+			block-size: fluid(20, 24);
+			transform-origin: center;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&:hover,
+		&:focus-visible {
+			svg {
+				animation: none;
+			}
+		}
+	}
+}
+
+@mixin btn-link-dark {
+	@include btn-link;
+	color: $deep;
+}
+
+@mixin btn-link {
+	font-family: $sans-serif-font-family;
+	font-size: fluid(12, 14);
+	font-weight: 500;
+	line-height: rem-calc(20);
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: rem-calc(8);
+
+	svg {
+		font-size: fluid(14, 16);
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: $deep;
+
+		svg {
+			animation: btn-rarr 0.4s ease-in-out;
+		}
+	}
+}
+
+@mixin btn-link-light {
+	@include btn-link;
+	color: $mist;
+}
+
+@mixin btn-link-dark {
+	@include btn-link;
+	color: $deep;
 }

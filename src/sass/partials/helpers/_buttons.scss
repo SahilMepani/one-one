@@ -16,12 +16,12 @@
 	@include btn-icon;
 }
 
-.btn-rarr {
-	@include btn-rarr;
+.btn-icon-dark {
+	@include btn-icon-dark;
 }
 
-.btn-barr {
-	@include btn-barr;
+.btn-icon-light {
+	@include btn-icon-light;
 }
 
 .btn-dark {
@@ -32,18 +32,30 @@
 	@include btn-light;
 }
 
-.btn-sm {
-	@include btn-sm;
+.btn-dark-outline {
+	@include btn-dark-outline;
+}
+
+.btn-cart {
+	@include btn-cart;
+}
+
+.btn-link-light {
+	@include btn-link-light;
+}
+
+.btn-link-dark {
+	@include btn-link-dark;
 }
 
 .btn-md {
 	@include btn-md;
 }
 
-.btn-lg {
-	@include btn-lg;
-}
-
 .btn-disabled {
 	pointer-events: none;
+}
+
+.btn-fill {
+	inline-size: 100%;
 }

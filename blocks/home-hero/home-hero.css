@@ -1,0 +1,172 @@
+/* Do not edit anything below */
+.home-hero-section {
+  color: #fbf8f3;
+  display: grid;
+  min-block-size: clamp(40rem, 40rem + 11.25 * (100vw - 48rem) / 27, 51.25rem);
+  max-block-size: 100svh;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero__container {
+  display: grid;
+}
+
+.home-hero__bg {
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  z-index: 0;
+}
+
+.home-hero__bg-image {
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  object-fit: cover;
+}
+
+.home-hero__bg-overlay {
+  background-color: rgba(54, 41, 37, 0.32);
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+}
+
+.home-hero__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: clamp(5.625rem, 5.625rem + 3.125 * (100vw - 48rem) / 27, 8.75rem) clamp(1.5rem, 1.5rem + 1.5 * (100vw - 48rem) / 27, 3rem);
+  position: relative;
+  z-index: 1;
+}
+
+@media (width >= 768px) {
+  .home-hero__content {
+    max-inline-size: 33.75rem;
+  }
+}
+
+.home-hero__label {
+  background-color: rgba(251, 248, 243, 0.08);
+  color: #fbf8f3;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: clamp(0.75rem, 0.75rem + 0.125 * (100vw - 48rem) / 27, 0.875rem);
+  line-height: 1.4;
+  display: inline-block;
+  padding-block: clamp(0.125rem, 0.125rem + 0.125 * (100vw - 48rem) / 27, 0.25rem);
+  padding-inline: clamp(0.375rem, 0.375rem + 0.125 * (100vw - 48rem) / 27, 0.5rem);
+  margin-block-end: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  border-radius: 0.25rem;
+}
+
+.home-hero__heading {
+  color: #fbf8f3;
+  font-size: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-block-end: clamp(0.5rem, 0.5rem + 0.5 * (100vw - 48rem) / 27, 1rem);
+}
+
+.home-hero__description {
+  color: #eae2d7;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+  line-height: 1.4;
+  margin-block-end: clamp(1.5rem, 1.5rem + 0.5 * (100vw - 48rem) / 27, 2rem);
+}
+@media (width >= 768px) {
+  .home-hero__description {
+    max-inline-size: 28rem;
+  }
+}
+
+.home-hero__button {
+  color: #fbf8f3;
+  display: flex;
+  align-items: center;
+}
+
+.home-hero__button-label {
+  background-color: #362925;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: clamp(0.0000625rem, 0.0000625rem + 0.9999375 * (100vw - 48rem) / 27, 1rem);
+  font-weight: 500;
+  line-height: 1.5rem;
+  padding-block: clamp(0.0000625rem, 0.0000625rem + 0.4999375 * (100vw - 48rem) / 27, 0.5rem);
+  padding-inline: clamp(0.0000625rem, 0.0000625rem + 0.9999375 * (100vw - 48rem) / 27, 1rem);
+  border-radius: 0.375rem;
+}
+
+.home-hero__button-icon {
+  background-color: #362925;
+  padding: clamp(0.0000625rem, 0.0000625rem + 0.4999375 * (100vw - 48rem) / 27, 0.5rem);
+  border-radius: 0.375rem;
+}
+.home-hero__button-icon svg {
+  inline-size: clamp(0.0000625rem, 0.0000625rem + 1.4999375 * (100vw - 48rem) / 27, 1.5rem);
+  block-size: clamp(0.0000625rem, 0.0000625rem + 1.4999375 * (100vw - 48rem) / 27, 1.5rem);
+}
+
+.home-hero__product {
+  background-color: #fbf8f3;
+  display: flex;
+  align-self: flex-end;
+  inline-size: min(100%, 33rem);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.home-hero__product-image {
+  text-decoration: none;
+  display: block;
+  flex-shrink: 0;
+  inline-size: clamp(7.5rem, 7.5rem + 4.25 * (100vw - 48rem) / 27, 11.75rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero__product-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  padding: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
+}
+
+.home-hero__product-header {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.25rem, 0.25rem + 0.25 * (100vw - 48rem) / 27, 0.5rem);
+}
+
+.home-hero__product-brand {
+  color: #362925;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+  line-height: 1.4;
+}
+
+.home-hero__product-name {
+  color: #362925;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+  line-height: 1.4;
+}
+.home-hero__product-name:hover, .home-hero__product-name:focus-visible {
+  color: #362925;
+}
+
+.home-hero__product-description {
+  color: #8c807d;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: clamp(0.75rem, 0.75rem + 0.125 * (100vw - 48rem) / 27, 0.875rem);
+  line-height: 1.4;
+}
