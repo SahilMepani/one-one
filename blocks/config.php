@@ -22,4 +22,5 @@ $block_types = array(
 	'Brand Marquee',
 	'Home Hero',
 	'Our Expertise',
+	'Product Showcase',
 );

@@ -1,0 +1,17 @@
+{
+	"title": "Product Showcase",
+	"fields": [
+		{
+			"key": "field_product_showcase_block_options",
+			"label": "Product Showcase",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_product_showcase_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}
