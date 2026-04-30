@@ -1,0 +1,70 @@
+{
+	"title": "Image Grid",
+	"fields": [
+		{
+			"key": "field_image_grid_block_options",
+			"label": "Image Grid",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_image_grid_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_image_grid_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text",
+			"default_value": "Custom Possibilities"
+		},
+		{
+			"key": "field_image_grid_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "What We Can Create Together"
+		},
+		{
+			"key": "field_image_grid_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "Each project begins with your vision. Clients often come to ONE·ONE to create:"
+		},
+		{
+			"key": "field_image_grid_items",
+			"label": "Images",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"max": 6,
+			"layout": "block",
+			"button_label": "Add Image",
+			"collapsed": "field_image_grid_items_image",
+			"sub_fields": [
+				{
+					"key": "field_image_grid_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				}
+			]
+		},
+		{
+			"key": "field_image_grid_note",
+			"label": "Note",
+			"name": "note",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "Because many clients prefer discretion, not all projects are publicly displayed. Additional examples can be shared privately during consultation."
+		}
+	]
+}

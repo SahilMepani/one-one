@@ -1,0 +1,95 @@
+/* Do not edit anything below */
+.image-grid-section {
+  background-color: #fff;
+}
+.image-grid-section .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+}
+.image-grid-section .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  inline-size: 100%;
+}
+.image-grid-section .label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(103, 30, 58, 0.1);
+  color: #671e3a;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.25rem;
+}
+.image-grid-section .heading {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  letter-spacing: -0.8px;
+  color: #000;
+  margin: 0;
+}
+.image-grid-section .description,
+.image-grid-section .note {
+  color: #000;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0;
+}
+.image-grid-section .description {
+  max-inline-size: 60rem;
+}
+.image-grid-section .grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
+  inline-size: 100%;
+}
+@media (width >= 768px) {
+  .image-grid-section .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (width >= 1024px) {
+  .image-grid-section .grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+.image-grid-section .item {
+  position: relative;
+  inline-size: 100%;
+  block-size: clamp(16.25rem, 16.25rem + 10.8125 * (100vw - 48rem) / 27, 27.0625rem);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #f7f1e8;
+}
+.image-grid-section img,
+.image-grid-section .image-placeholder {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+.image-grid-section .image-placeholder {
+  background: linear-gradient(135deg, #eae2d7 0%, #f7f1e8 100%);
+}
+.image-grid-section .note {
+  max-inline-size: 53.125rem;
+  color: rgba(0, 0, 0, 0.4);
+}

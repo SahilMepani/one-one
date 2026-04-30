@@ -1,0 +1,101 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.image-grid-section {
+	background-color: #fff;
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: fluid(32, 48);
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: fluid(16, 24);
+		inline-size: 100%;
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba($magento, 0.1);
+		color: $magento;
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(14);
+		font-weight: 400;
+		line-height: 1.4;
+		padding-block: rem-calc(4);
+		padding-inline: rem-calc(8);
+		border-radius: rem-calc(4);
+	}
+
+	.heading {
+		@include font(h2);
+
+		color: #000;
+		margin: 0;
+	}
+
+	.description,
+	.note {
+		color: #000;
+		font-family: $serif-font-family;
+		font-size: fluid(18, 22);
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: center;
+		margin: 0;
+	}
+
+	.description {
+		max-inline-size: rem-calc(960);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: fluid(12, 16);
+		inline-size: 100%;
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		@media (width >= $lg) {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+	}
+
+	.item {
+		position: relative;
+		inline-size: 100%;
+		block-size: fluid(260, 433);
+		border-radius: rem-calc(12);
+		overflow: hidden;
+		background-color: $mist;
+	}
+
+	img,
+	.image-placeholder {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+		border-radius: rem-calc(12);
+	}
+
+	.image-placeholder {
+		background: linear-gradient(135deg, $sand 0%, $mist 100%);
+	}
+
+	.note {
+		max-inline-size: rem-calc(850);
+		color: rgba(0, 0, 0, 0.4);
+	}
+}

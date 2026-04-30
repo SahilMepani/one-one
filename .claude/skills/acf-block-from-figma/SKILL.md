@@ -32,6 +32,8 @@ That's it for required reads. **Do not read** existing `{slug}.{php,scss,json,js
 
 > **Token rule:** Match Figma colors / sizes / spacing to existing tokens first. Inline raw values only when no token matches; consider adding to the config partial when the value will be reused.
 
+> **Dimension fidelity rule:** Preserve explicit Figma frame/text dimensions exactly for layout constraints such as `width`, `max-width`, image height, grid/card size, and fixed gaps. Convert px to `rem-calc()` in SCSS, but do not visually estimate or narrow these values from the screenshot. If the Figma MCP output omits a visible dimension, call `get_metadata` for the specific node before choosing the value.
+
 ## Step 3 — Write `{slug}.json`
 
 - Field key prefix: `field_{slug}_{field_name}` — sub-fields: `field_{slug}_{repeater}_{field}`
