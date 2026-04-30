@@ -1,0 +1,23 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#site-content"
+  - main [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: My Story
+        - heading "Behind ONE·ONE" [level=2] [ref=e8]
+      - generic [ref=e10]:
+        - paragraph [ref=e11]: I’m Liudmyla Titova, an IGI-certified Diamond Grader and private jewelry consultant.
+        - paragraph [ref=e12]: With access to trusted diamond suppliers and years of experience in customer service, I help clients navigate the world of diamonds and create meaningful jewelry pieces designed around their story.
+        - generic [ref=e13]:
+          - link "Read My Story" [ref=e14] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e15]: Read My Story
+          - link [ref=e16] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e17]
+  - contentinfo [ref=e19]:
+    - paragraph [ref=e21]: ©2026. All Rights Reserved.
+  - link "Scroll to Top" [ref=e22] [cursor=pointer]:
+    - /url: "#"
+    - img [ref=e23]

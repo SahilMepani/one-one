@@ -1,0 +1,42 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#site-content"
+  - main [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: Portfolio Showcase
+        - heading "What we’ve delivered" [level=2] [ref=e8]
+      - generic [ref=e9]:
+        - article [ref=e10]:
+          - generic [ref=e12]:
+            - paragraph [ref=e13]: ONE·ONE
+            - paragraph [ref=e14]: Engagement Ring
+        - article [ref=e15]:
+          - generic [ref=e17]:
+            - paragraph [ref=e18]: ONE·ONE
+            - paragraph [ref=e19]: Pendant
+        - article [ref=e20]:
+          - generic [ref=e22]:
+            - paragraph [ref=e23]: ONE·ONE
+            - paragraph [ref=e24]: Earrings
+        - article [ref=e25]:
+          - generic [ref=e27]:
+            - paragraph [ref=e28]: ONE·ONE
+            - paragraph [ref=e29]: Necklace
+        - article [ref=e30]:
+          - generic [ref=e32]:
+            - paragraph [ref=e33]: ONE·ONE
+            - paragraph [ref=e34]: Custom Piece
+        - article [ref=e35]:
+          - generic [ref=e37]:
+            - paragraph [ref=e38]: ONE·ONE
+            - paragraph [ref=e39]: Eclipsara Ring
+      - link "Explore More" [ref=e41] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e42]: Explore More
+        - img [ref=e44]
+  - contentinfo [ref=e46]:
+    - paragraph [ref=e48]: ©2026. All Rights Reserved.
+  - link "Scroll to Top" [ref=e49] [cursor=pointer]:
+    - /url: "#"
+    - img [ref=e50]

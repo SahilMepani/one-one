@@ -1,1 +1,129 @@
 /* Do not edit anything below */
+.product-showcase-section {
+  background-color: #fff;
+}
+.product-showcase-section .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  max-inline-size: 33.75rem;
+  margin-inline: auto;
+  margin-block-end: clamp(2.5rem, 2.5rem + 0.5 * (100vw - 48rem) / 27, 3rem);
+}
+.product-showcase-section .label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(103, 30, 58, 0.1);
+  color: #080c11;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.25rem;
+}
+.product-showcase-section .heading {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  letter-spacing: -0.8px;
+  color: #080c11;
+  margin: 0;
+}
+.product-showcase-section .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 1rem + 0 * (100vw - 48rem) / 27, 1rem);
+  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+}
+@media (width >= 768px) {
+  .product-showcase-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width >= 1024px) {
+  .product-showcase-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.product-showcase-section .product {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
+}
+.product-showcase-section .image {
+  position: relative;
+  inline-size: 100%;
+  block-size: clamp(17.5rem, 17.5rem + 8.75 * (100vw - 48rem) / 27, 26.25rem);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: rgba(103, 30, 58, 0.04);
+}
+.product-showcase-section .image img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+.product-showcase-section .meta {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #080c11;
+  font-family: "Libre Baskerville", serif;
+  line-height: 1.4;
+}
+.product-showcase-section .eyebrow {
+  font-size: 1rem;
+  margin: 0;
+}
+.product-showcase-section .title {
+  font-size: clamp(1rem, 1rem + 0.125 * (100vw - 48rem) / 27, 1.125rem);
+  margin: 0;
+}
+.product-showcase-section .cta {
+  display: flex;
+  justify-content: center;
+}
+.product-showcase-section .btn-cta {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.125rem;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.product-showcase-section .btn-cta:hover, .product-showcase-section .btn-cta:focus-visible {
+  opacity: 0.9;
+}
+.product-showcase-section .btn-cta-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #671e3a;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 0.375rem;
+}
+.product-showcase-section .btn-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #671e3a;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+.product-showcase-section .btn-cta-icon svg {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}

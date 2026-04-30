@@ -1,1 +1,140 @@
 /* Do not edit anything below */
+.text-banner-section .header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+  max-inline-size: 33.75rem;
+}
+.text-banner-section .label {
+  background-color: rgba(103, 30, 58, 0.1);
+  color: #671e3a;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.25rem;
+}
+.text-banner-section .heading {
+  color: #080c11;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(1.75rem, 1.75rem + 0.75 * (100vw - 48rem) / 27, 2.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.text-banner-section .banner {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  min-block-size: clamp(26.25rem, 26.25rem + 12.875 * (100vw - 48rem) / 27, 39.125rem);
+  display: flex;
+  align-items: center;
+}
+.text-banner-section .banner-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.text-banner-section .banner-bg .bg-image {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.text-banner-section .banner-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #671e3a;
+  background-image: linear-gradient(67deg, rgb(32, 16, 18) 9%, rgba(134, 67, 75, 0) 95%);
+  mix-blend-mode: normal;
+}
+.text-banner-section .banner-portrait {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: 31%;
+  display: none;
+}
+@media (width >= 768px) {
+  .text-banner-section .banner-portrait {
+    display: block;
+  }
+}
+.text-banner-section .banner-portrait .portrait-image {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.text-banner-section .banner-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  padding-block: clamp(2.5rem, 2.5rem + 2.5 * (100vw - 48rem) / 27, 5rem);
+  padding-inline: clamp(1.5rem, 1.5rem + 3 * (100vw - 48rem) / 27, 4.5rem);
+  max-inline-size: 46.5625rem;
+  inline-size: 100%;
+}
+.text-banner-section .quote {
+  color: #fff;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.text-banner-section .description {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+.text-banner-section .cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  margin-block-start: 0.5rem;
+}
+.text-banner-section .btn {
+  background-color: #671e3a;
+  color: #fff;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  border-radius: 0.375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.text-banner-section .btn:hover, .text-banner-section .btn:focus-visible {
+  background-color: color-mix(in srgb, #671e3a 88%, #000);
+}
+.text-banner-section .btn-icon {
+  padding: 0.5rem;
+}
+.text-banner-section .btn-icon svg {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  display: block;
+}

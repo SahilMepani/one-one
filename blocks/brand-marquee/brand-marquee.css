@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 .brand-marquee-section .section-heading {
-  font-family: "Oldschool Grotesk", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 1.75rem;
   font-weight: 400;
   letter-spacing: -0.84px;
@@ -12,7 +12,7 @@
   margin-block-end: 1rem;
 }
 .brand-marquee-section .section-heading i {
-  font-family: "Source Serif Pro", georgia, serif;
+  font-family: "Libre Baskerville", serif;
   font-style: italic;
   font-weight: 600;
 }

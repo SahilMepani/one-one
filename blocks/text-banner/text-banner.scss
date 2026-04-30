@@ -1,5 +1,159 @@
 @use '../../src/sass/partials/abstracts-blocks' as *;
 
 .text-banner-section {
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: fluid(16, 24);
+		margin-block-end: fluid(32, 48);
+		max-inline-size: rem-calc(540);
+	}
 
+	.label {
+		background-color: rgba($magento, 0.1);
+		color: $magento;
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(14);
+		line-height: 1.4;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding-block: rem-calc(4);
+		padding-inline: rem-calc(8);
+		border-radius: rem-calc(4);
+	}
+
+	.heading {
+		color: $body-color;
+		font-family: $serif-font-family;
+		font-size: fluid(28, 40);
+		font-weight: 400;
+		line-height: 1.4;
+		letter-spacing: -0.02em;
+		margin: 0;
+	}
+
+	.banner {
+		position: relative;
+		border-radius: rem-calc(12);
+		overflow: hidden;
+		min-block-size: fluid(420, 626);
+		display: flex;
+		align-items: center;
+	}
+
+	.banner-bg {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+
+		.bg-image {
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.banner-overlay {
+		position: absolute;
+		inset: 0;
+		background-color: $magento;
+		background-image: linear-gradient(67deg, rgba(32, 16, 18, 1) 9%, rgba(134, 67, 75, 0) 95%);
+		mix-blend-mode: normal;
+	}
+
+	.banner-portrait {
+		position: absolute;
+		inset-block: 0;
+		inset-inline-end: 0;
+		inline-size: 31%;
+		display: none;
+
+		@media (width >= $md) {
+			display: block;
+		}
+
+		.portrait-image {
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+			object-position: center top;
+		}
+	}
+
+	.banner-content {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: fluid(16, 24);
+		padding-block: fluid(40, 80);
+		padding-inline: fluid(24, 72);
+		max-inline-size: rem-calc(745);
+		inline-size: 100%;
+	}
+
+	.quote {
+		color: #fff;
+		font-family: $serif-font-family;
+		font-style: italic;
+		font-size: fluid(24, 40);
+		font-weight: 400;
+		line-height: 1.4;
+		letter-spacing: -0.02em;
+		margin: 0;
+		text-wrap: balance;
+	}
+
+	.description {
+		color: rgba(255, 255, 255, 0.6);
+		font-family: $sans-serif-font-family;
+		font-size: fluid(14, 16);
+		font-weight: 400;
+		line-height: 1.4;
+		margin: 0;
+	}
+
+	.cta-group {
+		display: flex;
+		align-items: center;
+		gap: rem-calc(2);
+		margin-block-start: rem-calc(8);
+	}
+
+	.btn {
+		background-color: $magento;
+		color: #fff;
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(16);
+		font-weight: 500;
+		line-height: 1.5;
+		padding-block: rem-calc(8);
+		padding-inline: rem-calc(16);
+		border-radius: rem-calc(6);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+
+		&:hover,
+		&:focus-visible {
+			background-color: color-mix(in srgb, $magento 88%, #000);
+		}
+	}
+
+	.btn-icon {
+		padding: rem-calc(8);
+
+		svg {
+			inline-size: rem-calc(24);
+			block-size: rem-calc(24);
+			display: block;
+		}
+	}
 }

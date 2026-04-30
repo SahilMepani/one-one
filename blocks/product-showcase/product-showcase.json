@@ -12,6 +12,62 @@
 			"key": "field_product_showcase_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_product_showcase_subheading",
+			"label": "Subheading",
+			"name": "subheading",
+			"type": "text",
+			"default_value": "Portfolio Showcase"
+		},
+		{
+			"key": "field_product_showcase_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "What we’ve delivered"
+		},
+		{
+			"key": "field_product_showcase_items",
+			"label": "Products",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"layout": "block",
+			"button_label": "Add Product",
+			"collapsed": "field_product_showcase_items_title",
+			"sub_fields": [
+				{
+					"key": "field_product_showcase_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				},
+				{
+					"key": "field_product_showcase_items_eyebrow",
+					"label": "Eyebrow",
+					"name": "eyebrow",
+					"type": "text",
+					"default_value": "ONE·ONE"
+				},
+				{
+					"key": "field_product_showcase_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "text"
+				}
+			]
+		},
+		{
+			"key": "field_product_showcase_cta",
+			"label": "CTA Button",
+			"name": "cta",
+			"type": "link",
+			"return_format": "array"
 		}
 	]
 }

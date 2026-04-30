@@ -12,6 +12,62 @@
 			"key": "field_text_banner_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_text_banner_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text",
+			"default_value": "My Story"
+		},
+		{
+			"key": "field_text_banner_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "Behind ONE·ONE"
+		},
+		{
+			"key": "field_text_banner_quote",
+			"label": "Quote",
+			"name": "quote",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "",
+			"instructions": "Large italic statement displayed over the banner image."
+		},
+		{
+			"key": "field_text_banner_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": ""
+		},
+		{
+			"key": "field_text_banner_cta",
+			"label": "CTA Button",
+			"name": "cta",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_text_banner_background_image",
+			"label": "Background Image",
+			"name": "background_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200",
+			"instructions": "Banner background (full width)."
+		},
+		{
+			"key": "field_text_banner_portrait_image",
+			"label": "Portrait Image",
+			"name": "portrait_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200",
+			"instructions": "Optional portrait image floated to the right of the banner."
 		}
 	]
 }
