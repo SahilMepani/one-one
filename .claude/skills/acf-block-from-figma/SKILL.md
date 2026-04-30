@@ -42,6 +42,8 @@ That's it for required reads. **Do not read** existing `{slug}.{php,scss,json,js
 - Images: `"return_format": "id"`, `"preview_size": "w200"`
 - Links: `"return_format": "array"`
 - Repeaters: `"collapsed"` = key of first sub-field
+- Repeaters with generic repeated content should use neutral editor labels: label `"Items"` and button `"Add Item"` unless the block needs a more specific content label.
+- If a repeater only has one sub-field named `image`, call the repeater `"images"` with label `"Images"` and button `"Add Image"`; do not use `"items"` for image-only repeaters.
 
 ## Step 4 — Write `{slug}.scss`
 
@@ -71,6 +73,22 @@ $items      = get_field( 'items' )      ?: array(
 
 Use placeholder text from the Figma design where possible.
 
+**Repeater normalization:** keep render data as simple as the markup needs. If a repeater only exists to collect one useful value per row, normalize it before rendering instead of carrying nested row arrays through the loop.
+
+```php
+$images = wp_list_pluck( get_field( 'images' ) ?: array(), 'image' );
+
+if ( ! is_array( $images ) || empty( $images ) ) {
+	$images = array(
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+	);
+}
+```
+
+When `$images` has been normalized to image IDs, loop over the IDs directly. Do not recreate `$item['image']` access patterns, temporary `$image_html` variables, or placeholder branches unless the design explicitly requires a separate placeholder state.
+
 **Section wrapper — keep this exact boilerplate:**
 
 ```php
@@ -87,6 +105,8 @@ Use placeholder text from the Figma design where possible.
 `.container` MUST be the first and only direct child of `<section>`. Never place siblings next to it.
 
 **Image output:** `wp_get_attachment_image( $image_id, 'w1920', false, array( 'class' => 'img-responsive', 'loading' => 'lazy', 'sizes' => 'auto' ) );`
+
+Echo attachment images directly when the image ID already has a fallback:
 
 **Link output:**
 
