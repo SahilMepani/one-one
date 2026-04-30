@@ -21,16 +21,16 @@ $label       = get_field( 'label' ) ?: 'Custom Possibilities';
 $heading     = get_field( 'heading' ) ?: 'What We Can Create Together';
 $description = get_field( 'description' ) ?: 'Each project begins with your vision. Clients often come to ONE·ONE to create:';
 $note        = get_field( 'note' ) ?: 'Because many clients prefer discretion, not all projects are publicly displayed. Additional examples can be shared privately during consultation.';
-$items       = get_field( 'items' );
+$items       = wp_list_pluck( get_field( 'items' ), 'image' );
 
 if ( ! is_array( $items ) || empty( $items ) ) {
 	$items = array(
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
-		array( 'image' => DEFAULT_THUMBNAIL_ID ),
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
+		DEFAULT_THUMBNAIL_ID,
 	);
 }
 
@@ -63,12 +63,11 @@ $dev_options = skel_get_block_developer_options();
 			<div class="grid">
 				<?php
 				foreach ( $items as $item ) :
-					$item_image = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
 					?>
 					<div class="item">
 						<?php
-						$image_html = $item_image ? wp_get_attachment_image(
-							$item_image,
+						echo wp_get_attachment_image(
+							$item,
 							'w800',
 							false,
 							array(
@@ -77,13 +76,7 @@ $dev_options = skel_get_block_developer_options();
 								'sizes'   => '(min-width: 1024px) 16vw, (min-width: 768px) 33vw, 50vw',
 								'alt'     => '',
 							)
-						) : '';
-
-						if ( $image_html ) {
-							echo $image_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						} else {
-							echo '<div class="image-placeholder" aria-hidden="true"></div>';
-						}
+						);
 						?>
 					</div>
 				<?php endforeach; ?>
