@@ -64,10 +64,11 @@ $dev_options = skel_get_block_developer_options();
 
 		<div class="our-expertise-slider swiper">
 			<div class="swiper-wrapper">
-				<?php foreach ( $items as $item ) :
+				<?php
+				foreach ( $items as $item ) :
 					$item_title       = $item['title'] ?? '';
 					$item_description = $item['description'] ?? '';
-					$item_image       = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
+					$item_image       = $item['image'];
 					?>
 					<div class="slide swiper-slide">
 						<div class="text-col">
@@ -82,7 +83,7 @@ $dev_options = skel_get_block_developer_options();
 
 						<div class="image-col">
 							<?php
-							$image_html = $item_image ? wp_get_attachment_image(
+							echo wp_get_attachment_image(
 								$item_image,
 								'w1280',
 								false,
@@ -92,13 +93,7 @@ $dev_options = skel_get_block_developer_options();
 									'sizes'   => 'auto',
 									'alt'     => '',
 								)
-							) : '';
-
-							if ( $image_html ) {
-								echo $image_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							} else {
-								echo '<div class="image-placeholder" aria-hidden="true"></div>';
-							}
+							);
 							?>
 						</div>
 					</div>

@@ -4,41 +4,41 @@
 	background-color: #fff;
 
 	.header {
+		text-align: center;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		text-align: center;
 		gap: fluid(16, 24);
 		max-inline-size: rem-calc(540);
-		margin-inline: auto;
 		margin-block-end: fluid(40, 48);
+		margin-inline: auto;
 	}
 
 	.label {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 		background-color: rgba($magento, 0.1);
 		color: $body-color;
 		font-family: $sans-serif-font-family;
 		font-size: rem-calc(14);
 		line-height: 1.4;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		padding-block: rem-calc(4);
 		padding-inline: rem-calc(8);
 		border-radius: rem-calc(4);
 	}
 
 	.heading {
-		@include font(h2);
-
 		color: $body-color;
 		margin: 0;
+
+		@include font(h2);
 	}
 
 	.grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: fluid(16, 16);
+		gap: fluid(16, 48) rem-calc(16);
 		margin-block-end: fluid(32, 48);
 
 		@media (width >= $md) {
@@ -57,29 +57,29 @@
 	}
 
 	.image {
-		position: relative;
+		background-color: rgba($magento, 0.04);
 		inline-size: 100%;
 		block-size: fluid(280, 420);
 		border-radius: rem-calc(12);
+		position: relative;
 		overflow: hidden;
-		background-color: rgba($magento, 0.04);
 
 		img {
 			display: block;
 			inline-size: 100%;
 			block-size: 100%;
-			object-fit: cover;
 			border-radius: rem-calc(12);
+			object-fit: cover;
 		}
 	}
 
 	.meta {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
 		color: $body-color;
 		font-family: $serif-font-family;
 		line-height: 1.4;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.eyebrow {
@@ -98,15 +98,15 @@
 	}
 
 	.btn-cta {
-		display: inline-flex;
-		align-items: stretch;
-		gap: rem-calc(2);
+		color: #fff;
 		font-family: $sans-serif-font-family;
 		font-size: rem-calc(16);
 		font-weight: 500;
 		line-height: 1.5;
-		color: #fff;
 		text-decoration: none;
+		display: inline-flex;
+		align-items: stretch;
+		gap: rem-calc(2);
 		transition: opacity 0.2s ease;
 
 		&:hover,
@@ -116,20 +116,20 @@
 	}
 
 	.btn-cta-label {
+		background-color: $magento;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background-color: $magento;
 		padding-block: rem-calc(8);
 		padding-inline: rem-calc(16);
 		border-radius: rem-calc(6);
 	}
 
 	.btn-cta-icon {
+		background-color: $magento;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background-color: $magento;
 		padding: rem-calc(8);
 		border-radius: rem-calc(6);
 

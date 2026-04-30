@@ -160,7 +160,7 @@ These are added automatically at block registration:
 	"label": "Items",
 	"name": "items",
 	"type": "repeater",
-	"min": 1,
+	"min": 0,
 	"max": 6,
 	"layout": "block",
 	"button_label": "Add {item}",

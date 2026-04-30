@@ -1,5 +1,76 @@
 @use '../../src/sass/partials/abstracts-blocks' as *;
 
 .featured-projects-section {
+	background-color: #fff;
 
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: fluid(16, 24);
+		max-inline-size: rem-calc(540);
+		margin-block-end: fluid(32, 48);
+	}
+
+	.label {
+		background-color: rgba($magento, 0.1);
+		color: $magento;
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(14);
+		line-height: 1.4;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding-block: rem-calc(4);
+		padding-inline: rem-calc(8);
+		border-radius: rem-calc(4);
+	}
+
+	.heading {
+		color: $body-color;
+		margin: 0;
+
+		@include font(h2);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: fluid(24, 16);
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.project {
+		display: flex;
+		flex-direction: column;
+		gap: rem-calc(16);
+	}
+
+	.image {
+		background-color: rgba($magento, 0.04);
+		inline-size: 100%;
+		block-size: fluid(280, 442);
+		border-radius: rem-calc(8);
+		position: relative;
+		overflow: hidden;
+
+		img {
+			display: block;
+			inline-size: 100%;
+			block-size: 100%;
+			border-radius: rem-calc(8);
+			object-fit: cover;
+		}
+	}
+
+	.description {
+		color: $body-color;
+		font-family: $serif-font-family;
+		font-size: rem-calc(16);
+		line-height: 1.4;
+		margin: 0;
+	}
 }
