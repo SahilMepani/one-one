@@ -100,26 +100,13 @@ $dev_options = skel_get_block_developer_options();
 
 				<?php if ( $cta['url'] ) : ?>
 					<div class="cta-group">
-						<a
-							class="btn"
-							href="<?php echo esc_url( $cta['url'] ); ?>"
-							target="<?php echo esc_attr( $cta['target'] ); ?>"
-							<?php echo ( '_blank' === $cta['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>>
+						<a class="btn btn-icon btn-dark btn-md" href="<?php echo esc_url( $cta['url'] ); ?>" target="<?php echo esc_attr( $cta['target'] ); ?>" data-inview data-aos="fade-up">
 							<span class="btn-label"><?php echo esc_html( $cta['title'] ); ?></span>
-							<?php if ( '_blank' === $cta['target'] ) : ?>
-								<span class="sr-only"><?php esc_html_e( '(opens in a new tab)', 'skel' ); ?></span>
-							<?php endif; ?>
-						</a>
-						<a
-							class="btn btn-icon"
-							href="<?php echo esc_url( $cta['url'] ); ?>"
-							target="<?php echo esc_attr( $cta['target'] ); ?>"
-							<?php echo ( '_blank' === $cta['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
-							aria-hidden="true"
-							tabindex="-1">
-							<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-								<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
+							<span class="svg-block">
+								<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</span>
 						</a>
 					</div>
 				<?php endif; ?>

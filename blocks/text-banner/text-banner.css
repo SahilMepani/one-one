@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
-  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
   max-inline-size: 33.75rem;
+  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
 .text-banner-section .label {
   background-color: rgba(103, 30, 58, 0.1);
@@ -30,12 +30,12 @@
   margin: 0;
 }
 .text-banner-section .banner {
-  position: relative;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  min-block-size: clamp(26.25rem, 26.25rem + 12.875 * (100vw - 48rem) / 27, 39.125rem);
   display: flex;
   align-items: center;
+  min-block-size: clamp(26.25rem, 26.25rem + 12.875 * (100vw - 48rem) / 27, 39.125rem);
+  border-radius: 0.75rem;
+  position: relative;
+  overflow: hidden;
 }
 .text-banner-section .banner-bg {
   position: absolute;
@@ -43,25 +43,25 @@
   pointer-events: none;
 }
 .text-banner-section .banner-bg .bg-image {
-  position: absolute;
-  inset: 0;
   inline-size: 100%;
   block-size: 100%;
+  position: absolute;
+  inset: 0;
   object-fit: cover;
 }
 .text-banner-section .banner-overlay {
-  position: absolute;
-  inset: 0;
   background-color: #671e3a;
   background-image: linear-gradient(67deg, rgb(32, 16, 18) 9%, rgba(134, 67, 75, 0) 95%);
+  position: absolute;
+  inset: 0;
   mix-blend-mode: normal;
 }
 .text-banner-section .banner-portrait {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-end: 0;
-  inline-size: 31%;
   display: none;
+  inline-size: 31%;
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block: 0;
 }
 @media (width >= 768px) {
   .text-banner-section .banner-portrait {
@@ -69,28 +69,28 @@
   }
 }
 .text-banner-section .banner-portrait .portrait-image {
-  position: absolute;
-  inset: 0;
   inline-size: 100%;
   block-size: 100%;
+  position: absolute;
+  inset: 0;
   object-fit: cover;
   object-position: center top;
 }
 .text-banner-section .banner-content {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  inline-size: 100%;
+  max-inline-size: 46.5625rem;
   padding-block: clamp(2.5rem, 2.5rem + 2.5 * (100vw - 48rem) / 27, 5rem);
   padding-inline: clamp(1.5rem, 1.5rem + 3 * (100vw - 48rem) / 27, 4.5rem);
-  max-inline-size: 46.5625rem;
-  inline-size: 100%;
+  position: relative;
 }
 .text-banner-section .quote {
   color: #fff;
   font-family: "Libre Baskerville", serif;
-  font-style: italic;
   font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+  font-style: italic;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: -0.02em;
@@ -110,31 +110,4 @@
   align-items: center;
   gap: 0.125rem;
   margin-block-start: 0.5rem;
-}
-.text-banner-section .btn {
-  background-color: #671e3a;
-  color: #fff;
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5;
-  padding-block: 0.5rem;
-  padding-inline: 1rem;
-  border-radius: 0.375rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-.text-banner-section .btn:hover, .text-banner-section .btn:focus-visible {
-  background-color: color-mix(in srgb, #671e3a 88%, #000);
-}
-.text-banner-section .btn-icon {
-  padding: 0.5rem;
-}
-.text-banner-section .btn-icon svg {
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
-  display: block;
 }

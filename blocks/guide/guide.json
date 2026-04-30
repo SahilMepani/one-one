@@ -1,0 +1,70 @@
+{
+	"title": "Guide",
+	"fields": [
+		{
+			"key": "field_guide_block_options",
+			"label": "Guide",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_guide_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_guide_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "Meaningful jewelry,\nguided personally"
+		},
+		{
+			"key": "field_guide_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br",
+			"default_value": "I help clients create meaningful jewelry pieces with thoughtful guidance, carefully sourced stones, and a process that feels personal from beginning to end."
+		},
+		{
+			"key": "field_guide_items",
+			"label": "Items",
+			"name": "items",
+			"type": "repeater",
+			"collapsed": "field_guide_items_title",
+			"min": 1,
+			"max": 4,
+			"layout": "block",
+			"button_label": "Add Item",
+			"sub_fields": [
+				{
+					"key": "field_guide_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				},
+				{
+					"key": "field_guide_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "text"
+				},
+				{
+					"key": "field_guide_items_description",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": "br"
+				}
+			]
+		}
+	]
+}

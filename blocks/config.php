@@ -31,4 +31,5 @@ $block_types = array(
 	'Process',
 	'Featured Projects',
 	'Image Grid',
+	'Guide',
 );

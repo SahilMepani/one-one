@@ -1,0 +1,107 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.guide-section {
+	background-color: #fff;
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: fluid(32, 48);
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: fluid(16, 24);
+		text-align: center;
+		max-inline-size: rem-calc(540);
+		inline-size: 100%;
+	}
+
+	.heading {
+		@include font(h2);
+
+		font-style: italic;
+		color: #000;
+		margin: 0;
+	}
+
+	.description {
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(16);
+		font-weight: 400;
+		line-height: 1.4;
+		color: rgba(0, 0, 0, 0.4);
+		margin: 0;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: rem-calc(16);
+		inline-size: 100%;
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		@media (width >= $lg) {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	.card {
+		position: relative;
+		display: block;
+		inline-size: 100%;
+		block-size: rem-calc(433);
+		border-radius: rem-calc(12);
+		overflow: hidden;
+		background-color: $mist;
+	}
+
+	img {
+		position: absolute;
+		inset: 0;
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	.overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		gap: rem-calc(8);
+		padding: rem-calc(24);
+		background-color: rgba($deep, 0.4);
+		color: #fff;
+		overflow: hidden;
+	}
+
+	.card:nth-child(even) .overlay {
+		justify-content: flex-end;
+	}
+
+	.title {
+		@include font(h4);
+
+		color: #fff;
+		margin: 0;
+	}
+
+	.body {
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(16);
+		font-weight: 400;
+		line-height: 1.4;
+		color: #fff;
+		margin: 0;
+	}
+}

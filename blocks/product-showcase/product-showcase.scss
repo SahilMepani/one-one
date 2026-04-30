@@ -96,46 +96,4 @@
 		display: flex;
 		justify-content: center;
 	}
-
-	.btn-cta {
-		color: #fff;
-		font-family: $sans-serif-font-family;
-		font-size: rem-calc(16);
-		font-weight: 500;
-		line-height: 1.5;
-		text-decoration: none;
-		display: inline-flex;
-		align-items: stretch;
-		gap: rem-calc(2);
-		transition: opacity 0.2s ease;
-
-		&:hover,
-		&:focus-visible {
-			opacity: 0.9;
-		}
-	}
-
-	.btn-cta-label {
-		background-color: $magento;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding-block: rem-calc(8);
-		padding-inline: rem-calc(16);
-		border-radius: rem-calc(6);
-	}
-
-	.btn-cta-icon {
-		background-color: $magento;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: rem-calc(8);
-		border-radius: rem-calc(6);
-
-		svg {
-			inline-size: rem-calc(24);
-			block-size: rem-calc(24);
-		}
-	}
 }
