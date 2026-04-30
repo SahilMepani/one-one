@@ -32,4 +32,6 @@ $block_types = array(
 	'Featured Projects',
 	'Image Grid',
 	'Guide',
+	'Featured Articles',
+	'Page Banner',
 );

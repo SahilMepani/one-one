@@ -1,0 +1,95 @@
+{
+	"title": "Featured Articles",
+	"fields": [
+		{
+			"key": "field_featured_articles_block_options",
+			"label": "Featured Articles",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_featured_articles_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_featured_articles_subheading",
+			"label": "Subheading",
+			"name": "subheading",
+			"type": "text",
+			"default_value": "Education Hub"
+		},
+		{
+			"key": "field_featured_articles_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "Jewelry Knowledge, shared"
+		},
+		{
+			"key": "field_featured_articles_cta_link",
+			"label": "CTA Link",
+			"name": "cta_link",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_featured_articles_items",
+			"label": "Articles",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"max": 5,
+			"layout": "block",
+			"button_label": "Add Article",
+			"collapsed": "field_featured_articles_items_title",
+			"sub_fields": [
+				{
+					"key": "field_featured_articles_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				},
+				{
+					"key": "field_featured_articles_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "text"
+				},
+				{
+					"key": "field_featured_articles_items_description",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": "br",
+					"instructions": "Shown on the first (featured) article only."
+				},
+				{
+					"key": "field_featured_articles_items_date",
+					"label": "Date",
+					"name": "date",
+					"type": "text"
+				},
+				{
+					"key": "field_featured_articles_items_category",
+					"label": "Category",
+					"name": "category",
+					"type": "text"
+				},
+				{
+					"key": "field_featured_articles_items_link",
+					"label": "Link",
+					"name": "link",
+					"type": "link",
+					"return_format": "array"
+				}
+			]
+		}
+	]
+}
