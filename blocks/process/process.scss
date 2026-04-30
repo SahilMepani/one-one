@@ -1,0 +1,92 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.process-section {
+	padding-block: fluid(48, 80);
+
+	.container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: fluid(32, 48);
+		align-items: flex-start;
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		gap: rem-calc(24);
+		flex: 1 1 rem-calc(360);
+		max-inline-size: rem-calc(540);
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding-block: rem-calc(4);
+		padding-inline: rem-calc(8);
+		background-color: rgba(103, 30, 58, 0.1);
+		border-radius: rem-calc(4);
+		color: $magento;
+		font-size: fluid(13, 14);
+		line-height: 1.4;
+		inline-size: fit-content;
+	}
+
+	.heading {
+		@include font(h2);
+
+		margin: 0;
+		color: $body-color;
+	}
+
+	.steps {
+		display: flex;
+		flex-direction: column;
+		gap: rem-calc(32);
+		flex: 1 1 rem-calc(420);
+		max-inline-size: rem-calc(632);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		counter-reset: process-step;
+	}
+
+	.step {
+		display: flex;
+		gap: rem-calc(8);
+		align-items: flex-start;
+		padding-block: rem-calc(16);
+		padding-inline: rem-calc(24);
+		border-inline-start: 2px solid $mist;
+	}
+
+	.step-number {
+		@include font(h3);
+
+		flex: 0 0 rem-calc(63);
+		margin: 0;
+		color: $body-color;
+	}
+
+	.step-content {
+		display: flex;
+		flex-direction: column;
+		gap: rem-calc(8);
+		flex: 1 1 0;
+		min-inline-size: 0;
+	}
+
+	.step-title {
+		@include font(h3);
+
+		margin: 0;
+		color: $body-color;
+	}
+
+	.step-description {
+		margin: 0;
+		font-size: fluid(14, 16);
+		line-height: 1.4;
+		color: rgba(0, 0, 0, 0.4);
+	}
+}

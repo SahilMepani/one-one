@@ -1,0 +1,78 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.project-showcase-section {
+	padding-block: fluid(64, 80);
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: rem-calc(24);
+		text-align: center;
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: rem-calc(4 8);
+		border-radius: rem-calc(4);
+		background-color: rgba($magento, 0.1);
+		color: $magento;
+		font-size: fluid(12, 14);
+		line-height: 1.4;
+	}
+
+	.heading {
+		@include font(h2);
+		margin: 0;
+		color: $body-color;
+	}
+
+	.subheading {
+		@include font(h4);
+		margin-block: rem-calc(48) 0;
+		text-align: center;
+		color: $body-color;
+	}
+
+	.banners {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: rem-calc(16);
+		margin-block-start: rem-calc(48);
+
+		@media (width >= $md) {
+			grid-template-columns: repeat(12, 1fr);
+		}
+	}
+
+	.card {
+		position: relative;
+		overflow: hidden;
+		border-radius: rem-calc(12);
+		aspect-ratio: 3 / 4;
+
+		@media (width >= $md) {
+			grid-column: span 6;
+			aspect-ratio: auto;
+			block-size: fluid(320, 433);
+
+			&:nth-child(-n+4) {
+				grid-column: span 3;
+			}
+
+			&:nth-child(n+5) {
+				grid-column: span 4;
+			}
+		}
+
+		img {
+			position: absolute;
+			inset: 0;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+		}
+	}
+}

@@ -24,4 +24,10 @@ $block_types = array(
 	'Our Expertise',
 	'Product Showcase',
 	'Text Banner',
+	'Testimonials',
+	'Message',
+	'Purpose',
+	'Project Showcase',
+	'Process',
+	'Featured Projects',
 );

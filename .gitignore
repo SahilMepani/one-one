@@ -28,6 +28,7 @@ tests/.phpunit.cache/
 vendor/
 .env.test.local
 nul
+blocks/.claude-preview-pending
 
 
 # .claude

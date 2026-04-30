@@ -1,0 +1,93 @@
+{
+	"key": "group_process",
+	"title": "Process",
+	"fields": [
+		{
+			"key": "field_process_accordion",
+			"label": "Process",
+			"name": "",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1,
+			"endpoint": 0
+		},
+		{
+			"key": "field_process_content_tab",
+			"label": "Content",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_process_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text",
+			"default_value": "",
+			"placeholder": "Our Process"
+		},
+		{
+			"key": "field_process_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "",
+			"placeholder": "How the Process Works"
+		},
+		{
+			"key": "field_process_steps_tab",
+			"label": "Steps",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_process_steps",
+			"label": "Steps",
+			"name": "steps",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Step",
+			"collapsed": "field_process_steps_title",
+			"sub_fields": [
+				{
+					"key": "field_process_steps_title",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"default_value": "",
+					"placeholder": "Consultation"
+				},
+				{
+					"key": "field_process_steps_description",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"default_value": "",
+					"rows": 3,
+					"new_lines": "wpautop"
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "block",
+				"operator": "==",
+				"value": "acf/process"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": true,
+	"description": "",
+	"show_in_rest": 0
+}

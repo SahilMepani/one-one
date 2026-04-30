@@ -1,0 +1,63 @@
+{
+	"title": "Testimonials",
+	"fields": [
+		{
+			"key": "field_testimonials_block_options",
+			"label": "Testimonials",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_testimonials_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_testimonials_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "Why ONE·ONE"
+		},
+		{
+			"key": "field_testimonials_intro",
+			"label": "Intro",
+			"name": "intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br",
+			"default_value": "Many clients come to me when they feel\nsomething like this"
+		},
+		{
+			"key": "field_testimonials_items",
+			"label": "Quote Cards",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"max": 8,
+			"layout": "block",
+			"button_label": "Add Quote",
+			"collapsed": "field_testimonials_items_quote",
+			"sub_fields": [
+				{
+					"key": "field_testimonials_items_quote",
+					"label": "Quote",
+					"name": "quote",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_testimonials_footer",
+			"label": "Footer Text",
+			"name": "footer",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "",
+			"default_value": "This is exactly where ONE·ONE was created to help."
+		}
+	]
+}

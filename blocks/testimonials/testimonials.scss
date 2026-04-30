@@ -1,0 +1,93 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.testimonials-section {
+	padding-block: fluid(48, 80);
+	text-align: center;
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: fluid(16, 24);
+		max-inline-size: rem-calc(540);
+		margin-inline: auto;
+		margin-block-end: fluid(32, 48);
+	}
+
+	.heading {
+		color: $body-color;
+		font-family: $serif-font-family;
+		font-size: fluid(28, 40);
+		font-weight: 400;
+		line-height: 1.4;
+		letter-spacing: -0.02em;
+		margin: 0;
+	}
+
+	.intro {
+		color: $body-color;
+		font-family: $serif-font-family;
+		font-size: fluid(18, 22);
+		font-weight: 400;
+		line-height: 1.4;
+		margin: 0;
+	}
+
+	.cards {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: rem-calc(16);
+
+		@media (width >= $sm) {
+			grid-template-columns: repeat(2, 1fr);
+			gap: rem-calc(20);
+		}
+
+		@media (width >= $lg) {
+			grid-template-columns: repeat(4, 1fr);
+			gap: rem-calc(24);
+		}
+	}
+
+	.card {
+		background-color: rgba($magento, 0.04);
+		border-radius: rem-calc(12);
+		padding-block: fluid(32, 48);
+		padding-inline: fluid(20, 24);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-block-size: rem-calc(232);
+	}
+
+	.quote {
+		margin: 0;
+		color: $body-color;
+		font-family: $serif-font-family;
+		font-style: italic;
+		font-size: fluid(20, 24);
+		font-weight: 400;
+		line-height: 1.4;
+		letter-spacing: -0.02em;
+		text-align: center;
+
+		p {
+			margin: 0;
+			font-size: inherit;
+			line-height: inherit;
+		}
+	}
+
+	.footer {
+		color: rgba(0, 0, 0, 0.4);
+		font-family: $serif-font-family;
+		font-size: fluid(18, 22);
+		font-weight: 400;
+		line-height: 1.4;
+		max-inline-size: rem-calc(482);
+		margin: fluid(32, 48) auto 0;
+	}
+}

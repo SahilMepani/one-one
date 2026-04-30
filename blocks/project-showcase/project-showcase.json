@@ -1,0 +1,56 @@
+{
+	"title": "Project Showcase",
+	"fields": [
+		{
+			"key": "field_project_showcase_block_options",
+			"label": "Project Showcase",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_project_showcase_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_project_showcase_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text"
+		},
+		{
+			"key": "field_project_showcase_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		},
+		{
+			"key": "field_project_showcase_subheading",
+			"label": "Subheading",
+			"name": "subheading",
+			"type": "text"
+		},
+		{
+			"key": "field_project_showcase_items",
+			"label": "Items",
+			"name": "items",
+			"type": "repeater",
+			"collapsed": "field_project_showcase_items_image",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Item",
+			"sub_fields": [
+				{
+					"key": "field_project_showcase_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				}
+			]
+		}
+	]
+}

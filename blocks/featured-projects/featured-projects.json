@@ -1,0 +1,17 @@
+{
+	"title": "Featured Projects",
+	"fields": [
+		{
+			"key": "field_featured_projects_block_options",
+			"label": "Featured Projects",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_featured_projects_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

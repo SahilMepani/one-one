@@ -1,0 +1,70 @@
+{
+	"title": "Purpose",
+	"fields": [
+		{
+			"key": "field_purpose_block_options",
+			"label": "Purpose",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_purpose_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_purpose_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text"
+		},
+		{
+			"key": "field_purpose_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "",
+			"instructions": "Use line breaks to control wrapping."
+		},
+		{
+			"key": "field_purpose_image",
+			"label": "Image",
+			"name": "image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_purpose_columns",
+			"label": "Columns",
+			"name": "columns",
+			"type": "repeater",
+			"collapsed": "field_purpose_columns_lead",
+			"min": 1,
+			"max": 2,
+			"layout": "block",
+			"button_label": "Add Column",
+			"sub_fields": [
+				{
+					"key": "field_purpose_columns_lead",
+					"label": "Lead Text",
+					"name": "lead",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": "",
+					"instructions": "Large opening line. Line breaks are preserved."
+				},
+				{
+					"key": "field_purpose_columns_body",
+					"label": "Body Text",
+					"name": "body",
+					"type": "wysiwyg",
+					"toolbar": "basic",
+					"media_upload": 0
+				}
+			]
+		}
+	]
+}

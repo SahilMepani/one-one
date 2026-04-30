@@ -1,0 +1,41 @@
+{
+	"title": "Message",
+	"fields": [
+		{
+			"key": "field_message_block_options",
+			"label": "Message",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_message_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_message_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		},
+		{
+			"key": "field_message_emphasis",
+			"label": "Emphasis",
+			"name": "emphasis",
+			"type": "textarea",
+			"new_lines": "br",
+			"rows": 3,
+			"instructions": "Large italic statement. Line breaks are preserved."
+		},
+		{
+			"key": "field_message_body",
+			"label": "Body",
+			"name": "body",
+			"type": "textarea",
+			"new_lines": "br",
+			"rows": 3,
+			"instructions": "Closing message. Line breaks are preserved."
+		}
+	]
+}
