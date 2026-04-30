@@ -34,4 +34,5 @@ $block_types = array(
 	'Guide',
 	'Featured Articles',
 	'Page Banner',
+	'CTA Banner',
 );

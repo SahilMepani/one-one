@@ -1,0 +1,64 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.page-banner-section {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding-block-start: fluid(96, 160);
+	padding-block-end: fluid(48, 96);
+	color: #fff;
+
+	.background {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.background-image {
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	.background-overlay {
+		position: absolute;
+		inset: 0;
+		background-image: linear-gradient(180deg, rgb(35 30 28) 10%, rgb(137 117 110 / 0) 65%);
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: rem-calc(24);
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding-inline: rem-calc(8);
+		padding-block: rem-calc(4);
+		border-radius: rem-calc(4);
+		background-color: rgb(255 255 255 / 0.1);
+		color: #fff;
+		font-size: rem-calc(14);
+		line-height: 1.4;
+	}
+
+	.heading {
+		@include font(h3);
+
+		margin: 0;
+		color: #fff;
+	}
+
+	.description {
+		max-inline-size: rem-calc(745);
+		margin: 0;
+		color: rgb(255 255 255 / 0.6);
+		font-size: rem-calc(16);
+		line-height: 1.4;
+	}
+}

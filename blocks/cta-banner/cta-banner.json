@@ -1,0 +1,17 @@
+{
+	"title": "CTA Banner",
+	"fields": [
+		{
+			"key": "field_cta_banner_block_options",
+			"label": "CTA Banner",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_cta_banner_data_tab",
+			"label": "Data",
+			"type": "tab"
+		}
+	]
+}

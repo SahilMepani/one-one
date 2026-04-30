@@ -1,0 +1,50 @@
+{
+	"title": "Page Banner",
+	"fields": [
+		{
+			"key": "field_page_banner_block_options",
+			"label": "Page Banner",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_page_banner_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_page_banner_background_image",
+			"label": "Background Image",
+			"name": "background_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_page_banner_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text",
+			"default_value": "Services"
+		},
+		{
+			"key": "field_page_banner_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "At ONE·ONE, every piece begins with you."
+		},
+		{
+			"key": "field_page_banner_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br",
+			"default_value": "Custom jewelry, thoughtfully guided from the first idea to the final piece — with clarity, honesty, and attention to every detail."
+		}
+	]
+}
