@@ -82,7 +82,7 @@ $dev_options = skel_get_block_developer_options();
 				<?php } ?>
 
 				<?php if ( $heading ) { ?>
-					<h1 class="heading" data-inview data-aos="fade-up"><?php echo wp_kses_post( nl2br( esc_html( $heading ) ) ); ?></h1>
+					<h1 class="heading" data-inview data-aos="fade-up"><?php echo wp_kses_post( $heading ); ?></h1>
 				<?php } ?>
 
 				<?php if ( $description ) { ?>

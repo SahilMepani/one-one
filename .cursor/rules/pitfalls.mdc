@@ -14,12 +14,14 @@ Never use `&` to reference outer ancestors in deep nesting.
 // WRONG — produces `.modifier .outer .inner`
 .outer {
 	.inner {
-		.modifier & { }
+		.modifier & {
+		}
 	}
 }
 
 // RIGHT — keep selectors flat or restructure
-.modifier .outer .inner { }
+.modifier .outer .inner {
+}
 ```
 
 Also avoid `&__` / `&--` SCSS nesting shorthand in block SCSS — and do not use BEM `__` class names at all. Every rule lives nested inside the outer `.{slug}-section` wrapper, using **plain child class names**. Modifiers keep the `--` suffix and are written in full (no `&--` shorthand).
@@ -27,17 +29,24 @@ Also avoid `&__` / `&--` SCSS nesting shorthand in block SCSS — and do not use
 ```scss
 // ❌ WRONG — BEM class names and `&__` shorthand
 .home-hero {
-	&__title { }
-	&__cta { }
+	&__title {
+	}
+	&__cta {
+	}
 }
-.home-hero__title { }
-.home-hero__cta { }
+.home-hero__title {
+}
+.home-hero__cta {
+}
 
 // ✅ RIGHT — nested inside the section wrapper, plain child names
 .home-hero-section {
-	.title { }
-	.cta { }
-	.tag--dark { } // modifier written in full, never `&--dark`
+	.title {
+	}
+	.cta {
+	}
+	.tag--dark {
+	} // modifier written in full, never `&--dark`
 }
 ```
 
@@ -106,6 +115,7 @@ if ( is_page( array( 'contact', 'contact-us' ) ) ) { }
 ```
 
 Common built-ins to use:
+
 - `is_page()`, `is_single()`, `is_archive()`, `is_home()`, `is_front_page()` — page conditionals
 - `get_permalink()`, `get_the_ID()`, `get_queried_object()` — post/page data
 - `wp_get_attachment_image()`, `wp_get_attachment_url()` — media
@@ -179,3 +189,12 @@ Block SCSS files must import **`abstracts-blocks`**, not `abstracts`. If you see
 Reserve `@media` for things that genuinely restructure the layout (e.g. 1 column → 3 columns, stacked → side-by-side).
 
 Also: **always mobile-first** (`width >= $bp`), never desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.
+
+## 11. Never Use `nl2br()`
+
+Don't wrap output in `nl2br()`. Use `white-space: pre-line` in CSS instead.
+
+```php
+// ❌ wp_kses_post( $description )
+// ✅ wp_kses_post( $description )
+```

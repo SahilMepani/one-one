@@ -57,7 +57,7 @@ $dev_options = skel_get_block_developer_options();
 			</header>
 
 			<?php if ( $description ) : ?>
-				<p class="description"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
+				<p class="description"><?php echo wp_kses_post( $description ); ?></p>
 			<?php endif; ?>
 
 			<div class="grid">
@@ -83,7 +83,7 @@ $dev_options = skel_get_block_developer_options();
 			</div>
 
 			<?php if ( $note ) : ?>
-				<p class="note"><?php echo wp_kses_post( nl2br( $note ) ); ?></p>
+				<p class="note"><?php echo wp_kses_post( $note ); ?></p>
 			<?php endif; ?>
 		</div>
 

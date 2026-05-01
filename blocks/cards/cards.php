@@ -77,7 +77,7 @@ $dev_options = skel_get_block_developer_options();
 	<div class="container">
 
 		<?php if ( $description ) : ?>
-			<p class="description"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
+			<p class="description"><?php echo wp_kses_post( $description ); ?></p>
 		<?php endif; ?>
 
 		<?php if ( ! empty( $items ) ) : ?>
@@ -103,7 +103,7 @@ $dev_options = skel_get_block_developer_options();
 						<div class="body">
 							<div class="header">
 								<?php if ( ! empty( $item['title'] ) ) : ?>
-									<h3 class="title"><?php echo wp_kses_post( nl2br( $item['title'] ) ); ?></h3>
+									<h3 class="title"><?php echo wp_kses_post( $item['title'] ); ?></h3>
 								<?php endif; ?>
 
 								<?php if ( ! empty( $item['date'] ) || ! empty( $item['category'] ) ) : ?>

@@ -55,11 +55,11 @@ $dev_options = skel_get_block_developer_options();
 
 		<header class="header">
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h2>
+				<h2 class="heading"><?php echo wp_kses_post( $heading ); ?></h2>
 			<?php endif; ?>
 
 			<?php if ( $description ) : ?>
-				<p class="description"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
+				<p class="description"><?php echo wp_kses_post( $description ); ?></p>
 			<?php endif; ?>
 		</header>
 
@@ -86,7 +86,7 @@ $dev_options = skel_get_block_developer_options();
 						<?php endif; ?>
 
 						<?php if ( ! empty( $item['description'] ) ) : ?>
-							<p class="body"><?php echo wp_kses_post( nl2br( $item['description'] ) ); ?></p>
+							<p class="body"><?php echo wp_kses_post( $item['description'] ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>

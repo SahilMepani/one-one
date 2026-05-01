@@ -55,12 +55,13 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h2>
+				<h2 class="heading"><?php echo wp_kses_post( $heading ); ?></h2>
 			<?php endif; ?>
 		</header>
 
 		<div class="grid">
-			<?php foreach ( $items as $item ) :
+			<?php
+			foreach ( $items as $item ) :
 				$item_image       = $item['image'] ?? DEFAULT_THUMBNAIL_ID;
 				$item_description = $item['description'] ?? '';
 				?>
@@ -82,7 +83,7 @@ $dev_options = skel_get_block_developer_options();
 					</div>
 
 					<?php if ( $item_description ) : ?>
-						<p class="description"><?php echo wp_kses_post( nl2br( $item_description ) ); ?></p>
+						<p class="description"><?php echo wp_kses_post( $item_description ); ?></p>
 					<?php endif; ?>
 				</article>
 			<?php endforeach; ?>

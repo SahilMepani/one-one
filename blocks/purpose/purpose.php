@@ -12,9 +12,9 @@ if ( ! skel_should_display_block() ) {
 // Developer options.
 $dev_options = skel_get_block_developer_options();
 
-$label    = get_field( 'label' )   ?: 'Our Purpose';
+$label    = get_field( 'label' ) ?: 'Our Purpose';
 $heading  = get_field( 'heading' ) ?: "Why I Created\nONE\u{00B7}ONE";
-$image_id = get_field( 'image' )   ?: DEFAULT_THUMBNAIL_ID;
+$image_id = get_field( 'image' ) ?: DEFAULT_THUMBNAIL_ID;
 $columns  = get_field( 'columns' ) ?: array(
 	array(
 		'lead' => 'Over time I noticed that choosing an important jewelry piece can often feel confusing for many clients.',
@@ -41,7 +41,7 @@ $columns  = get_field( 'columns' ) ?: array(
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo nl2br( esc_html( $heading ) ); ?></h2>
+				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 
 		</div>
@@ -70,7 +70,7 @@ $columns  = get_field( 'columns' ) ?: array(
 					<?php foreach ( $columns as $column ) : ?>
 						<div class="column">
 							<?php if ( ! empty( $column['lead'] ) ) : ?>
-								<p class="lead"><?php echo nl2br( esc_html( $column['lead'] ) ); ?></p>
+								<p class="lead"><?php echo esc_html( $column['lead'] ); ?></p>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $column['body'] ) ) : ?>

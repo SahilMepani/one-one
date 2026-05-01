@@ -57,11 +57,11 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h1 class="heading"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h1>
+				<h1 class="heading"><?php echo wp_kses_post( $heading ); ?></h1>
 			<?php endif; ?>
 
 			<?php if ( $description ) : ?>
-				<p class="description"><?php echo wp_kses_post( nl2br( $description ) ); ?></p>
+				<p class="description"><?php echo wp_kses_post( $description ); ?></p>
 			<?php endif; ?>
 
 		</header>

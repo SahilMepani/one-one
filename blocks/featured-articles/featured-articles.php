@@ -83,7 +83,7 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo wp_kses_post( nl2br( $heading ) ); ?></h2>
+				<h2 class="heading"><?php echo wp_kses_post( $heading ); ?></h2>
 			<?php endif; ?>
 		</header>
 
@@ -128,7 +128,7 @@ $dev_options = skel_get_block_developer_options();
 								<?php endif; ?>
 
 								<?php if ( ! empty( $featured['description'] ) ) : ?>
-									<p class="description"><?php echo wp_kses_post( nl2br( $featured['description'] ) ); ?></p>
+									<p class="description"><?php echo wp_kses_post( $featured['description'] ); ?></p>
 								<?php endif; ?>
 							</div>
 

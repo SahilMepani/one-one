@@ -33,11 +33,11 @@ $body     = get_field( 'body' )     ?: "For the moments that matter most,\nthe r
 			<div class="content">
 
 				<?php if ( $emphasis ) : ?>
-					<p class="emphasis"><?php echo nl2br( esc_html( $emphasis ) ); ?></p>
+					<p class="emphasis"><?php echo esc_html( $emphasis ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( $body ) : ?>
-					<p class="body"><?php echo nl2br( esc_html( $body ) ); ?></p>
+					<p class="body"><?php echo esc_html( $body ); ?></p>
 				<?php endif; ?>
 
 			</div>
