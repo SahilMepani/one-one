@@ -1,0 +1,62 @@
+{
+	"title": "Image + Text Column",
+	"fields": [
+		{
+			"key": "field_image_text_column_block_options",
+			"label": "Image + Text Column",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_image_text_column_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_image_text_column_step",
+			"label": "Step Label",
+			"name": "step",
+			"type": "text"
+		},
+		{
+			"key": "field_image_text_column_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		},
+		{
+			"key": "field_image_text_column_subheading",
+			"label": "Subheading",
+			"name": "subheading",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_image_text_column_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": "wpautop"
+		},
+		{
+			"key": "field_image_text_column_image",
+			"label": "Image",
+			"name": "image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_image_text_column_image_first",
+			"label": "Image First",
+			"name": "image_first",
+			"type": "true_false",
+			"instructions": "When enabled, the image column appears before the text column.",
+			"ui": 1,
+			"default_value": 0
+		}
+	]
+}

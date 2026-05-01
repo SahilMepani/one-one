@@ -1,0 +1,95 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.image-text-column-section {
+
+	.image-text-column {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(32);
+	}
+
+	.text-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: rem-calc(24);
+		inline-size: 100%;
+	}
+
+	.step {
+		font-family: $serif-font-family;
+		font-size: rem-calc(16);
+		line-height: 1.4;
+		color: $body-color;
+		margin: 0;
+	}
+
+	.heading {
+		@include font(h1);
+
+		font-style: italic;
+		color: $body-color;
+		margin: 0;
+	}
+
+	.subheading {
+		@include font(h4);
+
+		color: $body-color;
+		margin: 0;
+	}
+
+	.description {
+		@include text(medium);
+
+		color: rgb(0 0 0 / 0.4);
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-block-start: rem-calc(16);
+		}
+	}
+
+	.image-column {
+		position: relative;
+		overflow: hidden;
+		border-radius: rem-calc(8);
+		background-color: rgb(103 30 58 / 0.04);
+
+		.img-responsive {
+			display: block;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+			border-radius: rem-calc(8);
+		}
+	}
+
+	@media (width >= $md) {
+
+		.image-text-column {
+			flex-direction: row;
+			align-items: center;
+			gap: rem-calc(64);
+		}
+
+		.text-column {
+			flex-shrink: 0;
+			inline-size: rem-calc(472);
+		}
+
+		.image-column {
+			flex: 1 0 0;
+			min-inline-size: 0;
+			align-self: stretch;
+		}
+
+		.image-text-column--image-first {
+			flex-direction: row-reverse;
+		}
+	}
+}

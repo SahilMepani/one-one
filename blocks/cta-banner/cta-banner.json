@@ -12,6 +12,44 @@
 			"key": "field_cta_banner_data_tab",
 			"label": "Data",
 			"type": "tab"
+		},
+		{
+			"key": "field_cta_banner_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text",
+			"default_value": "Begin Your Experience"
+		},
+		{
+			"key": "field_cta_banner_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text",
+			"default_value": "Start your Project"
+		},
+		{
+			"key": "field_cta_banner_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_cta_banner_cta",
+			"label": "CTA Button",
+			"name": "cta",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_cta_banner_background_image",
+			"label": "Background Image",
+			"name": "background_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200",
+			"instructions": "Banner background image (sits behind the centered card)."
 		}
 	]
 }

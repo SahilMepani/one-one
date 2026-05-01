@@ -35,4 +35,6 @@ $block_types = array(
 	'Featured Articles',
 	'Page Banner',
 	'CTA Banner',
+	'Image + Text Column',
+	'Image + Form',
 );
