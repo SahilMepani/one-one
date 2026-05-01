@@ -1,0 +1,74 @@
+{
+	"title": "Cards",
+	"fields": [
+		{
+			"key": "field_cards_block_options",
+			"label": "Cards",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_cards_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_cards_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"default_value": "Below you will find the essential guides used by professionals in the jewelry industry."
+		},
+		{
+			"key": "field_cards_items",
+			"label": "Items",
+			"name": "items",
+			"type": "repeater",
+			"min": 1,
+			"max": 8,
+			"layout": "block",
+			"button_label": "Add Item",
+			"collapsed": "field_cards_items_title",
+			"sub_fields": [
+				{
+					"key": "field_cards_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				},
+				{
+					"key": "field_cards_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": "br"
+				},
+				{
+					"key": "field_cards_items_date",
+					"label": "Date",
+					"name": "date",
+					"type": "text"
+				},
+				{
+					"key": "field_cards_items_category",
+					"label": "Category",
+					"name": "category",
+					"type": "text"
+				},
+				{
+					"key": "field_cards_items_link",
+					"label": "Link",
+					"name": "link",
+					"type": "link",
+					"return_format": "array"
+				}
+			]
+		}
+	]
+}

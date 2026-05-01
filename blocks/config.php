@@ -37,4 +37,8 @@ $block_types = array(
 	'CTA Banner',
 	'Image + Text Column',
 	'Image + Form',
+	'Cards',
+	'Features',
+	'Brand',
+	'Shapes',
 );

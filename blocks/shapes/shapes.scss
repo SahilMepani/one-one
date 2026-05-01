@@ -1,0 +1,127 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.shapes-section {
+
+	.shapes {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: rem-calc(48);
+	}
+
+	.intro {
+		@include font(h4);
+
+		color: $body-color;
+		text-align: center;
+		max-inline-size: rem-calc(648);
+		margin: 0;
+	}
+
+	.layout {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(32);
+		inline-size: 100%;
+	}
+
+	.featured {
+		position: relative;
+		overflow: hidden;
+		border-radius: rem-calc(8);
+		background-color: rgb(103 30 58 / 0.04);
+		aspect-ratio: 1 / 1;
+
+		.img-responsive {
+			display: block;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: contain;
+		}
+	}
+
+	.grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: rem-calc(19) rem-calc(19);
+		inline-size: 100%;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(16);
+	}
+
+	.card--active .image {
+		border: 2px solid $magento;
+	}
+
+	.image {
+		position: relative;
+		overflow: hidden;
+		border-radius: rem-calc(12);
+		background-color: rgb(103 30 58 / 0.04);
+		block-size: rem-calc(203);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: rem-calc(24);
+
+		.img-responsive {
+			display: block;
+			max-inline-size: 100%;
+			max-block-size: 100%;
+			inline-size: auto;
+			block-size: auto;
+			object-fit: contain;
+		}
+	}
+
+	.label {
+		font-family: $serif-font-family;
+		font-size: rem-calc(16);
+		line-height: 1.4;
+		color: $body-color;
+		text-align: center;
+		margin: 0;
+	}
+
+	.description {
+		@include font(h4);
+
+		color: rgb(0 0 0 / 0.4);
+		text-align: center;
+		max-inline-size: rem-calc(770);
+		margin: 0;
+	}
+
+	@media (width >= $md) {
+
+		.layout {
+			flex-direction: row;
+			align-items: stretch;
+			gap: rem-calc(48);
+		}
+
+		.featured {
+			flex: 1 0 0;
+			min-inline-size: 0;
+			align-self: stretch;
+			aspect-ratio: auto;
+		}
+
+		.grid {
+			flex: 1 0 0;
+			min-inline-size: 0;
+			grid-template-columns: repeat(3, 1fr);
+			gap: rem-calc(32) rem-calc(19);
+			align-content: center;
+		}
+	}
+}

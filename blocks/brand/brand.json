@@ -1,0 +1,33 @@
+{
+	"title": "Brand",
+	"fields": [
+		{
+			"key": "field_brand_block_options",
+			"label": "Brand",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_brand_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_brand_logo",
+			"label": "Logo",
+			"name": "logo",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_brand_text",
+			"label": "Text",
+			"name": "text",
+			"type": "textarea",
+			"new_lines": "br",
+			"rows": 3
+		}
+	]
+}

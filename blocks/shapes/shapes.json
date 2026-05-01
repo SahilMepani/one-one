@@ -1,0 +1,71 @@
+{
+	"title": "Shapes",
+	"fields": [
+		{
+			"key": "field_shapes_block_options",
+			"label": "Shapes",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_shapes_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_shapes_intro_text",
+			"label": "Intro Text",
+			"name": "intro_text",
+			"type": "text"
+		},
+		{
+			"key": "field_shapes_featured_image",
+			"label": "Featured Image",
+			"name": "featured_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_shapes_items",
+			"label": "Shape Items",
+			"name": "items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Shape",
+			"collapsed": "field_shapes_items_label",
+			"sub_fields": [
+				{
+					"key": "field_shapes_items_label",
+					"label": "Label",
+					"name": "label",
+					"type": "text"
+				},
+				{
+					"key": "field_shapes_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				},
+				{
+					"key": "field_shapes_items_is_active",
+					"label": "Highlight as Active",
+					"name": "is_active",
+					"type": "true_false",
+					"ui": 1
+				}
+			]
+		},
+		{
+			"key": "field_shapes_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": ""
+		}
+	]
+}

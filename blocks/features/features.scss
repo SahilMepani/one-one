@@ -1,0 +1,132 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.features-section {
+
+	.features {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: rem-calc(40);
+	}
+
+	.intro {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: rem-calc(24);
+		inline-size: 100%;
+		max-inline-size: rem-calc(1026);
+		text-align: center;
+	}
+
+	.heading {
+		@include font(h2);
+
+		font-style: italic;
+		color: $body-color;
+		margin: 0;
+	}
+
+	.description {
+		@include font(h4);
+
+		color: $body-color;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-block-start: rem-calc(16);
+		}
+	}
+
+	.items {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(32);
+		inline-size: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(24);
+		padding-block-start: rem-calc(32);
+		border-block-start: rem-calc(1) solid rgb(0 0 0 / 0.1);
+	}
+
+	.item:first-child {
+		padding-block-start: 0;
+		border-block-start: 0;
+	}
+
+	.body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: rem-calc(16);
+		min-inline-size: 0;
+	}
+
+	.title {
+		@include font(h4);
+
+		color: $body-color;
+		margin: 0;
+	}
+
+	.copy {
+		@include text(medium);
+
+		color: rgb(0 0 0 / 0.4);
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-block-start: rem-calc(16);
+		}
+	}
+
+	.image {
+		position: relative;
+		inline-size: 100%;
+
+		.img-responsive {
+			display: block;
+			inline-size: 100%;
+			block-size: auto;
+			object-fit: contain;
+		}
+	}
+
+	@media (width >= $md) {
+
+		.features {
+			gap: rem-calc(48);
+		}
+
+		.item {
+			flex-direction: row;
+			align-items: center;
+			gap: rem-calc(16);
+		}
+
+		.body {
+			flex: 0 0 auto;
+			inline-size: rem-calc(437);
+		}
+
+		.image {
+			flex: 1 0 0;
+			min-inline-size: 0;
+		}
+	}
+}

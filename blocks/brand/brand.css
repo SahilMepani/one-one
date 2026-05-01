@@ -1,0 +1,33 @@
+/* Do not edit anything below */
+.brand-section {
+  padding-block: clamp(3rem, 3rem + 2 * (100vw - 48rem) / 27, 5rem);
+}
+.brand-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+}
+.brand-section .logo {
+  display: flex;
+  justify-content: center;
+  inline-size: 100%;
+  max-inline-size: 24.0625rem;
+}
+.brand-section .logo img {
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
+}
+.brand-section .text {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  color: #000;
+  text-align: center;
+}
+.brand-section .text p {
+  margin-block: 0;
+}

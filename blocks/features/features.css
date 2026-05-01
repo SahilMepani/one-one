@@ -1,0 +1,125 @@
+/* Do not edit anything below */
+.features-section .features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+.features-section .intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  inline-size: 100%;
+  max-inline-size: 64.125rem;
+  text-align: center;
+}
+.features-section .heading {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  letter-spacing: -0.8px;
+  font-style: italic;
+  color: #080c11;
+  margin: 0;
+}
+.features-section .description {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  color: #080c11;
+}
+.features-section .description p {
+  margin: 0;
+}
+.features-section .description p + p {
+  margin-block-start: 1rem;
+}
+.features-section .items {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.features-section .item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.5rem;
+  padding-block-start: 2rem;
+  border-block-start: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+.features-section .item:first-child {
+  padding-block-start: 0;
+  border-block-start: 0;
+}
+.features-section .body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  min-inline-size: 0;
+}
+.features-section .title {
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
+  color: #080c11;
+  margin: 0;
+}
+.features-section .copy {
+  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+.features-section .copy p {
+  font-size: inherit;
+  line-height: inherit;
+}
+.features-section .copy {
+  color: rgba(0, 0, 0, 0.4);
+}
+.features-section .copy p {
+  margin: 0;
+}
+.features-section .copy p + p {
+  margin-block-start: 1rem;
+}
+.features-section .image {
+  position: relative;
+  inline-size: 100%;
+}
+.features-section .image .img-responsive {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
+}
+@media (width >= 768px) {
+  .features-section .features {
+    gap: 3rem;
+  }
+  .features-section .item {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .features-section .body {
+    flex: 0 0 auto;
+    inline-size: 27.3125rem;
+  }
+  .features-section .image {
+    flex: 1 0 0;
+    min-inline-size: 0;
+  }
+}

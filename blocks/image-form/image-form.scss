@@ -1,0 +1,112 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.image-form-section {
+
+	.image-form {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: rem-calc(32);
+	}
+
+	.image-column {
+		position: relative;
+		overflow: hidden;
+		border-radius: rem-calc(12);
+		background-color: rgb(103 30 58 / 0.04);
+
+		.img-responsive {
+			display: block;
+			inline-size: 100%;
+			block-size: 100%;
+			object-fit: cover;
+			border-radius: rem-calc(12);
+		}
+	}
+
+	.form-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: rem-calc(24);
+		inline-size: 100%;
+	}
+
+	.header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: rem-calc(24);
+		inline-size: 100%;
+	}
+
+	.label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding-block: rem-calc(4);
+		padding-inline: rem-calc(8);
+		font-family: $sans-serif-font-family;
+		font-size: rem-calc(14);
+		line-height: 1.4;
+		color: $magento;
+		background-color: rgb(103 30 58 / 0.1);
+		border-radius: rem-calc(4);
+	}
+
+	.heading {
+		@include font(h2);
+
+		color: $body-color;
+		margin: 0;
+	}
+
+	.description {
+		@include font(h4);
+
+		color: $body-color;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-block-start: rem-calc(16);
+		}
+	}
+
+	.form-wrap {
+		inline-size: 100%;
+	}
+
+	@media (width >= $md) {
+
+		.image-form {
+			flex-direction: row;
+			align-items: stretch;
+			gap: rem-calc(48);
+		}
+
+		.image-column {
+			flex: 1 0 0;
+			min-inline-size: 0;
+			align-self: stretch;
+		}
+
+		.form-column {
+			flex: 1 0 0;
+			min-inline-size: 0;
+		}
+
+		.image-form--form-first {
+			flex-direction: row-reverse;
+		}
+	}
+
+	@media (width >= $lg) {
+
+		.image-form {
+			gap: rem-calc(80);
+		}
+	}
+}

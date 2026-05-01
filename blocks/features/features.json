@@ -1,0 +1,64 @@
+{
+	"title": "Features",
+	"fields": [
+		{
+			"key": "field_features_block_options",
+			"label": "Features",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_features_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_features_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		},
+		{
+			"key": "field_features_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": "wpautop"
+		},
+		{
+			"key": "field_features_items",
+			"label": "Items",
+			"name": "items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Add Item",
+			"collapsed": "field_features_items_title",
+			"sub_fields": [
+				{
+					"key": "field_features_items_title",
+					"label": "Title",
+					"name": "title",
+					"type": "text"
+				},
+				{
+					"key": "field_features_items_description",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"rows": 4,
+					"new_lines": "wpautop"
+				},
+				{
+					"key": "field_features_items_image",
+					"label": "Image",
+					"name": "image",
+					"type": "image",
+					"return_format": "id",
+					"preview_size": "w200"
+				}
+			]
+		}
+	]
+}

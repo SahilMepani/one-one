@@ -1,0 +1,36 @@
+@use '../../src/sass/partials/abstracts-blocks' as *;
+
+.brand-section {
+	padding-block: fluid(48, 80);
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: fluid(32, 48);
+	}
+
+	.logo {
+		display: flex;
+		justify-content: center;
+		inline-size: 100%;
+		max-inline-size: rem-calc(385);
+
+		img {
+			inline-size: 100%;
+			block-size: auto;
+			object-fit: contain;
+		}
+	}
+
+	.text {
+		@include font(h4);
+
+		color: #000;
+		text-align: center;
+
+		p {
+			margin-block: 0;
+		}
+	}
+}

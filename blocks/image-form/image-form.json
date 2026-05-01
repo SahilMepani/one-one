@@ -1,0 +1,61 @@
+{
+	"title": "Image + Form",
+	"fields": [
+		{
+			"key": "field_image_form_block_options",
+			"label": "Image + Form",
+			"type": "accordion",
+			"open": 1,
+			"multi_expand": 1
+		},
+		{
+			"key": "field_image_form_data_tab",
+			"label": "Data",
+			"type": "tab"
+		},
+		{
+			"key": "field_image_form_label",
+			"label": "Label",
+			"name": "label",
+			"type": "text"
+		},
+		{
+			"key": "field_image_form_heading",
+			"label": "Heading",
+			"name": "heading",
+			"type": "text"
+		},
+		{
+			"key": "field_image_form_description",
+			"label": "Description",
+			"name": "description",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": "wpautop"
+		},
+		{
+			"key": "field_image_form_image",
+			"label": "Image",
+			"name": "image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "w200"
+		},
+		{
+			"key": "field_image_form_form_shortcode",
+			"label": "Form Shortcode",
+			"name": "form_shortcode",
+			"type": "text",
+			"instructions": "Optional. Paste the form shortcode (e.g. [contact-form-7 id=\"123\"]) to render the form here."
+		},
+		{
+			"key": "field_image_form_image_first",
+			"label": "Image First",
+			"name": "image_first",
+			"type": "true_false",
+			"instructions": "When enabled, the image column appears before the form column.",
+			"ui": 1,
+			"default_value": 1
+		}
+	]
+}
