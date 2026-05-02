@@ -24,13 +24,11 @@
 	}
 
 	.heading {
-		@include font(h2);
 		margin: 0;
 		color: $body-color;
 	}
 
 	.subheading {
-		@include font(h4);
 		margin-block: rem-calc(48) 0;
 		text-align: center;
 		color: $body-color;

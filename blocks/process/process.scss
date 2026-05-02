@@ -24,7 +24,7 @@
 		justify-content: center;
 		padding-block: rem-calc(4);
 		padding-inline: rem-calc(8);
-		background-color: rgba(103, 30, 58, 0.1);
+		background-color: rgba($magento, 0.1);
 		border-radius: rem-calc(4);
 		color: $magento;
 		font-size: fluid(13, 14);
@@ -33,8 +33,6 @@
 	}
 
 	.heading {
-		@include font(h2);
-
 		margin: 0;
 		color: $body-color;
 	}
@@ -61,8 +59,6 @@
 	}
 
 	.step-number {
-		@include font(h3);
-
 		flex: 0 0 rem-calc(63);
 		margin: 0;
 		color: $body-color;
@@ -77,8 +73,6 @@
 	}
 
 	.step-title {
-		@include font(h3);
-
 		margin: 0;
 		color: $body-color;
 	}

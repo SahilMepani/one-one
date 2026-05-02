@@ -3403,6 +3403,16 @@ img[class*=wp-image-] {
   object-position: center;
 }
 
+.img-link {
+  overflow: hidden;
+}
+.img-link img {
+  transition: 200ms ease-out;
+}
+.img-link:hover img, .img-link:focus-visible img {
+  transform: scale(1.2);
+}
+
 .alignnone,
 .alignleft,
 .alignright,

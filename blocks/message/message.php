@@ -27,17 +27,17 @@ $body     = get_field( 'body' )     ?: "For the moments that matter most,\nthe r
 		<div class="inner">
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 
 			<div class="content">
 
 				<?php if ( $emphasis ) : ?>
-					<p class="emphasis"><?php echo esc_html( $emphasis ); ?></p>
+					<p class="emphasis h2"><?php echo esc_html( $emphasis ); ?></p>
 				<?php endif; ?>
 
 				<?php if ( $body ) : ?>
-					<p class="body"><?php echo esc_html( $body ); ?></p>
+					<p class="body h4"><?php echo esc_html( $body ); ?></p>
 				<?php endif; ?>
 
 			</div>

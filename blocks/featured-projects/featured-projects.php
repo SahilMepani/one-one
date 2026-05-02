@@ -55,7 +55,7 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo wp_kses_post( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo wp_kses_post( $heading ); ?></h2>
 			<?php endif; ?>
 		</header>
 
@@ -66,7 +66,7 @@ $dev_options = skel_get_block_developer_options();
 				$item_description = $item['description'] ?? '';
 				?>
 				<article class="project">
-					<div class="image">
+					<div class="image img-cover-block">
 						<?php
 						echo wp_get_attachment_image(
 							$item_image,

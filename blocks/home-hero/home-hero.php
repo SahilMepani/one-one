@@ -82,7 +82,7 @@ $dev_options = skel_get_block_developer_options();
 				<?php } ?>
 
 				<?php if ( $heading ) { ?>
-					<h1 class="heading" data-inview data-aos="fade-up"><?php echo wp_kses_post( $heading ); ?></h1>
+					<h1 class="heading h1" data-inview data-aos="fade-up"><?php echo wp_kses_post( $heading ); ?></h1>
 				<?php } ?>
 
 				<?php if ( $description ) { ?>
@@ -103,7 +103,7 @@ $dev_options = skel_get_block_developer_options();
 
 			<?php if ( $product_show ) { ?>
 				<div class="product" data-inview data-aos="fade-up">
-					<div class="product-image">
+					<div class="product-image img-cover-block">
 						<?php
 						echo wp_get_attachment_image(
 							$product_image,

@@ -54,39 +54,30 @@ CSS/JS only enqueues when block is present on page via `has_block()`. No manual 
 
 ### Block Template Structure
 
+Source of truth: `blocks/blank/blank.php`. Use the helpers from `functions/acf-block-helpers.php` — never inline the preview check, display gate, or `$spacing`/`$custom_*` unpacking.
+
 ```php
 <?php
-// 1. Preview image (required)
-if ( isset( $block['data']['preview_image'] ) ) {
-	echo '<img src="' . esc_url( $block['data']['preview_image'] ) . '" style="width:100%; height:auto;">';
+if ( skel_render_block_preview( $block ) ) {
 	return;
 }
 
-// 2. Display check
-if ( 'on' !== get_field( 'display' ) ) { return; }
+if ( ! skel_should_display_block() ) {
+	return;
+}
 
-// 3. Data options
-$items = get_field( 'items' );
-if ( ! is_array( $items ) || empty( $items ) ) { return; }
-
-// 4. Developer options
-$spacing        = get_field( 'spacing' );
-$spacing_top    = $spacing['top']['spacing_top'] ?? '';
-$spacing_bottom = $spacing['bottom']['spacing_bottom'] ?? '';
-$custom_classes = get_field( 'custom_classes' );
-$custom_css     = get_field( 'custom_css' );
-$unique_id      = get_field( 'unique_id' );
-
-// 5. Custom spacing CSS vars
-$spacing_top_custom    = 'custom' === $spacing_top ? "--spacing-top-custom: {$spacing['top']['custom_value']};" : '';
-$spacing_bottom_custom = 'custom' === $spacing_bottom ? "--spacing-bottom-custom: {$spacing['bottom']['custom_value']};" : '';
+$items       = get_field( 'items' );
+$dev_options = skel_get_block_developer_options();
 ?>
+
 <section
-	class="block-section section <?php echo esc_attr( "{$spacing_top} {$spacing_bottom} {$custom_classes}" ); ?>"
-	style="<?php echo esc_attr( "{$spacing_top_custom} {$spacing_bottom_custom} {$custom_css}" ); ?>"
-	id="<?php echo esc_attr( $unique_id ); ?>">
+	class="{slug}-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
+	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
+	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
 	<div class="container">
-		<?php foreach ( $items as $item ) : ?><!-- Content --><?php endforeach; ?>
+		<?php if ( is_array( $items ) && ! empty( $items ) ) : ?>
+			<?php foreach ( $items as $item ) : ?><!-- Content --><?php endforeach; ?>
+		<?php endif; ?>
 	</div>
 </section>
 ```
@@ -176,6 +167,8 @@ if ( $image_id ) :
 endif;
 ?>
 ```
+
+`.img-cover-block` + `.img-cover` are styled globally in `src/sass/partials/utilities/_images.scss` — block SCSS keeps only the diff. See `pitfalls.mdc` #2.
 
 ## JavaScript Pattern
 

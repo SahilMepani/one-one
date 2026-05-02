@@ -40,15 +40,15 @@ $items      = get_field( 'items' )      ?: array(
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 		</div>
 
 		<?php if ( $subheading ) : ?>
-			<p class="subheading"><?php echo esc_html( $subheading ); ?></p>
+			<p class="subheading h4"><?php echo esc_html( $subheading ); ?></p>
 		<?php endif; ?>
 
-		<?php if ( ! empty( $items ) ) : ?>
+		<?php if ( is_array( $items ) && ! empty( $items ) ) : ?>
 			<div class="banners">
 				<?php foreach ( $items as $item ) :
 					$image_id = $item['image'] ?: DEFAULT_THUMBNAIL_ID;

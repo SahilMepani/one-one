@@ -37,20 +37,13 @@
 }
 .our-expertise-section .item-title {
   color: #362925;
-  font-family: "Libre Baskerville", serif;
   font-size: clamp(2.25rem, 2.25rem + 1.25 * (100vw - 48rem) / 27, 3.5rem);
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.2;
   letter-spacing: -0.02em;
   margin: 0;
 }
 .our-expertise-section .item-description {
   color: #362925;
-  font-family: "Libre Baskerville", serif;
-  font-size: clamp(1rem, 1rem + 0.125 * (100vw - 48rem) / 27, 1.125rem);
-  font-weight: 400;
-  line-height: 1.4;
   margin: 0;
 }
 .our-expertise-section .image-col {

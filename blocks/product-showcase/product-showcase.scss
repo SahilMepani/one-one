@@ -37,19 +37,8 @@
 
 	.image {
 		background-color: rgba($magento, 0.04);
-		inline-size: 100%;
 		block-size: fluid(280, 420);
 		border-radius: rem-calc(12);
-		position: relative;
-		overflow: hidden;
-
-		img {
-			display: block;
-			inline-size: 100%;
-			block-size: 100%;
-			border-radius: rem-calc(12);
-			object-fit: cover;
-		}
 	}
 
 	.meta {

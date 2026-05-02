@@ -52,11 +52,8 @@
 }
 .home-hero-section .heading {
   color: #fbf8f3;
-  font-family: "Libre Baskerville", serif;
   font-size: clamp(2rem, 2rem + 1.5 * (100vw - 48rem) / 27, 3.5rem);
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.2;
   letter-spacing: -0.02em;
   margin-block-end: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
 }
@@ -81,14 +78,6 @@
 .home-hero-section .product-image {
   flex-shrink: 0;
   inline-size: clamp(7.5rem, 7.5rem + 4.25 * (100vw - 48rem) / 27, 11.75rem);
-  position: relative;
-  overflow: hidden;
-}
-.home-hero-section .product-image img {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 .home-hero-section .product-body {
   display: flex;

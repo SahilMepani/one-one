@@ -50,18 +50,18 @@ $steps   = get_field( 'steps' )   ?: array(
 				<span class="label"><?php echo esc_html( $label ); ?></span>
 			<?php endif; ?>
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 		</div>
 
-		<?php if ( ! empty( $steps ) && is_array( $steps ) ) : ?>
+		<?php if ( is_array( $steps ) && ! empty( $steps ) ) : ?>
 			<ol class="steps">
 				<?php foreach ( $steps as $index => $step ) : ?>
 					<li class="step">
-						<p class="step-number" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></p>
+						<p class="step-number h3" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></p>
 						<div class="step-content">
 							<?php if ( ! empty( $step['title'] ) ) : ?>
-								<h3 class="step-title"><?php echo esc_html( $step['title'] ); ?></h3>
+								<h3 class="step-title h3"><?php echo esc_html( $step['title'] ); ?></h3>
 							<?php endif; ?>
 							<?php if ( ! empty( $step['description'] ) ) : ?>
 								<p class="step-description"><?php echo esc_html( $step['description'] ); ?></p>

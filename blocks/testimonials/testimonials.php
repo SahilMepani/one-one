@@ -40,15 +40,15 @@ $dev_options = skel_get_block_developer_options();
 
 		<header class="header">
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 
 			<?php if ( $intro ) : ?>
-				<p class="intro"><?php echo wp_kses_post( wpautop( $intro, false ) ); ?></p>
+				<p class="intro h4"><?php echo wp_kses_post( wpautop( $intro, false ) ); ?></p>
 			<?php endif; ?>
 		</header>
 
-		<?php if ( ! empty( $items ) ) : ?>
+		<?php if ( is_array( $items ) && ! empty( $items ) ) : ?>
 			<ul class="cards" role="list">
 				<?php foreach ( $items as $item ) : ?>
 					<?php $quote = isset( $item['quote'] ) ? $item['quote'] : ''; ?>
@@ -63,7 +63,7 @@ $dev_options = skel_get_block_developer_options();
 		<?php endif; ?>
 
 		<?php if ( $footer ) : ?>
-			<p class="footer"><?php echo esc_html( $footer ); ?></p>
+			<p class="footer h4"><?php echo esc_html( $footer ); ?></p>
 		<?php endif; ?>
 
 	</div>

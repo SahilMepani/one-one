@@ -50,7 +50,7 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 		</header>
 

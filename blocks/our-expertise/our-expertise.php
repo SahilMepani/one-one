@@ -58,7 +58,7 @@ $dev_options = skel_get_block_developer_options();
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo wp_kses_post( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo wp_kses_post( $heading ); ?></h2>
 			<?php endif; ?>
 		</header>
 
@@ -73,11 +73,11 @@ $dev_options = skel_get_block_developer_options();
 					<div class="slide swiper-slide">
 						<div class="text-col">
 							<?php if ( $item_title ) : ?>
-								<h3 class="item-title"><?php echo wp_kses_post( $item_title ); ?></h3>
+								<h3 class="item-title h1"><?php echo wp_kses_post( $item_title ); ?></h3>
 							<?php endif; ?>
 
 							<?php if ( $item_description ) : ?>
-								<p class="item-description"><?php echo wp_kses_post( $item_description ); ?></p>
+								<p class="item-description h4"><?php echo wp_kses_post( $item_description ); ?></p>
 							<?php endif; ?>
 						</div>
 

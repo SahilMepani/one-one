@@ -1,97 +1,56 @@
 /* Do not edit anything below */
 .featured-projects-section {
-	background-color: #fff;
+  background-color: #fff;
 }
-
 .featured-projects-section .header {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
-	max-inline-size: 33.75rem;
-	margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  max-inline-size: 33.75rem;
+  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
-
 .featured-projects-section .label {
-	background-color: rgb(103 30 58 / 10%);
-	color: $magento;
-	font-family:
-		Geist,
-		-apple-system,
-		blinkmacsystemfont,
-		'avenir next',
-		'avenir, segoe ui',
-		'helvetica neue',
-		helvetica,
-		ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
-	font-size: 0.875rem;
-	line-height: 1.4;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding-block: 0.25rem;
-	padding-inline: 0.5rem;
-	border-radius: 0.25rem;
+  background-color: rgba(103, 30, 58, 0.1);
+  color: #671e3a;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.25rem;
 }
-
 .featured-projects-section .heading {
-	color: #080c11;
-	font-family: 'Libre Baskerville', serif;
-	font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
-	font-weight: 400;
-	line-height: 1.4;
-	letter-spacing: -0.8px;
-	margin: 0;
-	text-wrap: balance;
+  color: #080c11;
+  margin: 0;
 }
-
 .featured-projects-section .grid {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: clamp(1rem, 1.5rem + -0.5 * (100vw - 48rem) / 27, 1.5rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
 }
-
 @media (width >= 768px) {
-	.featured-projects-section .grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
+  .featured-projects-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
 .featured-projects-section .project {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
 .featured-projects-section .image {
-	background-color: rgb(103 30 58 / 4%);
-	inline-size: 100%;
-	block-size: clamp(
-		17.5rem,
-		17.5rem + 10.125 * (100vw - 48rem) / 27,
-		27.625rem
-	);
-	border-radius: 0.5rem;
-	position: relative;
-	overflow: hidden;
+  background-color: rgba(103, 30, 58, 0.04);
+  block-size: clamp(17.5rem, 17.5rem + 10.125 * (100vw - 48rem) / 27, 27.625rem);
+  border-radius: 0.5rem;
 }
-
-.featured-projects-section .image img {
-	display: block;
-	inline-size: 100%;
-	block-size: 100%;
-	border-radius: 0.5rem;
-	object-fit: cover;
-}
-
 .featured-projects-section .description {
-	color: #080c11;
-	font-family: 'Libre Baskerville', serif;
-	font-size: 1rem;
-	line-height: 1.4;
-	margin: 0;
+  color: #080c11;
+  font-family: "Libre Baskerville", serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
 }

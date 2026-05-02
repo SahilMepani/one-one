@@ -24,7 +24,6 @@
 	}
 
 	.heading {
-		@include font(h2);
 		color: $body-color;
 		margin: 0;
 	}
@@ -51,6 +50,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: fluid(32, 48);
+
+		@media (width >= $md) {
+			flex-direction: row;
+		}
 	}
 
 	.column {
@@ -60,10 +63,6 @@
 
 	.lead {
 		color: $body-color;
-		font-family: $serif-font-family;
-		font-size: fluid(18, 22);
-		font-weight: 400;
-		line-height: 1.4;
 		margin: 0 0 fluid(16, 24);
 	}
 
@@ -79,12 +78,6 @@
 			&:last-child {
 				margin-block-end: 0;
 			}
-		}
-	}
-
-	@media (min-width: rem-calc(768)) {
-		.columns {
-			flex-direction: row;
 		}
 	}
 }

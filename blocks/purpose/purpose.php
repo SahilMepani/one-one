@@ -41,7 +41,7 @@ $columns  = get_field( 'columns' ) ?: array(
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>
-				<h2 class="heading"><?php echo esc_html( $heading ); ?></h2>
+				<h2 class="heading h2"><?php echo esc_html( $heading ); ?></h2>
 			<?php endif; ?>
 
 		</div>
@@ -65,12 +65,12 @@ $columns  = get_field( 'columns' ) ?: array(
 				</div>
 			<?php endif; ?>
 
-			<?php if ( $columns ) : ?>
+			<?php if ( is_array( $columns ) && ! empty( $columns ) ) : ?>
 				<div class="columns">
 					<?php foreach ( $columns as $column ) : ?>
 						<div class="column">
 							<?php if ( ! empty( $column['lead'] ) ) : ?>
-								<p class="lead"><?php echo esc_html( $column['lead'] ); ?></p>
+								<p class="lead h4"><?php echo esc_html( $column['lead'] ); ?></p>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $column['body'] ) ) : ?>

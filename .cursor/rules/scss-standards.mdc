@@ -194,3 +194,5 @@ Add to `_colors.scss` / `_typography.scss` / `_variables.scss` if:
 - It's a value you keep re-deriving (a specific radius, a recurring border color)
 
 Inline the raw value if it's a **one-off decorative value specific to this block** (e.g. a unique overlay opacity, a block-specific aspect ratio). When in doubt, prefer adding a token — hardcoded values drift faster than shared ones.
+
+**Only swap a literal for a token when they're an exact match.** If the design value doesn't match any palette/config token (e.g. pure `#fff` when `$pale` is `#fbf8f3`, or pure `rgba(0, 0, 0, …)` when `$body-color` is `#080c11`), keep the literal — don't snap to the nearest token. Snapping silently shifts the design.

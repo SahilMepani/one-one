@@ -61,6 +61,32 @@ Uses `position: absolute`. Only use on full-bleed images inside a `.img-cover-bl
 </div>
 ```
 
+**Don't redeclare the utility in block SCSS.** `src/sass/partials/utilities/_images.scss` already sets `position: relative; overflow: hidden` on `.img-cover-block` and full-bleed absolute sizing + `object-fit: cover` on `.img-cover`. Block SCSS keeps only the diff (background, `block-size`/`aspect-ratio`, `border-radius`, wrapper sizing).
+
+**If the wrapper is a link, also add `img-link`** so the global hover/focus zoom (`src/sass/partials/helpers/_miscellaneous.scss`) applies:
+
+```php
+<a href="<?php echo esc_url( $url ); ?>" class="img-cover-block img-link">
+	<?php echo wp_get_attachment_image( $image_id, 'w768', false, [ 'class' => 'img-cover' ] ); ?>
+</a>
+```
+
+```scss
+// ❌ duplicates the utility
+.image {
+	position: relative;
+	overflow: hidden;
+	img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+}
+
+// ✅ diff only
+.image {
+	background-color: rgba($magento, 0.04);
+	block-size: fluid(280, 442);
+	border-radius: rem-calc(8);
+}
+```
+
 ## 3. Block JSON Field Keys
 
 Always prefix field keys: `field_{block_slug}_{field_name}`

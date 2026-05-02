@@ -1,4 +1,4 @@
-@use "../abstracts" as *;
+@use '../abstracts' as *;
 @use '../abstracts' as *;
 
 .img-fluid,
@@ -36,6 +36,21 @@ img[class*='wp-image-'] {
 	inset-block-start: 0;
 	object-fit: cover;
 	object-position: center;
+}
+
+.img-link {
+	overflow: hidden;
+
+	img {
+		transition: 200ms ease-out;
+	}
+
+	&:hover,
+	&:focus-visible {
+		img {
+			transform: scale(1.2);
+		}
+	}
 }
 
 // align classes are set by wp on images inside editor.

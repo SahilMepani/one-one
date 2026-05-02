@@ -35,18 +35,8 @@
 }
 .product-showcase-section .image {
   background-color: rgba(103, 30, 58, 0.04);
-  inline-size: 100%;
   block-size: clamp(17.5rem, 17.5rem + 8.75 * (100vw - 48rem) / 27, 26.25rem);
   border-radius: 0.75rem;
-  position: relative;
-  overflow: hidden;
-}
-.product-showcase-section .image img {
-  display: block;
-  inline-size: 100%;
-  block-size: 100%;
-  border-radius: 0.75rem;
-  object-fit: cover;
 }
 .product-showcase-section .meta {
   color: #080c11;
