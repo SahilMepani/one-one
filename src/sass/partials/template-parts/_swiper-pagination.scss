@@ -17,12 +17,12 @@
 
 	.swiper-pagination-bullet {
 		all: unset;
-		background-color: $secondary-color;
+		background-color: rgba($magento, 8%);
 		block-size: fluid(6, 8);
 		margin: 0;
 
 		&::after {
-			background-color: $primary-color;
+			background-color: $magento;
 		}
 	}
 }
@@ -50,7 +50,7 @@
 
 	span {
 		all: unset; // overwrite default from swiper
-		background-color: rgba(#000, 40%);
+		background-color: rgba($magento, 8%);
 		display: inline-block;
 		inline-size: rem-calc(10);
 		block-size: rem-calc(10);
@@ -59,7 +59,7 @@
 		cursor: pointer;
 
 		&.swiper-pagination-bullet-active {
-			background-color: #000;
+			background-color: $magento;
 			transition: 0.2s;
 		}
 	}

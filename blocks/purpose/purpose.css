@@ -1,81 +1,126 @@
 /* Do not edit anything below */
 .purpose-section {
-  padding-block: clamp(3rem, 3rem + 2 * (100vw - 48rem) / 27, 5rem);
+	padding-block: clamp(3rem, 3rem + 2 * (100vw - 48rem) / 27, 5rem);
 }
+
 .purpose-section .header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
-  max-inline-size: 33.75rem;
-  margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+	max-inline-size: 33.75rem;
+	margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
+
 .purpose-section .label {
-  background-color: rgba(103, 30, 58, 0.1);
-  color: #671e3a;
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: clamp(0.75rem, 0.75rem + 0.125 * (100vw - 48rem) / 27, 0.875rem);
-  line-height: 1.4;
-  padding-block: 0.25rem;
-  padding-inline: 0.5rem;
-  border-radius: 0.25rem;
+	background-color: rgb(103 30 58 / 10%);
+	color: $magento;
+	font-family:
+		Geist,
+		-apple-system,
+		blinkmacsystemfont,
+		'avenir next',
+		'avenir, segoe ui',
+		'helvetica neue',
+		helvetica,
+		ubuntu,
+		roboto,
+		noto,
+		arial,
+		sans-serif;
+	font-size: clamp(0.75rem, 0.75rem + 0.125 * (100vw - 48rem) / 27, 0.875rem);
+	line-height: 1.4;
+	padding-block: 0.25rem;
+	padding-inline: 0.5rem;
+	border-radius: 0.25rem;
 }
+
 .purpose-section .heading {
-  font-family: Libre Baskerville, serif;
-  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
-  font-weight: 400;
-  line-height: 1.4;
-  text-wrap: balance;
-  letter-spacing: -0.8px;
-  color: #080c11;
-  margin: 0;
+	color: #080c11;
+	font-family: 'Libre Baskerville', serif;
+	font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+	font-weight: 400;
+	line-height: 1.4;
+	letter-spacing: -0.8px;
+	margin: 0;
+	text-wrap: balance;
 }
+
 .purpose-section .content {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+	display: flex;
+	flex-direction: column;
+	gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
+
 .purpose-section .image {
-  border-radius: 0.75rem;
-  overflow: hidden;
-  block-size: clamp(16.25rem, 16.25rem + 11.5 * (100vw - 48rem) / 27, 27.75rem);
+	block-size: clamp(
+		16.25rem,
+		16.25rem + 11.5 * (100vw - 48rem) / 27,
+		27.75rem
+	);
+	border-radius: 0.75rem;
+	overflow: hidden;
 }
+
 .purpose-section .image img {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
 }
+
 .purpose-section .columns {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+	display: flex;
+	flex-direction: column;
+	gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
+
 .purpose-section .column {
-  flex: 1 1 0;
-  min-inline-size: 0;
+	flex: 1 1 0;
+	min-inline-size: 0;
 }
+
 .purpose-section .lead {
-  color: #080c11;
-  font-family: "Libre Baskerville", serif;
-  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
-  font-weight: 400;
-  line-height: 1.4;
-  margin: 0 0 clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+	color: #080c11;
+	font-family: 'Libre Baskerville', serif;
+	font-size: clamp(
+		1.125rem,
+		1.125rem + 0.25 * (100vw - 48rem) / 27,
+		1.375rem
+	);
+	font-weight: 400;
+	line-height: 1.4;
+	margin: 0 0 clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
 }
+
 .purpose-section .body {
-  color: rgba(8, 12, 17, 0.4);
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
-  line-height: 1.4;
+	color: rgb(8 12 17 / 40%);
+	font-family:
+		Geist,
+		-apple-system,
+		blinkmacsystemfont,
+		'avenir next',
+		'avenir, segoe ui',
+		'helvetica neue',
+		helvetica,
+		ubuntu,
+		roboto,
+		noto,
+		arial,
+		sans-serif;
+	font-size: clamp(0.875rem, 0.875rem + 0.125 * (100vw - 48rem) / 27, 1rem);
+	line-height: 1.4;
 }
+
 .purpose-section .body p {
-  margin: 0 0 1rem;
+	margin: 0 0 1rem;
 }
+
 .purpose-section .body p:last-child {
-  margin-block-end: 0;
+	margin-block-end: 0;
 }
-@media (min-width: 48rem) {
-  .purpose-section .columns {
-    flex-direction: row;
-  }
+
+@media (width >= 48rem) {
+	.purpose-section .columns {
+		flex-direction: row;
+	}
 }

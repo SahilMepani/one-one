@@ -43,8 +43,8 @@
 }
 .cards-section .image {
   background-color: rgba(103, 30, 58, 0.12);
-  block-size: 17.5rem;
   inline-size: 100%;
+  block-size: 17.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -58,12 +58,12 @@
 }
 .cards-section .body {
   display: flex;
+  flex: 1 0 0;
   flex-direction: column;
   justify-content: space-between;
   gap: 3rem;
-  padding: 1rem;
-  flex: 1 0 0;
   min-block-size: 0;
+  padding: 1rem;
 }
 .cards-section .header {
   display: flex;
@@ -94,25 +94,4 @@
   display: inline-block;
   inline-size: 0.0625rem;
   block-size: 0.5rem;
-}
-.cards-section .card-link {
-  color: #000;
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  align-self: flex-start;
-  gap: 0.5rem;
-  transition: opacity 0.2s ease;
-}
-.cards-section .card-link:hover, .cards-section .card-link:focus-visible {
-  opacity: 0.7;
-}
-.cards-section .card-link svg {
-  color: currentcolor;
-  inline-size: 0.875rem;
-  block-size: 0.875rem;
 }

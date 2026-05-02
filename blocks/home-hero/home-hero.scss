@@ -91,7 +91,7 @@
 		align-items: stretch;
 		align-self: flex-end;
 		inline-size: min(100%, #{rem-calc(528)});
-		border-radius: rem-calc(12);
+		border-radius: fluid(6, 12);
 		box-shadow: 0 rem-calc(4) rem-calc(24) rem-calc(30) rgb(0 0 0 / 10%);
 		overflow: hidden;
 	}

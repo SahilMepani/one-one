@@ -145,6 +145,18 @@ Before writing any rule using a color, font, font-size, spacing, breakpoint, z-i
 - Map: `$typography-styles` (h1–h6)
 - Mixins: `@include font(h1..h6)`, `@include text(small|medium)`
 
+**Headings → `h1`–`h6` class in markup, don't replicate heading typography in SCSS.** Tag follows semantics (document outline); class follows visual size. Applies to non-headings too when their typography matches a heading.
+
+- Partial match → keep the class, override only the diff property. Don't rewrite from scratch.
+- `.h1`–`.h6` classes set font properties only, **not** `color: $heading-color` (that's only on native `h1`–`h6` tags). On non-heading elements, add `color: $heading-color` explicitly if needed.
+- No matching style → custom rule with `fluid()` + config tokens. Don't `@include font(...)` in block SCSS.
+
+```html
+<h2 class="h2">Same level</h2>
+<h3 class="h2">Sized like h2, semantically h3</h3>
+<span class="h1">Non-heading styled like h1</span>
+```
+
 **`src/sass/partials/config/_colors.scss`**
 
 - Palette: `$pale`, `$mist`, `$sand`, `$muted`, `$deep`
@@ -167,8 +179,8 @@ Before writing any rule using a color, font, font-size, spacing, breakpoint, z-i
 // ✅ ALWAYS:
 .card {
 	color: $body-color;
-	@include font(h2);
 }
+// And in markup, use the heading class: <h2 class="h2">…</h2>
 ```
 
 Always `@use` the partial in the consuming file rather than redeclaring values.

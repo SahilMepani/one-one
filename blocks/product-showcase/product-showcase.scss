@@ -16,7 +16,7 @@
 
 	.label {
 		background-color: rgba($magento, 0.1);
-		color: $body-color;
+		color: $magento;
 		font-family: $sans-serif-font-family;
 		font-size: rem-calc(14);
 		line-height: 1.4;
@@ -38,7 +38,7 @@
 	.grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: fluid(16, 48) rem-calc(16);
+		gap: fluid(24, 48) rem-calc(16);
 		margin-block-end: fluid(32, 48);
 
 		@media (width >= $md) {
@@ -77,13 +77,16 @@
 		color: $body-color;
 		font-family: $serif-font-family;
 		line-height: 1.4;
-		text-align: center;
 		display: flex;
 		flex-direction: column;
+
+		@media (width >= $md) {
+			text-align: center;
+		}
 	}
 
 	.eyebrow {
-		font-size: rem-calc(16);
+		font-size: fluid(12, 16);
 		margin: 0;
 	}
 

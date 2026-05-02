@@ -14,7 +14,7 @@
 }
 .product-showcase-section .label {
   background-color: rgba(103, 30, 58, 0.1);
-  color: #080c11;
+  color: #671e3a;
   font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.4;
@@ -38,7 +38,7 @@
 .product-showcase-section .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(1rem, 1rem + 2 * (100vw - 48rem) / 27, 3rem) 1rem;
+  gap: clamp(1.5rem, 1.5rem + 1.5 * (100vw - 48rem) / 27, 3rem) 1rem;
   margin-block-end: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
 @media (width >= 768px) {
@@ -75,12 +75,16 @@
   color: #080c11;
   font-family: "Libre Baskerville", serif;
   line-height: 1.4;
-  text-align: center;
   display: flex;
   flex-direction: column;
 }
+@media (width >= 768px) {
+  .product-showcase-section .meta {
+    text-align: center;
+  }
+}
 .product-showcase-section .eyebrow {
-  font-size: 1rem;
+  font-size: clamp(0.75rem, 0.75rem + 0.25 * (100vw - 48rem) / 27, 1rem);
   margin: 0;
 }
 .product-showcase-section .title {

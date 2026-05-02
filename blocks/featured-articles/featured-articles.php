@@ -154,7 +154,7 @@ $dev_options = skel_get_block_developer_options();
 								href="<?php echo esc_url( $featured['link']['url'] ); ?>"
 								target="<?php echo esc_attr( $featured['link']['target'] ); ?>"
 								<?php echo ( '_blank' === $featured['link']['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
-								class="card-link">
+								class="btn-link-dark">
 								<span><?php echo esc_html( $featured['link']['title'] ?: __( 'Explore the Guide', 'skel' ) ); ?></span>
 								<?php echo skel_get_svg( 'arrow-right', array( 'aria-hidden' => 'true' ) ); ?>
 								<?php if ( '_blank' === $featured['link']['target'] ) : ?>

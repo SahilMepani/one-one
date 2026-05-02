@@ -2336,14 +2336,14 @@ option:first-child {
 .swiper-navigation .swiper-button-next {
   all: unset;
   background-color: transparent;
-  color: #1f2261;
+  color: $magento;
   line-height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   inline-size: 2.5rem;
   block-size: 2.5rem;
-  border: 1px solid #1f2261;
+  border: 1px solid $magento;
   border-radius: 0.375rem;
   position: relative;
   z-index: 10;
@@ -2367,14 +2367,14 @@ option:first-child {
   display: none;
 }
 .swiper-navigation .swiper-button-prev:hover, .swiper-navigation .swiper-button-prev:focus-visible {
-  background-color: #1f2261;
-  color: #fdba00;
+  background-color: $magento;
+  color: #fff;
 }
 .swiper-navigation .swiper-button-prev:hover svg, .swiper-navigation .swiper-button-prev:focus-visible svg {
   animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
 }
 .swiper-navigation .swiper-button-next:hover, .swiper-navigation .swiper-button-next:focus-visible {
-  background-color: #1f2261;
+  background-color: $magento;
   color: #fdba00;
 }
 .swiper-navigation .swiper-button-next:hover svg, .swiper-navigation .swiper-button-next:focus-visible svg {
@@ -2398,12 +2398,12 @@ option:first-child {
 }
 .swiper-pagination .swiper-pagination-bullet {
   all: unset;
-  background-color: #fdba00;
+  background-color: rgba(103, 30, 58, 0.08);
   block-size: clamp(0.375rem, 0.375rem + 0.125 * (100vw - 48rem) / 27, 0.5rem);
   margin: 0;
 }
 .swiper-pagination .swiper-pagination-bullet::after {
-  background-color: #1f2261;
+  background-color: $magento;
 }
 
 .swiper-pagination-line {
@@ -2428,7 +2428,7 @@ option:first-child {
 }
 .swiper-pagination-dot span {
   all: unset;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(103, 30, 58, 0.08);
   display: inline-block;
   inline-size: 0.625rem;
   block-size: 0.625rem;
@@ -2437,7 +2437,7 @@ option:first-child {
   cursor: pointer;
 }
 .swiper-pagination-dot span.swiper-pagination-bullet-active {
-  background-color: #000;
+  background-color: $magento;
   transition: 0.2s;
 }
 
@@ -3000,7 +3000,7 @@ div.gform_wrapper.gravity-theme option:first-child {
 }
 
 .btn-dark {
-  background-color: #671e3a;
+  background-color: $magento;
   color: #fff;
 }
 .btn-dark:hover, .btn-dark:focus-visible {
@@ -3332,7 +3332,7 @@ div.gform_wrapper.gravity-theme option:first-child {
 }
 
 .text-link {
-  --line-color: #8c807d;
+  --line-color: $magento;
 }
 .text-link:hover, .text-link:focus-visible {
   text-decoration: underline var(--line-color) 1px;

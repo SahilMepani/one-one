@@ -1,98 +1,129 @@
 /* Do not edit anything below */
 .image-form-section .image-form {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 2rem;
 }
+
 .image-form-section .image-column {
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.75rem;
-  background-color: rgba(103, 30, 58, 0.04);
+	background-color: rgb(103 30 58 / 4%);
+	border-radius: 0.75rem;
+	position: relative;
+	overflow: hidden;
 }
+
 .image-form-section .image-column .img-responsive {
-  display: block;
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  border-radius: 0.75rem;
+	display: block;
+	inline-size: 100%;
+	block-size: 100%;
+	border-radius: 0.75rem;
+	object-fit: cover;
 }
+
 .image-form-section .form-column {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  inline-size: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.5rem;
+	inline-size: 100%;
 }
+
 .image-form-section .header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
-  inline-size: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1.5rem;
+	inline-size: 100%;
 }
+
 .image-form-section .label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding-block: 0.25rem;
-  padding-inline: 0.5rem;
-  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  color: #671e3a;
-  background-color: rgba(103, 30, 58, 0.1);
-  border-radius: 0.25rem;
+	background-color: rgb(103 30 58 / 10%);
+	color: $magento;
+	font-family:
+		Geist,
+		-apple-system,
+		blinkmacsystemfont,
+		'avenir next',
+		'avenir, segoe ui',
+		'helvetica neue',
+		helvetica,
+		ubuntu,
+		roboto,
+		noto,
+		arial,
+		sans-serif;
+	font-size: 0.875rem;
+	line-height: 1.4;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-block: 0.25rem;
+	padding-inline: 0.5rem;
+	border-radius: 0.25rem;
 }
+
 .image-form-section .heading {
-  font-family: Libre Baskerville, serif;
-  font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
-  font-weight: 400;
-  line-height: 1.4;
-  text-wrap: balance;
-  letter-spacing: -0.8px;
-  color: #080c11;
-  margin: 0;
+	color: #080c11;
+	font-family: 'Libre Baskerville', serif;
+	font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
+	font-weight: 400;
+	line-height: 1.4;
+	letter-spacing: -0.8px;
+	margin: 0;
+	text-wrap: balance;
 }
+
 .image-form-section .description {
-  font-family: Libre Baskerville, serif;
-  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
-  font-weight: 400;
-  line-height: 1.4;
-  text-wrap: balance;
-  color: #080c11;
+	color: #080c11;
+	font-family: 'Libre Baskerville', serif;
+	font-size: clamp(
+		1.125rem,
+		1.125rem + 0.25 * (100vw - 48rem) / 27,
+		1.375rem
+	);
+	font-weight: 400;
+	line-height: 1.4;
+	text-wrap: balance;
 }
+
 .image-form-section .description p {
-  margin: 0;
+	margin: 0;
 }
+
 .image-form-section .description p + p {
-  margin-block-start: 1rem;
+	margin-block-start: 1rem;
 }
+
 .image-form-section .form-wrap {
-  inline-size: 100%;
+	inline-size: 100%;
 }
+
 @media (width >= 768px) {
-  .image-form-section .image-form {
-    flex-direction: row;
-    align-items: stretch;
-    gap: 3rem;
-  }
-  .image-form-section .image-column {
-    flex: 1 0 0;
-    min-inline-size: 0;
-    align-self: stretch;
-  }
-  .image-form-section .form-column {
-    flex: 1 0 0;
-    min-inline-size: 0;
-  }
-  .image-form-section .image-form--form-first {
-    flex-direction: row-reverse;
-  }
+	.image-form-section .image-form {
+		flex-direction: row;
+		align-items: stretch;
+		gap: 3rem;
+	}
+
+	.image-form-section .image-column {
+		flex: 1 0 0;
+		align-self: stretch;
+		min-inline-size: 0;
+	}
+
+	.image-form-section .form-column {
+		flex: 1 0 0;
+		min-inline-size: 0;
+	}
+
+	.image-form-section .image-form--form-first {
+		flex-direction: row-reverse;
+	}
 }
+
 @media (width >= 1024px) {
-  .image-form-section .image-form {
-    gap: 5rem;
-  }
+	.image-form-section .image-form {
+		gap: 5rem;
+	}
 }
