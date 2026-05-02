@@ -21,27 +21,40 @@ If the response is truncated, fall back to `get_metadata` and fetch children ind
 
 ## Step 2 — Read tokens
 
-**Always read** (values are inlined in SCSS):
+**Always read:**
 
-- `src/sass/partials/config/_typography.scss`
-- `src/sass/partials/config/_colors.scss`
-- The project's helper/utility SCSS file (e.g. `src/sass/partials/helpers/_miscellaneous.scss` or equivalent) — check existing reusable classes before writing any new styles
-- `.cursor/rules/acf-json-format.mdc` — read before writing any `.json` file
+- `src/sass/partials/config/_colors.scss` — 21 lines; needed to match Figma hex values to project tokens
 
-That's it for required reads. **Do not read** existing `{slug}.{php,scss,json,js}` (boilerplate is identical, just overwrite) or `_variables.scss` (nothing in it applies to standard blocks).
+**Read conditionally (only if needed):**
 
-**Read on demand** — fetch from `.cursor/rules/*.mdc` only when the block needs an unfamiliar pattern: `swiper-standards.mdc` for sliders, `snippets.mdc` for standard PHP output patterns and accordion/dialog/toggle, `helpers-reference.mdc` if a helper signature is unclear, `accessibility.mdc` for complex interactive components. A sibling block file only when the new block clearly mirrors an existing one.
+- `src/sass/partials/config/_typography.scss` — read only when the Figma design has custom text styles that don't map to a standard `h1`–`h6` heading class. For most blocks, apply heading classes in markup; no SCSS needed.
+- `src/sass/partials/helpers/_miscellaneous.scss` — read only when the Figma design includes micro-components that may already have a helper class: tags/labels (`.text-label`), image hover zoom (`.img-link`), styled underline links (`.text-link`), list resets. Skip for layouts that are straightforward grids or content blocks.
+- `.cursor/rules/theme-config.mdc` — read instead of `_typography.scss` when you need the heading fluid() scale to match Figma text styles. Compact 70-line reference covering colors, heading scale, breakpoints, and spacing.
+
+**Do not read** existing `{slug}.{php,scss,json,js}` (boilerplate is identical, just overwrite) or `_variables.scss` (nothing in it applies to standard blocks).
+
+**Read on demand** — fetch from `.cursor/rules/*.mdc` only when the block needs an unfamiliar pattern:
+- `swiper-standards.mdc` for sliders — read §2 (JS init) and §4 (SCSS rules); skip the rest
+- `snippets.mdc` for standard PHP output patterns and accordion/dialog/toggle
+- `acf-json-format.mdc` for complex/rare field types only: group, flexible content, gallery, conditional logic, WYSIWYG, post object, relationship, textarea, number, true/false, oEmbed, select, button group
+- `helpers-reference.mdc` if a helper signature is unclear
+- `accessibility.mdc` for complex interactive components
+- A sibling block file only when the new block clearly mirrors an existing one
 
 > **Token rule:** Match Figma colors / sizes / spacing to existing tokens first. Inline raw values only when no token matches; consider adding to the config partial when the value will be reused.
 
-> **DRY helper class rule:** Before writing any block SCSS, locate the project's helper/utility SCSS file and check its existing reusable classes. Apply them directly in markup instead of duplicating the same styles in the block's SCSS. If a new pattern appears in ≥2 blocks or is clearly reusable, add it to the helper file rather than the block file.
+> **DRY helper class rule:** Before writing any block SCSS, check if the Figma design contains micro-components that look like `.text-label`, `.img-link`, or `.text-link`. If so, read `_miscellaneous.scss` and apply the existing class in markup instead of duplicating the styles. If a new pattern appears in ≥2 blocks or is clearly reusable, add it to the helper file rather than the block file.
 
 > **Dimension fidelity rule:** Preserve explicit Figma frame/text dimensions exactly for layout constraints such as `width`, `max-width`, image height, grid/card size, and fixed gaps. Convert px to `rem-calc()` in SCSS, but do not visually estimate or narrow these values from the screenshot. If the Figma MCP output omits a visible dimension, call `get_metadata` for the specific node before choosing the value.
 
 ## Step 3 — Write `{slug}.json`
 
-All field naming conventions, JSON structure, field types, and auto-injected field rules are in `acf-json-format.mdc` (always read in Step 2). **Block-specific additions:**
-
+- Field key prefix: `field_{slug}_{field_name}` — sub-fields: `field_{slug}_{repeater}_{field}`
+- Structure: `accordion` (open=1, multi_expand=1) → `tab` → fields
+- **Never add Settings/Spacing/Display fields** — auto-injected at registration
+- Images: `"return_format": "id"`, `"preview_size": "w200"`
+- Links: `"return_format": "array"`
+- Repeaters: `"collapsed"` = key of first sub-field
 - Repeaters with generic repeated content should use neutral editor labels: label `"Items"` and button `"Add Item"` unless the block needs a more specific content label.
 - If a repeater only has one sub-field named `image`, call the repeater `"images"` with label `"Images"` and button `"Add Image"`; do not use `"items"` for image-only repeaters.
 
