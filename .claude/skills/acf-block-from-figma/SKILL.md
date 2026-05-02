@@ -25,23 +25,23 @@ If the response is truncated, fall back to `get_metadata` and fetch children ind
 
 - `src/sass/partials/config/_typography.scss`
 - `src/sass/partials/config/_colors.scss`
+- The project's helper/utility SCSS file (e.g. `src/sass/partials/helpers/_miscellaneous.scss` or equivalent) — check existing reusable classes before writing any new styles
+- `.cursor/rules/acf-json-format.mdc` — read before writing any `.json` file
 
 That's it for required reads. **Do not read** existing `{slug}.{php,scss,json,js}` (boilerplate is identical, just overwrite) or `_variables.scss` (nothing in it applies to standard blocks).
 
-**Read on demand** — fetch from `.cursor/rules/*.mdc` only when the block needs an unfamiliar pattern: `swiper-standards.mdc` for sliders, `snippets.mdc` for accordion/dialog/toggle, `acf-json-format.mdc` for non-standard ACF types (group, flexible content, gallery), `helpers-reference.mdc` if a helper signature is unclear, `accessibility.mdc` for complex interactive components. A sibling block file only when the new block clearly mirrors an existing one.
+**Read on demand** — fetch from `.cursor/rules/*.mdc` only when the block needs an unfamiliar pattern: `swiper-standards.mdc` for sliders, `snippets.mdc` for standard PHP output patterns and accordion/dialog/toggle, `helpers-reference.mdc` if a helper signature is unclear, `accessibility.mdc` for complex interactive components. A sibling block file only when the new block clearly mirrors an existing one.
 
 > **Token rule:** Match Figma colors / sizes / spacing to existing tokens first. Inline raw values only when no token matches; consider adding to the config partial when the value will be reused.
+
+> **DRY helper class rule:** Before writing any block SCSS, locate the project's helper/utility SCSS file and check its existing reusable classes. Apply them directly in markup instead of duplicating the same styles in the block's SCSS. If a new pattern appears in ≥2 blocks or is clearly reusable, add it to the helper file rather than the block file.
 
 > **Dimension fidelity rule:** Preserve explicit Figma frame/text dimensions exactly for layout constraints such as `width`, `max-width`, image height, grid/card size, and fixed gaps. Convert px to `rem-calc()` in SCSS, but do not visually estimate or narrow these values from the screenshot. If the Figma MCP output omits a visible dimension, call `get_metadata` for the specific node before choosing the value.
 
 ## Step 3 — Write `{slug}.json`
 
-- Field key prefix: `field_{slug}_{field_name}` — sub-fields: `field_{slug}_{repeater}_{field}`
-- Structure: `accordion` (open=1, multi_expand=1) → `tab` → fields
-- **Never add Settings/Spacing/Display fields** — auto-injected at registration
-- Images: `"return_format": "id"`, `"preview_size": "w200"`
-- Links: `"return_format": "array"`
-- Repeaters: `"collapsed"` = key of first sub-field
+All field naming conventions, JSON structure, field types, and auto-injected field rules are in `acf-json-format.mdc` (always read in Step 2). **Block-specific additions:**
+
 - Repeaters with generic repeated content should use neutral editor labels: label `"Items"` and button `"Add Item"` unless the block needs a more specific content label.
 - If a repeater only has one sub-field named `image`, call the repeater `"images"` with label `"Images"` and button `"Add Image"`; do not use `"items"` for image-only repeaters.
 
@@ -89,39 +89,11 @@ if ( ! is_array( $images ) || empty( $images ) ) {
 
 When `$images` has been normalized to image IDs, loop over the IDs directly. Do not recreate `$item['image']` access patterns, temporary `$image_html` variables, or placeholder branches unless the design explicitly requires a separate placeholder state.
 
-**Section wrapper — keep this exact boilerplate:**
+**Section wrapper:** Use the exact boilerplate from `project-patterns.mdc` §Block Template Structure. `.container` MUST be the first and only direct child of `<section>`. Never place siblings next to it.
 
-```php
-<section
-	class="{slug}-section section <?php echo esc_attr( "{$dev_options['display_class']} {$dev_options['spacing_top']} {$dev_options['spacing_bottom']} {$dev_options['custom_classes']}" ); ?>"
-	style="<?php echo esc_attr( "{$dev_options['spacing_top_custom']} {$dev_options['spacing_bottom_custom']} {$dev_options['custom_css']}" ); ?>"
-	id="<?php echo esc_attr( $dev_options['unique_id'] ); ?>">
-	<div class="container">
-		<!-- everything from the design lives here -->
-	</div>
-</section>
-```
+**Image output:** See `project-patterns.mdc` §Image Pattern. Echo attachment images directly when the image ID already has a fallback.
 
-`.container` MUST be the first and only direct child of `<section>`. Never place siblings next to it.
-
-**Image output:** `wp_get_attachment_image( $image_id, 'w1920', false, array( 'class' => 'img-responsive', 'loading' => 'lazy', 'sizes' => 'auto' ) );`
-
-Echo attachment images directly when the image ID already has a fallback:
-
-**Link output:**
-
-```php
-<a
-	href="<?php echo esc_url( $link['url'] ); ?>"
-	target="<?php echo esc_attr( $link['target'] ); ?>"
-	<?php echo ( '_blank' === $link['target'] ) ? 'rel="noopener noreferrer"' : ''; ?>
-	class="btn">
-	<span><?php echo esc_html( $link['title'] ?: __( 'Learn More', 'skel' ) ); ?></span>
-	<?php if ( '_blank' === $link['target'] ) : ?>
-		<span class="sr-only"><?php esc_html_e( '(opens in a new tab)', 'skel' ); ?></span>
-	<?php endif; ?>
-</a>
-```
+**Link output:** See `snippets.mdc` §ACF Link Button for the standard pattern.
 
 **Helpers:** `skel_get_svg('icon-name')`, `skel_get_svg_content('filename')`, `DEFAULT_THUMBNAIL_ID`, `wp_kses_post()`. Full list in `helpers-reference.mdc`.
 
@@ -129,40 +101,7 @@ Echo attachment images directly when the image ID already has a fallback:
 
 Needs JS: swiper, accordion, tab, dialog, scroll/counter animation. Otherwise leave the auto-generated stub as `(() => { })();`.
 
-**Swiper init** (adapt options to design):
-
-```js
-(() => {
-	if (typeof Swiper === 'undefined') {
-		console.warn('Swiper is not loaded');
-		return;
-	}
-
-	const sliders = document.querySelectorAll('.{slug}-slider');
-
-	sliders.forEach((el, i) => {
-		const swiperClass = `{slug}-slider-${i}`;
-		el.classList.add(swiperClass);
-
-		const slides = el.querySelectorAll('.swiper-slide');
-		if (slides.length <= 0) return;
-
-		if (slides.length === 1) {
-			slides.forEach(slide => slide.classList.add('swiper-slide-active'));
-			return;
-		}
-
-		new Swiper(`.${swiperClass}`, {
-			slidesPerView: 'auto',
-			spaceBetween: 16,
-			speed: 500,
-			grabCursor: true
-		});
-	});
-})();
-```
-
-Add `min-inline-size: 0` to `.swiper` when inside a flex/grid parent. For scoped prev/next/pagination, see `swiper-standards.mdc` §2–§3.
+**Swiper init:** Use `swiper-standards.mdc` §2 as the JS init pattern (includes scoped navigation/pagination wiring and single-slide bailout). Adapt options to the design. For `min-inline-size: 0` and SCSS slide sizing rules, see `swiper-standards.mdc` §4.
 
 ## Step 5.6 — Load on the "claude" preview page
 
