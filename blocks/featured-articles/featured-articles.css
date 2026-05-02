@@ -1,258 +1,157 @@
 /* Do not edit anything below */
 .featured-articles-section {
-	background-color: #fff;
+  background-color: #fff;
 }
-
 .featured-articles-section .container {
-	display: flex;
-	flex-direction: column;
-	gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 2rem + 1 * (100vw - 48rem) / 27, 3rem);
 }
-
 .featured-articles-section .header {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
-	max-inline-size: 33.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 1rem + 0.5 * (100vw - 48rem) / 27, 1.5rem);
+  max-inline-size: 33.75rem;
 }
-
-.featured-articles-section .subheading {
-	background-color: rgb(103 30 58 / 10%);
-	color: #000;
-	font-family:
-		Geist,
-		-apple-system,
-		blinkmacsystemfont,
-		'avenir next',
-		'avenir, segoe ui',
-		'helvetica neue',
-		helvetica,
-		ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
-	font-size: 0.875rem;
-	line-height: 1.4;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding-block: 0.25rem;
-	padding-inline: 0.5rem;
-	border-radius: 0.25rem;
-}
-
-.featured-articles-section .heading {
-	color: #000;
-	font-family: 'Libre Baskerville', serif;
-	font-size: clamp(1.5rem, 1.5rem + 1 * (100vw - 48rem) / 27, 2.5rem);
-	font-weight: 400;
-	line-height: 1.4;
-	letter-spacing: -0.8px;
-	margin: 0;
-	text-wrap: balance;
-}
-
 .featured-articles-section .cards {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  inline-size: 100%;
 }
-
 .featured-articles-section .card {
-	background-color: rgb(103 30 58 / 4%);
-	display: flex;
-	flex-direction: column;
-	border-radius: 0.75rem;
-	overflow: hidden;
+  background-color: rgba(103, 30, 58, 0.04);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
-
 @media (width >= 768px) {
-	.featured-articles-section .card {
-		flex-direction: row;
-		align-items: stretch;
-	}
+  .featured-articles-section .card {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
-
 @media (width >= 768px) {
-	.featured-articles-section .card--featured {
-		block-size: 30rem;
-	}
+  .featured-articles-section .card--featured {
+    block-size: 30rem;
+  }
 }
-
 @media (width >= 768px) {
-	.featured-articles-section .card--small {
-		block-size: 20rem;
-	}
+  .featured-articles-section .card--small {
+    block-size: 20rem;
+  }
 }
-
 .featured-articles-section .card-image {
-	background-color: rgb(103 30 58 / 6%);
-	flex: 1 0 0;
-	min-inline-size: 0;
-	block-size: 15rem;
-	position: relative;
-	overflow: hidden;
+  background-color: rgba(103, 30, 58, 0.06);
+  flex: 1 0 0;
+  min-inline-size: 0;
+  block-size: 15rem;
+  position: relative;
+  overflow: hidden;
 }
-
 @media (width >= 768px) {
-	.featured-articles-section .card-image {
-		align-self: stretch;
-		block-size: auto;
-	}
+  .featured-articles-section .card-image {
+    align-self: stretch;
+    block-size: auto;
+  }
 }
-
 .featured-articles-section .card-image img {
-	display: block;
-	inline-size: 100%;
-	block-size: 100%;
-	position: absolute;
-	inset: 0;
-	object-fit: cover;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
 }
-
 .featured-articles-section .card-content {
-	display: flex;
-	flex: 1 0 0;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 1.5rem;
-	min-inline-size: 0;
-	padding: clamp(1.25rem, 1.25rem + 0.25 * (100vw - 48rem) / 27, 1.5rem);
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-inline-size: 0;
+  padding: clamp(1.25rem, 1.25rem + 0.25 * (100vw - 48rem) / 27, 1.5rem);
 }
-
 .featured-articles-section .card-top {
-	display: flex;
-	flex: 1 0 0;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 1rem;
-	min-block-size: 0;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  min-block-size: 0;
 }
-
 .featured-articles-section .card-text {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-
 .featured-articles-section .title {
-	color: #000;
-	font-family: 'Libre Baskerville', serif;
-	font-size: clamp(
-		1.125rem,
-		1.125rem + 0.25 * (100vw - 48rem) / 27,
-		1.375rem
-	);
-	font-weight: 400;
-	line-height: 1.4;
-	margin: 0;
-	text-wrap: balance;
+  color: #000;
+  margin: 0;
+  font-family: Libre Baskerville, serif;
+  font-size: clamp(1.125rem, 1.125rem + 0.25 * (100vw - 48rem) / 27, 1.375rem);
+  font-weight: 400;
+  line-height: 1.4;
+  text-wrap: balance;
 }
-
 .featured-articles-section .description {
-	color: rgb(0 0 0 / 40%);
-	font-family:
-		Geist,
-		-apple-system,
-		blinkmacsystemfont,
-		'avenir next',
-		'avenir, segoe ui',
-		'helvetica neue',
-		helvetica,
-		ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.4;
-	margin: 0;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
 }
-
 .featured-articles-section .meta {
-	color: rgb(0 0 0 / 40%);
-	font-family:
-		Geist,
-		-apple-system,
-		blinkmacsystemfont,
-		'avenir next',
-		'avenir, segoe ui',
-		'helvetica neue',
-		helvetica,
-		ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
-	font-size: 0.875rem;
-	line-height: 1.4;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5rem;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-
 .featured-articles-section .meta-divider {
-	background-color: rgb(0 0 0 / 40%);
-	display: inline-block;
-	inline-size: 0.0625rem;
-	block-size: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  inline-size: 0.0625rem;
+  block-size: 0.5rem;
 }
-
 .featured-articles-section .card-link {
-	color: $magento;
-	font-family:
-		Geist,
-		-apple-system,
-		blinkmacsystemfont,
-		'avenir next',
-		'avenir, segoe ui',
-		'helvetica neue',
-		helvetica,
-		ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
-	font-size: 0.875rem;
-	font-weight: 500;
-	line-height: 1.25rem;
-	text-decoration: none;
-	display: inline-flex;
-	align-items: center;
-	align-self: flex-start;
-	gap: 0.5rem;
-	transition: opacity 0.2s ease;
+  color: #671e3a;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  transition: opacity 0.2s ease;
 }
-
-.featured-articles-section .card-link:hover,
-.featured-articles-section .card-link:focus-visible {
-	opacity: 0.8;
+.featured-articles-section .card-link:hover, .featured-articles-section .card-link:focus-visible {
+  opacity: 0.8;
 }
-
 .featured-articles-section .card-link svg {
-	color: currentcolor;
-	inline-size: 1rem;
-	block-size: 1rem;
+  color: currentcolor;
+  inline-size: 1rem;
+  block-size: 1rem;
 }
-
 .featured-articles-section .cards-row {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
 @media (width >= 768px) {
-	.featured-articles-section .cards-row {
-		flex-direction: row;
-		align-items: stretch;
-	}
+  .featured-articles-section .cards-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
-
 .featured-articles-section .cards-row .card {
-	flex: 1 0 0;
-	min-inline-size: 0;
+  flex: 1 0 0;
+  min-inline-size: 0;
 }

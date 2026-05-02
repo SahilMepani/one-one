@@ -78,7 +78,7 @@ $dev_options = skel_get_block_developer_options();
 			<div class="content">
 
 				<?php if ( $label ) { ?>
-					<span class="label" data-inview data-aos="fade-up"><?php echo esc_html( $label ); ?></span>
+					<span class="text-label" data-inview data-aos="fade-up"><?php echo esc_html( $label ); ?></span>
 				<?php } ?>
 
 				<?php if ( $heading ) { ?>

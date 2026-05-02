@@ -2336,14 +2336,14 @@ option:first-child {
 .swiper-navigation .swiper-button-next {
   all: unset;
   background-color: transparent;
-  color: $magento;
+  color: #671e3a;
   line-height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   inline-size: 2.5rem;
   block-size: 2.5rem;
-  border: 1px solid $magento;
+  border: 1px solid #671e3a;
   border-radius: 0.375rem;
   position: relative;
   z-index: 10;
@@ -2367,14 +2367,14 @@ option:first-child {
   display: none;
 }
 .swiper-navigation .swiper-button-prev:hover, .swiper-navigation .swiper-button-prev:focus-visible {
-  background-color: $magento;
+  background-color: #671e3a;
   color: #fff;
 }
 .swiper-navigation .swiper-button-prev:hover svg, .swiper-navigation .swiper-button-prev:focus-visible svg {
   animation: micro-left 0.3s cubic-bezier(0.17, 0.67, 0.63, 1.55);
 }
 .swiper-navigation .swiper-button-next:hover, .swiper-navigation .swiper-button-next:focus-visible {
-  background-color: $magento;
+  background-color: #671e3a;
   color: #fdba00;
 }
 .swiper-navigation .swiper-button-next:hover svg, .swiper-navigation .swiper-button-next:focus-visible svg {
@@ -2403,7 +2403,7 @@ option:first-child {
   margin: 0;
 }
 .swiper-pagination .swiper-pagination-bullet::after {
-  background-color: $magento;
+  background-color: #671e3a;
 }
 
 .swiper-pagination-line {
@@ -2437,7 +2437,7 @@ option:first-child {
   cursor: pointer;
 }
 .swiper-pagination-dot span.swiper-pagination-bullet-active {
-  background-color: $magento;
+  background-color: #671e3a;
   transition: 0.2s;
 }
 
@@ -3000,7 +3000,7 @@ div.gform_wrapper.gravity-theme option:first-child {
 }
 
 .btn-dark {
-  background-color: $magento;
+  background-color: #671e3a;
   color: #fff;
 }
 .btn-dark:hover, .btn-dark:focus-visible {
@@ -3261,6 +3261,20 @@ div.gform_wrapper.gravity-theme option:first-child {
   padding-bottom: clamp(6.25rem, 6.25rem + 3.75 * (100vw - 48rem) / 27, 10rem);
 }
 
+.text-label {
+  background-color: rgba(103, 30, 58, 0.1);
+  color: #671e3a;
+  font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.25rem;
+}
+
 .visual-editor-section {
   font-family: "Geist", -apple-system, blinkmacsystemfont, "avenir next", "avenir, segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 1rem;
@@ -3332,7 +3346,7 @@ div.gform_wrapper.gravity-theme option:first-child {
 }
 
 .text-link {
-  --line-color: $magento;
+  --line-color: #671e3a;
 }
 .text-link:hover, .text-link:focus-visible {
   text-decoration: underline var(--line-color) 1px;

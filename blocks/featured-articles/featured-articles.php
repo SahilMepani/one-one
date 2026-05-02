@@ -79,7 +79,7 @@ $dev_options = skel_get_block_developer_options();
 
 		<header class="header">
 			<?php if ( $subheading ) : ?>
-				<span class="subheading"><?php echo esc_html( $subheading ); ?></span>
+				<span class="text-label"><?php echo esc_html( $subheading ); ?></span>
 			<?php endif; ?>
 
 			<?php if ( $heading ) : ?>

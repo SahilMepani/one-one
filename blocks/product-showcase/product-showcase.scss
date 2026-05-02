@@ -14,27 +14,6 @@
 		margin-inline: auto;
 	}
 
-	.label {
-		background-color: rgba($magento, 0.1);
-		color: $magento;
-		font-family: $sans-serif-font-family;
-		font-size: rem-calc(14);
-		line-height: 1.4;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding-block: rem-calc(4);
-		padding-inline: rem-calc(8);
-		border-radius: rem-calc(4);
-	}
-
-	.heading {
-		color: $body-color;
-		margin: 0;
-
-		@include font(h2);
-	}
-
 	.grid {
 		display: grid;
 		grid-template-columns: 1fr;
