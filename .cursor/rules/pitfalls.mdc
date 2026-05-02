@@ -190,7 +190,31 @@ Reserve `@media` for things that genuinely restructure the layout (e.g. 1 column
 
 Also: **always mobile-first** (`width >= $bp`), never desktop-first (`width < $bp`). Write the mobile layout as the default, then progressively enhance for larger screens.
 
-## 11. Never Use `nl2br()`
+## 11. Don't Use Flex Just for Gap — Use Margin Instead
+
+**CRITICAL:** If the only reason for `display: flex` is to space stacked children via `gap`, drop the flex and use `margin-block-end` on the children. Flex is for layouts that genuinely need it (side-by-side, alignment, wrapping, direction changes) — not as a spacing shortcut for normal vertical flow.
+
+```scss
+// ❌ WRONG — flex only for gap on a vertical stack
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: fluid(16, 32);
+}
+
+// ✅ RIGHT — margin on the children
+.container {
+	> .header { margin-block-end: fluid(16, 32); }
+	> .cta-group { margin-block-end: fluid(16, 32); }
+}
+
+// ✅ RIGHT — flex earns its place (true side-by-side layout)
+.cards { display: flex; gap: fluid(16, 32); }
+```
+
+**Rule of thumb:** if removing `display: flex` leaves the layout looking the same, it shouldn't have been flex.
+
+## 12. Never Use `nl2br()`
 
 Don't wrap output in `nl2br()`. Use `white-space: pre-line` in CSS instead.
 
