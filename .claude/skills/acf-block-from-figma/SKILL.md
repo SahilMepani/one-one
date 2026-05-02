@@ -55,8 +55,7 @@ If the response is truncated, fall back to `get_metadata` and fetch children ind
 - Images: `"return_format": "id"`, `"preview_size": "w200"`
 - Links: `"return_format": "array"`
 - Repeaters: `"collapsed"` = key of first sub-field
-- Repeaters with generic repeated content should use neutral editor labels: label `"Items"` and button `"Add Item"` unless the block needs a more specific content label.
-- If a repeater only has one sub-field named `image`, call the repeater `"images"` with label `"Images"` and button `"Add Image"`; do not use `"items"` for image-only repeaters.
+> Repeater labeling conventions: see `acf-json-format.mdc` §Repeater Labeling Conventions.
 
 ## Step 4 — Write `{slug}.scss`
 
@@ -65,7 +64,7 @@ General SCSS rules (logical properties, `fluid()`, mobile-first `@media`, no fle
 - Import is `@use '../../src/sass/partials/abstracts-blocks' as *;` — fix to `abstracts-blocks` if boilerplate has plain `abstracts`
 - **Everything nests inside `.{slug}-section { … }`** — zero top-level selectors. Media queries and modifiers nest too.
 - **Plain child class names** (`.card`, `.image`, `.body`) — never BEM-prefixed (`.{slug}__card`). Modifiers keep `--` (`.tag--dark`). No `&__` / `&--` shorthand — write the full class.
-- **Never `padding-inline` on `.{slug}-section`** — horizontal gutters come from `.container` globally. Only `padding-block-*` belongs on the section.
+- **Never `padding-inline` on `.{slug}-section`** — see pitfalls.mdc #14.
 
 ## Step 5 — Write `{slug}.php`
 
@@ -110,23 +109,23 @@ When `$images` has been normalized to image IDs, loop over the IDs directly. Do 
 
 **Helpers:** `skel_get_svg('icon-name')`, `skel_get_svg_content('filename')`, `DEFAULT_THUMBNAIL_ID`, `wp_kses_post()`. Full list in `helpers-reference.mdc`.
 
-## Step 5.5 — Write `{slug}.js` (only if needed)
+## Step 6 — Write `{slug}.js` (only if needed)
 
 Needs JS: swiper, accordion, tab, dialog, scroll/counter animation. Otherwise leave the auto-generated stub as `(() => { })();`.
 
 **Swiper init:** Use `swiper-standards.mdc` §2 as the JS init pattern (includes scoped navigation/pagination wiring and single-slide bailout). Adapt options to the design. For `min-inline-size: 0` and SCSS slide sizing rules, see `swiper-standards.mdc` §4.
 
-## Step 5.6 — Load on the "claude" preview page
+## Step 7 — Load on the "claude" preview page
 
 Write the slug (no quotes, no newline) to `blocks/.claude-preview-pending`. The WP `init` hook in `functions/claude-preview.php` reads it and inserts the block on the "claude" page on the next request. The trigger file is **not consumed** — it persists across requests, so you can reload `/claude/` freely without rewriting it.
 
-## Step 6 — Visual verification (opt-in)
+## Step 8 — Visual verification (opt-in)
 
-**Default: skip.** The block is done after Step 5.6; the user previews in their browser.
+**Default: skip.** The block is done after Step 7; the user previews in their browser.
 
 **Only run when explicitly asked** ("verify", "screenshot it", "compare against Figma") — the playwright loop costs ~10–15 tool calls per pass.
 
-When asked: invoke `playwright-cli` to navigate to `{preview_url}/claude/` (default `http://one-one.local/claude/`), viewport 1440×900, wait for fonts/images, take an element-scoped screenshot of `.{slug}-section`, save to `screenshots/{slug}-render.png`, compare to the Figma reference, fix and re-shot. Cap at 3 iterations. The trigger file written in Step 5.6 persists, so reloads work without rewriting it.
+When asked: read `LOCAL_URL` from `.env`, then invoke `playwright-cli` to navigate to `{LOCAL_URL}/claude/`, viewport 1440×900, wait for fonts/images, take an element-scoped screenshot of `.{slug}-section`, save to `screenshots/{slug}-render.png`, compare to the Figma reference, fix and re-shot. Cap at 3 iterations. The trigger file written in Step 7 persists, so reloads work without rewriting it.
 
 ## Validation Checklist
 

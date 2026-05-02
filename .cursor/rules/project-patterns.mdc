@@ -217,6 +217,67 @@ endif;
 
 - `bg-white`, `bg-light`, `bg-dark`
 
+## Responsive SCSS Patterns
+
+Common structural patterns used across blocks. All patterns nest inside `.{slug}-section { … }` — shown unwrapped for brevity. Values use `fluid(min, max)` placeholders; fill `A`/`B`/`N`/`X` from the design.
+
+**Section padding** — `fluid()` only, never `@media`:
+
+```scss
+padding-block: fluid(A, B);
+```
+
+**Grid: 1-col mobile → multi-col desktop** (LAYOUT — use `@media`):
+
+```scss
+.grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: fluid(A, B);
+	@media (width >= $md) {
+		grid-template-columns: repeat(N, 1fr);
+	}
+}
+```
+
+**Flex column → row flip** (LAYOUT — use `@media`):
+
+```scss
+.wrap {
+	display: flex;
+	flex-direction: column;
+	gap: fluid(A, B);
+	@media (width >= $md) {
+		flex-direction: row;
+	}
+}
+```
+
+**100% mobile → fixed desktop** — VALUE, prefer `min()` over `@media`:
+
+```scss
+inline-size: min(100%, #{rem-calc(X)});
+```
+
+**Card image** — `block-size` via `fluid()`, absolutely-positioned `img`:
+
+```scss
+.image {
+	block-size: fluid(A, B);
+	border-radius: fluid(A, B);
+	position: relative;
+	overflow: hidden;
+
+	img {
+		position: absolute;
+		inset: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+}
+```
+
 ## See Also
 
 - `acf-fields.mdc` - ACF field structures

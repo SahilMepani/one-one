@@ -196,3 +196,29 @@ Add to `_colors.scss` / `_typography.scss` / `_variables.scss` if:
 Inline the raw value if it's a **one-off decorative value specific to this block** (e.g. a unique overlay opacity, a block-specific aspect ratio). When in doubt, prefer adding a token — hardcoded values drift faster than shared ones.
 
 **Only swap a literal for a token when they're an exact match.** If the design value doesn't match any palette/config token (e.g. pure `#fff` when `$pale` is `#fbf8f3`, or pure `rgba(0, 0, 0, …)` when `$body-color` is `#080c11`), keep the literal — don't snap to the nearest token. Snapping silently shifts the design.
+
+## VALUE vs LAYOUT Classification
+
+Every responsive change is one of two kinds:
+
+| Kind | Properties | Tool |
+| --- | --- | --- |
+| **VALUE** | `font-size`, `line-height`, `padding`, `margin`, `gap`, `border-radius`, fixed `inline-size` / `block-size` | `fluid(mobile, desktop)` |
+| **LAYOUT** | `flex-direction`, `grid-template-columns`, `order`, `display` changes, `flex-wrap`, `position`, `max-inline-size: none → fixed` | Mobile-first `@media (width >= $bp)` |
+
+Default to VALUE when unsure — prefer `fluid()` and keep media queries to a minimum. `max-inline-size: unconstrained → fixed` is always LAYOUT because `fluid()` cannot express "no constraint at mobile."
+
+## Logical Properties
+
+Always use logical CSS properties — never physical ones:
+
+| ✅ Logical | ❌ Physical |
+| --- | --- |
+| `inline-size` | `width` |
+| `block-size` | `height` |
+| `margin-block-end` | `margin-bottom` |
+| `padding-block` | `padding-top` + `padding-bottom` |
+| `padding-inline` | `padding-left` + `padding-right` |
+| `inset` | `top` / `right` / `bottom` / `left` |
+
+Applies to all block SCSS and any new partials. Legacy partials that already use physical properties are exempt from forced rewrites.

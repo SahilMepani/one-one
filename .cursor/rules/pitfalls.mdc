@@ -248,3 +248,43 @@ Don't wrap output in `nl2br()`. Use `white-space: pre-line` in CSS instead.
 // ❌ wp_kses_post( $description )
 // ✅ wp_kses_post( $description )
 ```
+
+## 13. `@media` Queries Must Nest Inside `.{slug}-section`
+
+Every `@media` block belongs inside the outer `.{slug}-section { … }` wrapper — the same as all other selectors. Never add a standalone `@media` at the top level of the block SCSS file.
+
+```scss
+// ❌ WRONG — top-level @media outside the section wrapper
+.{slug}-section {
+	.grid { display: grid; }
+}
+@media (width >= $md) {
+	.{slug}-section .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+// ✅ RIGHT — @media nested inside the wrapper
+.{slug}-section {
+	.grid {
+		display: grid;
+		@media (width >= $md) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}
+```
+
+## 14. Never `padding-inline` on the Section Wrapper
+
+Horizontal gutters are provided globally by `.container`. Only `padding-block-start` / `padding-block-end` (or shorthand `padding-block`) belongs on `.{slug}-section`. Never add `padding-inline`, `padding-left`, or `padding-right` to the section wrapper itself.
+
+```scss
+// ❌ WRONG — horizontal padding on the section wrapper
+.{slug}-section {
+	padding-inline: fluid(20, 40); // conflicts with .container gutters
+}
+
+// ✅ RIGHT — only block-direction padding on the section
+.{slug}-section {
+	padding-block: fluid(48, 80);
+}
+```

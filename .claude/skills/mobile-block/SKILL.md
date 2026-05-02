@@ -1,6 +1,6 @@
 ---
 name: mobile-block
-description: Resolves the mobile responsive pass for an existing, desktop-coded block in this project. Fills the mobile (first) argument of fluid() calls from a mobile design and adds mobile-first media queries for layout flips only. Triggers on "make {block} responsive", "mobile pass", "resolve mobile values", or explicit /mobile-block invocation. Only for this static HTML/SCSS project — never React/Tailwind/ACF.
+description: Resolves the mobile responsive pass for an existing, desktop-coded block in this project. Fills the mobile (first) argument of fluid() calls from a mobile design and adds mobile-first media queries for layout flips only. Triggers on "make {block} responsive", "mobile pass", "resolve mobile values", or explicit /mobile-block invocation.
 metadata:
     mcp-server: figma, figma-desktop, playwright
 ---
@@ -9,103 +9,21 @@ metadata:
 
 Fill `fluid(0, X)` placeholders with real mobile values and add mobile-first `@media` for layout flips. That's the entire scope.
 
-> Static HTML/SCSS project. PHP = `require` partials only. No WordPress/ACF. Only edit `blocks/{slug}/{slug}.scss`.
+> This skill only edits `blocks/{slug}/{slug}.scss`. PHP, JSON, and WordPress/ACF wiring are out of scope.
 
-**All SCSS rules are inlined here — do NOT read `scss-standards.mdc` or any other config/rules file.**
-
-## Structural invariant (MANDATORY)
-
-**All CSS in `blocks/{slug}/{slug}.scss` MUST stay nested inside the outer `.{slug}-section { … }` selector.** Never add a top-level selector outside that wrapper — not even `@media` queries. If you find an existing rule outside the wrapper, move it in as part of the mobile pass.
-
-Classes use **plain child names** (`.card`, `.image`, `.tag`, `.body`) — not BEM (`.{slug}__card`). Modifiers still use `--` (`.tag--dark`). Don't rename existing `__` classes during a mobile pass — flag them if you see them.
+> Structural invariant: see pitfalls.mdc #13 (no top-level `@media`) and #14 (no `padding-inline` on section). Classes use plain child names — not BEM. Modifiers use `--`. Don't rename existing `__` classes — flag them.
 
 ## `fluid()` mechanics
 
 `fluid($min, $max, $min-bp: 'md', $max-bp: 'xl')` → `clamp()`. Below 768px → `$min`. Above 1200px → `$max`. Between → interpolation. `0` in `fluid(0, X)` = placeholder meaning "mobile TBD".
 
-## Token reference (DO NOT re-read config files)
-
-| Category | Values |
-|---|---|
-| **Colors** | `$pale #fbf8f3` `$mist #f7f1e8` `$sand #eae2d7` `$muted #8c807d` `$deep #362925` `$primary-color #1f2261` `$secondary-color #fdba00` `$body-color #080c11` |
-| **Fonts** | `$serif-font-family: 'Libre Baskerville'` `$sans-serif-font-family: 'Geist', system stack` |
-| **Typography** | h1:`fluid(32,48)/1.2/-0.96px` h2:`fluid(24,40)/1.4/-0.8px` h3:`fluid(20,32)/1.4/-0.64px` h4:`fluid(18,22)/1.4` h5:`fluid(16,18)/1.4` h6:`fluid(14,16)/1.4` text-small:`fluid(12,14)` text-medium:`fluid(14,16)` |
-| **Spacing** | `$container-padding-x: fluid(20, 40)` |
-| **Figma tokens** | `sp-N` = N px (2,4,6,8,12,16,24,32,48). Radius: `xxs=4 xs=6 sm=8 md=12 lg=16 xl=24` |
+> Tokens: read `theme-config.mdc` — colors, fonts, typography, breakpoints, spacing.
 
 ## Breakpoints
 
 `$sm: 576px` `$md: 768px` `$lg: 1024px` `$xl: 1200px` `$xxl: 1400px` — no custom breakpoints, always use the variable name.
 
-## House-style patterns (from existing blocks)
-
-All patterns nested inside `.{slug}-section { … }` — shown unwrapped for brevity.
-
-**Section padding** — always `fluid()`, never MQ:
-```scss
-padding-block: fluid(48, 80);
-padding-inline: fluid(16, 48);
-```
-
-**Label badge** — shared pattern across blocks:
-```scss
-display: inline-flex;
-align-items: center;
-padding-block: fluid(2, 4);
-padding-inline: fluid(6, 8);
-border-radius: rem-calc(4);
-font-size: fluid(12, 14);
-```
-
-**Header with desktop max-width** — LAYOUT, not VALUE:
-```scss
-.header {
-	display: flex;
-	flex-direction: column;
-	@media (width >= $md) {
-		max-inline-size: rem-calc(540);
-	}
-}
-```
-
-**Grid: 1-col mobile → multi-col desktop** — LAYOUT:
-```scss
-.grid {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: rem-calc(24);
-	@media (width >= $md) {
-		grid-template-columns: repeat(4, 1fr);
-		gap: rem-calc(16);
-	}
-}
-```
-
-**Flex column→row flip** — LAYOUT:
-```scss
-.wrap {
-	display: flex;
-	flex-direction: column;
-	gap: fluid(8, 16);
-	@media (width >= $md) {
-		flex-direction: row;
-	}
-}
-```
-
-**100% mobile → fixed desktop** — VALUE first, MQ only if `fluid()` can't express it:
-```scss
-inline-size: min(100%, #{rem-calc(528)}); // VALUE approach — preferred
-```
-
-**Card image** — `block-size` via `fluid()`, position absolute `img`:
-```scss
-block-size: fluid(320, 420);
-border-radius: fluid(8, 12);
-position: relative;
-overflow: hidden;
-img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
-```
+> Responsive SCSS patterns: see "Responsive SCSS Patterns" in `project-patterns.mdc`.
 
 ## Output policy
 

@@ -295,6 +295,11 @@ These are added automatically at block registration:
 }
 ```
 
+### Repeater Labeling Conventions
+
+- **Generic repeaters** — use neutral editor labels: `"label": "Items"`, `"button_label": "Add Item"`, field name `"items"`. Use a more specific name only when the content type clearly warrants it.
+- **Image-only repeaters** (single `image` sub-field) — use `"name": "images"`, `"label": "Images"`, `"button_label": "Add Image"`. Never use `"items"` for an image-only repeater.
+
 ### Conditional Logic
 
 ```json
